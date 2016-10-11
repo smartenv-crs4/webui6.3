@@ -1,0 +1,12 @@
+{
+  "error": {
+    "invalid_email": "L'indirizzo email inserito non &egrave; valido",
+    "bad_request": "Richiesta non valida",
+    "missing_user_or_password": "Nome utente o password mancanti",
+    "unauthorized": "Non sei autorizzato ad accedere a questa funzione",
+    "internal_server_error": "Errore interno del server",
+    "invalid_auth": "Email e/o password errati",
+    "password_differs": "Le password differiscono",
+    "unknown_user_type": "Seleziona il tipo di account che vuoi creare"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "error": {
+    "invalid_email": "Your email address is not valid",
+    "bad_request": "Bad request",
+    "missing_user_or_password": "No username o password provided",
+    "unauthorized": "You are not authorized to call this endpoint",
+    "internal_server_error": "Internal server error",
+    "invalid_auth": "Invalid email and/or password",
+    "password_differs": "Passwords must be equals",
+    "unknown_user_type": "Select a valid user type"
+  }
+}
