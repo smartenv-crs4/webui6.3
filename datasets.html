@@ -70,9 +70,9 @@
                     <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1-->
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search datasets...">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search datasets...">
 						<span class="input-group-btn">
-							<button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
+							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
 						</span>
                     </div>
                 </div>
@@ -89,20 +89,7 @@
                         <li><span class="label label-danger">Very Old</span></li>
                     </ul>
                     <div class="headline-v2"><h2>Tags</h2></div>
-                    <ul class="list-inline tags-v2 margin-bottom-50 color-white">
-                        <li><a href="#">Port</a></li>
-                        <li><a href="#">Economy</a></li>
-                        <li><a href="#">Sport</a></li>
-                        <li><a href="#">Sea</a></li>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Info</a></li>
-                        <li><a href="#">Social</a></li>
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Status</a></li>
-                        <li><a href="#">Vessek</a></li>
-                        <li><a href="#">Commercial</a></li>
-                        <li><a href="#">People</a></li>
-                    </ul>
+                    <div id="tags_container"></div>
                 </div>
                 <div class="col-md-10 well">
                     <div class="row">
@@ -119,60 +106,13 @@
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
                                 <thead>
-                                <tr >
+                                <tr>
                                     <th class="   hidden-sm">Datasets</th>
                                     <th>Status</th>
                                 </tr>
                                 </thead>
-                                <tbody class="text-left">
-                                <tr>
+                                <tbody class="text-left" id="datasetrows">
 
-                                    <td >
-                                        <h3><a href="dataset_detail.html">Dataset 1</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-                                        <small class="hex">Updated September 28, 2016</small>
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Just Updated</span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <h3><a href="#">Dataset 2</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-                                        <small class="hex">Updated March 2, 2016</small>
-                                    </td>
-                                    <td>
-                                        <span class="label label-info"> Recent</span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <h3><a href="#">Dataset 3</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-                                        <small class="hex">Updated March 3, 2014</small>
-                                    </td>
-                                    <td>
-                                        <span class="label label-warning">Old</span>
-                                    </td>
-
-                                </tr>
-                                <tr>
-
-                                    <td>
-                                        <h3><a href="#">Dataset 4</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non malesuada ante. Donec vel arcu.</p>
-                                        <small class="hex">Updated March 4, 2014</small>
-                                    </td>
-                                    <td>
-                                        <span class="label label-danger">Very Old</span>
-                                    </td>
-
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -180,17 +120,8 @@
 
                     <div class="margin-bottom-30"></div>
 
-                    <div class="text-left">
-                        <ul class="pagination">
-                            <li><a href="#">«</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">...</a></li>
-                            <li><a href="#">17</a></li>
-                            <li><a href="#">18</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
+                    <div class="text-left" id="pagination_container">
+
                     </div>
                 </div>
 
@@ -266,7 +197,8 @@
                 <div class="row">
                     <!-- About -->
                     <div class="col-md-4 md-margin-bottom-40">
-                        <a href="http://www.crs4.it" target = "_blank"><img id="logo-footer" class="footer-logo" src="lib/img/crs4.png" alt=""></a>
+                        <a href="http://www.crs4.it" target="_blank"><img id="logo-footer" class="footer-logo"
+                                                                          src="lib/img/crs4.png" alt=""></a>
                         <p>Il CRS4 è un centro di ricerca interdisciplinare privato fondato dalla Regione Autonoma della
                             Sardegna.</p>
 
@@ -365,6 +297,64 @@
 </div><!--/End Wrapper-->
 
 
+<script type="text/x-handlebars-template" id="datasetrows_template">
+    {{#each result}}
+    <tr>
+
+        <td>
+            <h3><a href="dataset_detail.html?id={{id}}">{{title}}</a></h3>
+            <p>{{notes}}</p>
+            <ul class="list-inline tags-v1  color-white">
+                {{#each tags}}
+                <li><a>{{display_name}}</a></li>
+                {{/each}}
+            </ul>
+        </td>
+        <td>
+            <span class="label label-aqua">{{state}}</span>
+        </td>
+
+    </tr>
+    {{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="pagination_template">
+
+    <ul class="pagination">
+        {{#paginate pagination type="previous"}}
+        {{#if disabled}}{{else}}
+        <li><a href="#"
+               onclick="javascript:getDatasets('datasetrows','datasetrows_template', {{n}});">
+            &lt;</a></li>
+        {{/if}}
+        {{/paginate}}
+        {{#paginate pagination type="middle" limit="7"}}
+        <li class="{{#if active}}active{{/if}} hidden-xs">
+            <a href="#"
+               onclick="javascript:getDatasets('datasetrows','datasetrows_template', {{n}});">{{n}}</a>
+        </li>
+        {{/paginate}}
+        {{#paginate pagination type="next"}}
+        {{#if disabled}}{{else}}
+        <li><a href="#"
+               onclick="javascript:getDatasets('datasetrows','datasetrows_template', {{n}});">
+            &gt;</a></li>
+        {{/if}}
+        {{/paginate}}
+
+    </ul>
+</script>
+
+
+<script type="text/x-handlebars-template" id="tags_template">
+    <ul class="list-inline tags-v2 margin-bottom-50 color-white">
+        {{#each result}}
+        <li><a href="#">{{this}}</a></li>
+        {{/each}}
+    </ul>
+
+</script>
+
 <!-- JS Global Compulsory -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>
@@ -378,10 +368,7 @@
 <!-- JS Implementing Plugins -->
 <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-<!-- <script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/waypoints.min.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/jquery.counterup.min.js"></script>
-<script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>-->
+
 <!-- JS Customization -->
 
 <!-- JS Page Level -->
@@ -391,6 +378,7 @@
 <script type="text/javascript" src="lib/js/common_header.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script type="text/javascript" src="lib/js/handlebars-paginate.js"></script>
 <script type="text/javascript" src="lib/js/custom.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function () {
@@ -398,6 +386,8 @@
         //App.initCounter();
         //	App.initParallaxBg();
         //OwlCarousel.initOwlCarousel();
+        Handlebars.registerHelper('paginate', paginate);
+
         $('#header_p').html(header_template);
 
         i18next.init({
@@ -416,19 +406,23 @@
 
         });
 
-        $(".search-block").backstretch([
-            "lib/img/login_1.jpg",
-            "lib/img/login_2.jpg",
-            "lib/img/login_3.jpg",
-            //"assets/img/port/login_4.jpg",
-            "lib/img/login_5.jpg",
-            "lib/img/login_7.jpg",
-            "lib/img/login_8.jpg",
-        ], {
-            fade: 1000,
-            duration: 4000
-        });
+        var url = datasetsURL;
 
+        var query = getParameterByName('q');
+        if (query){
+            url+="?q="+query;
+        }
+        getDatasets(url,"datasetrows", "datasetrows_template", 1, 5);
+
+        getSimple(tagsURL, "tags_container","tags_template");
+
+        $("#searchButton").click(function () {
+            var query = $("#searchInput").val();
+            var page = "datasets.html";
+            if (query)
+                page += "?q=" + query
+            window.location = page;
+        })
     });
 </script>
 <!--[if lt IE 9]>

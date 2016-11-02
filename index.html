@@ -72,9 +72,9 @@
                 <h1>OPEN DATA <span class="color-red">Cagliari Port</span> 2020</h1>
 
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for datasets...">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search for datasets...">
 						<span class="input-group-btn">
-							<button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
+							<button class="btn-u btn-u-lg" type="button" id="searchButton"><i class="fa fa-search"></i></button>
 						</span>
                 </div>
 
@@ -92,7 +92,8 @@
             <div class="row">
                 <!-- About -->
                 <div class="col-md-4 md-margin-bottom-40">
-                    <a href="http://www.crs4.it" target = "_blank"><img id="logo-footer" class="footer-logo" src="lib/img/crs4.png" alt="crs4 logo"></a>
+                    <a href="http://www.crs4.it" target="_blank"><img id="logo-footer" class="footer-logo"
+                                                                      src="lib/img/crs4.png" alt="crs4 logo"></a>
                     <p>Il CRS4 è un centro di ricerca interdisciplinare privato fondato dalla Regione Autonoma della
                         Sardegna.</p>
 
@@ -253,6 +254,14 @@
             fade: 1000,
             duration: 4000
         });
+
+        $("#searchButton").click(function () {
+            var query = $("#searchInput").val();
+            var page = "datasets.html";
+            if (query)
+                page += "?q=" + query
+            window.location = page;
+        })
 
     });
 </script>
