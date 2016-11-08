@@ -306,7 +306,7 @@
             <p>{{notes}}</p>
             <ul class="list-inline tags-v1  color-white">
                 {{#each tags}}
-                <li><a>{{display_name}}</a></li>
+                <li><a href="datasets.html?q={{display_name}}">{{display_name}}</a></li>
                 {{/each}}
             </ul>
         </td>
@@ -349,7 +349,7 @@
 <script type="text/x-handlebars-template" id="tags_template">
     <ul class="list-inline tags-v2 margin-bottom-50 color-white">
         {{#each result}}
-        <li><a href="#">{{this}}</a></li>
+        <li><a href="datasets.html?q={{this}}">{{this}}</a></li>
         {{/each}}
     </ul>
 
