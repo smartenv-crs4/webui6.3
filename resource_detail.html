@@ -70,49 +70,17 @@
                     <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1-->
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search datasets...">
+                        <input type="text" class="form-control" placeholder="Search datasets..." id="searchInput">
                         <span class="input-group-btn">
-							<button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
+							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
 						</span>
                     </div>
                 </div>
             </div>
 
-            <div class="row well bg-color-semitransparent">
+            <div class="row well bg-color-semitransparent" id="singleResource">
 
-                <div class="well bg-color-light col-md-12">
 
-                    <div class="row">
-                        <div class="col-md-9 text-left"><h2 class="color-red">Resource 1</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id commodo lacus. Fusce non
-                                malesuada ante. Donec vel arcu.</p>
-                        </div>
-                        <div class="col-md-3">
-                            <!--<button class="fa fa-cloud-download btn-u"> </button>-->
-                            <a href="#" class="btn-u"><i class="fa fa-cloud-download"></i> </a>
-
-                            <button class="btn-u"> Edit</button>
-                        </div>
-                    </div>
-
-                    <div class="table-search-v2">
-                        <div class="panel panel-default text-left">
-                            <div class="panel-heading ">Resource Preview</div>
-                            <div class="panel-body">..........................
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default text-left">
-                            <div class="panel-heading ">Additional info</div>
-                            <div class="panel-body">The resources in this datasets are all taken from the best source on
-                                the web, where all bits and bytes live free and in peace.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="margin-bottom-30"></div>
-
-                </div>
             </div>
         </div><!--/container-->
     </div>
@@ -223,6 +191,44 @@
 </div><!--/End Wrapper-->
 
 
+<script type="text/x-handlebars-template" id="singleResource_template">
+    {{#with result}}
+    <div class="well col-md-12">
+
+        <div class="row">
+            <div class="col-md-9 text-left"><h2 class="color-red">{{name}}</h2>
+                <p>{{description}}</p>
+            </div>
+            <div class="col-md-3">
+                <!--<button class="fa fa-cloud-download btn-u"> </button>-->
+                <a href="{{url}}" target="_blank" class="btn-u"><i class="fa fa-cloud-download"></i> </a>
+
+                <button class="btn-u " style="display:none;"> Edit</button>
+            </div>
+        </div>
+
+        <div class="table-search-v2">
+            <div class="panel panel-default text-left">
+                <div class="panel-heading ">Resource Preview</div>
+                <div class="panel-body">   </div>
+            </div>
+
+            <div class="panel panel-default text-left">
+                <div class="panel-heading ">Additional info</div>
+                <div class="panel-body">
+                    <b>Format:</b><span> {{format}}</span>
+                    <br>
+                    <b>Created:</b><span> {{created}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="margin-bottom-30"></div>
+
+    </div>
+{{/with}}
+</script>
+
 <!-- JS Global Compulsory -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>
@@ -286,6 +292,21 @@
             fade: 1000,
             duration: 4000
         });
+
+        $("#searchButton").click(function () {
+            var query = $("#searchInput").val();
+            var page = "datasets.html";
+            if (query)
+                page += "?q=" + query
+            window.location = page;
+        })
+
+        var resourcesId = getParameterByName("id");
+        var url = resourcesURL + resourcesId;
+        var targetId = "singleResource";
+        var templateId = "singleResource_template";
+
+        getSimple(url, targetId, templateId);
 
     });
 </script>

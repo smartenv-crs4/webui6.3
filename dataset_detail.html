@@ -70,9 +70,9 @@
                     <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1-->
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search datasets...">
+                        <input type="text" class="form-control" placeholder="Search datasets..." id="searchInput">
 						<span class="input-group-btn">
-							<button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
+							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
 						</span>
                     </div>
                 </div>
@@ -221,7 +221,7 @@
         <div class="col-md-9 text-left"><h2 class="color-red ">{{title}}</h2>
             <p>{{notes}}</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" hidden="hidden">
             <button class="btn-u pull-right">Edit Dataset</button>
         </div>
 
@@ -242,16 +242,17 @@
 
                     <td class="bg-color-white">
                         <div class="row">
-                            <div class="col-md-10"><h3><a href="resource_detail.html">{{Name}}</a></h3></div>
+                            <div class="col-md-10"><h3><a href="resource_detail.html?id={{id}}">{{name}}</a></h3></div>
+                            <div class="col-md-2 ">
+                                <button class="btn-u pull-right" onclick="window.location = 'resource_detail.html?id={{id}}'">Explore</button>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-10">
                                 <p>{{description}}</p>
-                                <small class="hex"><span>Created</span> {{created}}</small>
+
                             </div>
-                            <div class="col-md-2 ">
-                                <button class="btn-u pull-right" onclick="window.open('{{url}}')">Explore</button>
-                            </div>
+
                         </div>
 
 
@@ -267,7 +268,9 @@
         <div class="panel panel-default text-left">
             <div class="panel-heading ">Additional info</div>
             <div class="panel-body" >
-
+                    <b>Author:</b><span> {{author}}</span>
+                <br>
+                <b>Last modified:</b><span> {{metadata_modified}}</span>
             </div>
         </div>
     </div>
@@ -340,6 +343,14 @@
             fade: 1000,
             duration: 4000
         });
+
+        $("#searchButton").click(function () {
+            var query = $("#searchInput").val();
+            var page = "datasets.html";
+            if (query)
+                page += "?q=" + query
+            window.location = page;
+        })
 
         var datasetId = getParameterByName("id");
         var url = singleDatasetURL + datasetId;

@@ -81,13 +81,13 @@
 
 
                 <div class="col-md-2 bg-color-red-semi">
-                    <div class="headline-v2 margin-top-20"><h2>Filtri</h2></div>
+                    <!--div class="headline-v2 margin-top-20"><h2>Filtri</h2></div>
                     <ul class="list-row  margin-bottom-50 color-white text-left">
                         <li><span class="label label-success">Just Updated</span></li>
                         <li><span class="label label-info"> Recent</span></li>
                         <li><span class="label label-warning">Old</span></li>
                         <li><span class="label label-danger">Very Old</span></li>
-                    </ul>
+                    </ul-->
                     <div class="headline-v2"><h2>Tags</h2></div>
                     <div id="tags_container"></div>
                 </div>
@@ -96,7 +96,7 @@
                         <div class="col-md-9 ">
                             <h2 class="color-red">Datasets List</h2>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" hidden="hidden">
                             <!--<button class="btn-u pull-right">+ Add new Dataset</button>-->
                             <a href="add_dataset.html" class="btn-u pull-right">+ Add new Dataset</a>
                         </div>
@@ -324,20 +324,20 @@
         {{#paginate pagination type="previous"}}
         {{#if disabled}}{{else}}
         <li><a href="#"
-               onclick="javascript:getDatasets('datasetrows','datasetrows_template', {{n}});">
+               onclick="javascript:getDatasets(url,'datasetrows','datasetrows_template', {{n}});">
             &lt;</a></li>
         {{/if}}
         {{/paginate}}
         {{#paginate pagination type="middle" limit="7"}}
         <li class="{{#if active}}active{{/if}} hidden-xs">
             <a href="#"
-               onclick="javascript:getDatasets('datasetrows','datasetrows_template', {{n}});">{{n}}</a>
+               onclick="javascript:getDatasets(url,'datasetrows','datasetrows_template', {{n}});">{{n}}</a>
         </li>
         {{/paginate}}
         {{#paginate pagination type="next"}}
         {{#if disabled}}{{else}}
         <li><a href="#"
-               onclick="javascript:getDatasets('datasetrows','datasetrows_template', {{n}});">
+               onclick="javascript:getDatasets(url,'datasetrows','datasetrows_template', {{n}});">
             &gt;</a></li>
         {{/if}}
         {{/paginate}}
@@ -381,6 +381,7 @@
 <script type="text/javascript" src="lib/js/handlebars-paginate.js"></script>
 <script type="text/javascript" src="lib/js/custom.js"></script>
 <script type="text/javascript">
+    var url;
     jQuery(document).ready(function () {
         App.init();
         //App.initCounter();
@@ -406,7 +407,7 @@
 
         });
 
-        var url = datasetsURL;
+         url = datasetsURL;
 
         var query = getParameterByName('q');
         if (query){
@@ -420,7 +421,7 @@
             var query = $("#searchInput").val();
             var page = "datasets.html";
             if (query)
-                page += "?q=" + query
+                page += "?q=" + query;
             window.location = page;
         })
     });
