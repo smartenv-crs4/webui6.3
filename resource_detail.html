@@ -209,12 +209,15 @@
 
         <div class="table-search-v2">
             <div class="panel panel-default text-left">
-                <div class="panel-heading ">Resource Preview</div>
-                <div class="panel-body">   </div>
+                <div class="panel-heading text-bold">Resource Preview</div>
+                <div class="panel-body" id="contentResource" style="display: block; display: -webkit-box; max-width: auto; height: 109.2px; margin: 0 auto;
+                font-size: auto; line-height: 1.4; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+
+                </div>
             </div>
 
             <div class="panel panel-default text-left">
-                <div class="panel-heading ">Additional info</div>
+                <div class="panel-heading text-bold">Additional info</div>
                 <div class="panel-body">
                     <b>Format:</b><span> {{format}}</span>
                     <br>
@@ -228,6 +231,17 @@
     </div>
 {{/with}}
 </script>
+
+
+
+<!--script type="text/x-handlebars-template" id="contentResource_template">
+    {{#with result}}
+    <div class="panel-body">
+         {{url}}
+    </div>
+    {{/with}}
+</script-->
+
 
 <!-- JS Global Compulsory -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -306,7 +320,13 @@
         var targetId = "singleResource";
         var templateId = "singleResource_template";
 
+
         getSimple(url, targetId, templateId);
+
+        var targetIdRes = "contentResource";
+        var templateIdRes = "contentResource_template";
+
+        getContentResource(url, targetIdRes, templateIdRes);
 
     });
 </script>
