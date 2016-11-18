@@ -196,12 +196,15 @@
     <div class="well col-md-12">
 
         <div class="row">
-            <div class="col-md-9 text-left"><h2 class="color-red">{{name}}</h2>
+            <div class="col-md-9 text-left">
+                <h2 class="color-red text-left">
+                    {{name}}
+                </h2>
                 <p>{{description}}</p>
             </div>
             <div class="col-md-3">
                 <!--<button class="fa fa-cloud-download btn-u"> </button>-->
-                <a href="{{url}}" target="_blank" class="btn-u"><i class="fa fa-cloud-download"></i> </a>
+                <a href="{{url}}" target="_blank" class="btn-u" title="Download Resource"><i class="fa fa-cloud-download"></i> </a>
 
                 <button class="btn-u " style="display:none;"> Edit</button>
             </div>
@@ -214,6 +217,7 @@
                 font-size: auto; line-height: 1.4; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
 
                 </div>
+
             </div>
 
             <div class="panel panel-default text-left">
