@@ -54,6 +54,25 @@
 
     <!-- CSS Page Style Import-->
     <link rel="stylesheet" href="assets/css/pages/page_log_reg_v3.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th {
+            text-align: center;
+            background-color: #ddd;
+            border: 1px solid #fff;
+            color: red;
+        }
+
+        td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #f2f2f2}
+    </style>
 </head>
 
 <body>
@@ -192,6 +211,7 @@
 
 <script src="http://kincrew.github.com/xReader/xReader.full.js"></script>
 <script type="text/x-handlebars-template" id="singleResource_template">
+
     {{#with result}}
     <div class="well col-md-12">
 
@@ -215,7 +235,7 @@
             <div class="panel panel-default text-left">
                 <div class="panel-heading text-bold">Resource Preview</div>
                 <div class="panel-body" id="contentResource" style=" display: -webkit-box; max-width: auto; height: 300px auto; margin: 0 auto;
-                font-size: auto; line-height: 1.4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                font-size: auto; line-height: 1.4; -webkit-box-orient: vertical; overflow-x:auto; text-overflow: ellipsis;">
 
                 </div>
 
