@@ -12,11 +12,13 @@ jQuery(document).ready(function(){
 
 jQuery(document).on("translate", function(){
   jQuery('.selectpicker').selectpicker('refresh');
-})
+});
 
 function signIn()
 {
-  var email = jQuery("#signInEmail").val();
+  //var email = jQuery("#signInEmail").val(); /////////in ckan username
+
+  var username = jQuery("#signInUsername").val();
   var password = jQuery("#signInPassword").val();
 
   var respBlock = jQuery("#signInResponse");
@@ -26,17 +28,24 @@ function signIn()
     respBlock.addClass("invisible");
   }
 
-
-  if(!isValidEmailAddress(email))
+  if(!isValidEmailAddress(username))
   {
     respBlock.html(i18next.t("error.invalid_email"));
     respBlock.removeClass("invisible");
     return;
   }
 
+
+  /*if(!isValidEmailAddress(email))
+  {
+    respBlock.html(i18next.t("error.invalid_email"));
+    respBlock.removeClass("invisible");
+    return;
+  }*/
+
   var data = new Object();
   //data["user"] = new Object();
-  data["username"] = email;
+  data["username"] = username;
   data["password"] = password;
 
   jQuery.ajax({
@@ -53,7 +62,7 @@ function signIn()
         console.log(sessionStorage.userId);
         sessionStorage.token = data["access_credentials"]["apiKey"]["token"];
         sessionStorage.userId = data["access_credentials"]["userId"];
-        sessionStorage.email = email;
+        sessionStorage.email = username;
         redirectToPrevPage();
         
         return;
@@ -73,7 +82,7 @@ function signIn()
       {
         case 400:
           if(xhr.responseJSON.error == "invalid_token")
-            respBlock.html(i18next.t("error.unauthorized"))
+            respBlock.html(i18next.t("error.unauthorized"));
           else if(xhr.responseJSON.error == "BadRequest")
             respBlock.html(i18next.t("error.missing_user_or_password"));
           else
@@ -102,6 +111,9 @@ function signIn()
 function signUp()
 {
   var email = jQuery("#signUpEmail").val();
+
+  var username = jQuery("#signUpUsername").val();
+
   var name = jQuery("#signUpName").val();
   var password = jQuery("#signUpPassword").val();
   var password2 = jQuery("#signUpPassword2").val();
@@ -139,6 +151,10 @@ function signUp()
 
   var data = new Object();
   data["user"] = new Object();
+
+  //////////////////// aggiungere username
+  data["user"]["username"] = username;
+
   data["user"]["email"] = email;
   data["user"]["name"] = name;
   data["user"]["password"] = password;
