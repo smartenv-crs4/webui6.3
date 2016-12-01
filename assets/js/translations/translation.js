@@ -22,6 +22,7 @@ var translation = {
             "login": {
                 "signUp": "Sign Up",
                 "signIn": "Sign In",
+                "yourUsername": "Your username",
                 "yourEmail": "Your email",
                 "yourName": "Your name",
                 "password": "Password",
@@ -92,6 +93,7 @@ var translation = {
             "login": {
                 "signUp": "Registrati",
                 "signIn": "Accedi",
+                "yourUsername": "Il tuo username",
                 "yourEmail": "Il tuo indirizzo email",
                 "yourName": "Il tuo nome",
                 "password": "Password",
