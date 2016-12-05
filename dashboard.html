@@ -66,17 +66,7 @@
     <div class="search-block parallaxBg one-top-padding autoHeight no-padding-bottom">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1>
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search datasets...">
-                        <span class="input-group-btn">
-							<button class="btn-u btn-u-lg" type="button"><i class="fa fa-search"></i></button>
-						</span>
-                    </div>
-                </div>-->
-            </div>
 
             <div class="row well bg-color-semitransparent">
 
@@ -90,7 +80,8 @@
                         <div class="col-md-9 text-left table-search-v2">
                             <div class="panel panel-default text-left">
                                 <div class="panel-heading ">Activity list - <span class="font-light">user</span> </div>
-                                <div class="panel-body">..........................
+                                <div class="panel-body">
+                                    <pre> </pre>
                                 </div>
                             </div>
                         </div>
@@ -98,13 +89,13 @@
                         <div class="col-md-3">
                             <!--<button class="fa fa-cloud-download btn-u"> </button>-->
                             <div class="table-search-v2">
-                                <div class="row">
-                                    <button class="btn-u icon-settings"> Edit Profile</button>
+                                <!--div class="row">
+                                    <button class="btn-u"> Edit Profile</button>
                                     <div class="margin-bottom-30"></div>
-                                </div>
+                                </div-->
                                 <div class="row">
                                     <!--button class="btn-u icon-list"-->
-                                    <a href="datasets.html" class="btn-u icon-list"> My Datasets</a>
+                                    <a href="datasets.html" class="btn-u"> My Datasets</a>
                                         <!--/button-->
                                     <div class="margin-bottom-30"></div>
                                 </div>
@@ -129,43 +120,7 @@
 
     <!--=== Footer Version 1 ===-->
     <div class="footer-v1">
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <!-- About -->
-                    <div class="col-md-4 md-margin-bottom-40">
-                        <a href="http://www.crs4.it" target = "_blank"><img id="logo-footer" class="footer-logo" src="lib/img/crs4.png" alt=""></a>
-                        <p>Il CRS4 è un centro di ricerca interdisciplinare privato fondato dalla Regione Autonoma della
-                            Sardegna.</p>
 
-                    </div><!--/col-md-3-->
-                    <!-- End About -->
-
-                    <!-- Link List -->
-                    <div class="col-md-4 md-margin-bottom-40">
-                        <div class="headline"><h2>Useful Links</h2></div>
-                        <ul class="list-unstyled link-list">
-                            <li><a href="http://www.crs4.it/research/information-society/smart-environments-and-technologies/" target="_blank">About us</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="http://cp2020.crs4.it" target="_blank">Site</a><i class="fa fa-angle-right"></i></li>
-                            <!--li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li-->
-                        </ul>
-                    </div><!--/col-md-3-->
-                    <!-- End Link List -->
-
-                    <!-- Address -->
-                    <div class="col-md-4 map-img md-margin-bottom-40">
-                        <div class="headline"><h2>Contact Us</h2></div>
-                        <address class="md-margin-bottom-40">
-                            Edificio 1 <br/>
-                            Loc. Pixina Manna <br/>
-                            Pula, CA <br/>
-                            Email: <a href="mailto:cport2020@gmail.com" class="">cport2020@gmail.com</a>
-                        </address>
-                    </div><!--/col-md-3-->
-                    <!-- End Address -->
-                </div>
-            </div>
-        </div><!--/footer-->
 
         <div class="copyright">
             <div class="container">
@@ -251,6 +206,13 @@
 <script type="text/javascript" src="assets/plugins/counter/jquery.counterup.min.js"></script>
 <script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>-->
 <!-- JS Customization -->
+<script type="text/javascript" src="lib/js/custom.js"></script>
+
+<script src="assets/js/translations/translation.js"></script>
+<!--script type="text/javascript" src="https://raw.githubusercontent.com/i18next/i18next-xhr-backend/master/i18nextXHRBackend.min.js"></script-->
+<script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
+<!-- script type="text/javascript" src="https://raw.githubusercontent.com/i18next/i18next/master/i18next.min.js"></script -->
+<script type="text/javascript" src="assets/js/plugins/jquery-i18next.min.js"></script>
 
 <!-- JS Page Level -->
 <script type="text/javascript" src="assets/js/app.js"></script>
@@ -259,7 +221,7 @@
 <script type="text/javascript" src="lib/js/common_header.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-<script type="text/javascript" src="lib/js/custom.js"></script>
+
 <script type="text/javascript">
     jQuery(document).ready(function () {
         App.init();

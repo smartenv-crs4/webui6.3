@@ -6,7 +6,7 @@
 <!--[if !IE]><!-->
 <html lang="en"> <!--<![endif]-->
 <head>
-    <title>Open Data CP2020 | Resource details</title>
+    <title>Open Data CP2020 | Manage Dataset</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -54,25 +54,6 @@
 
     <!-- CSS Page Style Import-->
     <link rel="stylesheet" href="assets/css/pages/page_log_reg_v3.css">
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th {
-            text-align: center;
-            background-color: #ddd;
-            border: 1px solid #fff;
-            color: red;
-        }
-
-        td {
-            text-align: center;
-            padding: 8px;
-        }
-
-        tr:nth-child(even){background-color: #f2f2f2}
-    </style>
 </head>
 
 <body>
@@ -81,72 +62,173 @@
     <div id="header_p"></div>
     <!--=== End Header ===-->
 
-    <!--=== Search Block ===-->
-    <div class="search-block parallaxBg one-top-padding autoHeight no-padding-bottom">
+    <!--=== Form Block ===-->
+    <div class="search-block parallaxBg one-top-padding autoHeight no-padding-bottom equal-height-columns">
         <div class="container">
 
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search datasets..." id="searchInput">
-                        <span class="input-group-btn">
-							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
-						</span>
-                    </div>
-                </div>
+            <div class="row well bg-color-semitransparent ">
+                <h2 class="color-red">Manage Dataset</h2>
+
+
+                <!-- Begin Content -->
+                 <div class="col-md-12">
+                     <div class="row margin-bottom-40">
+                         <div class="col-md-6 equal-height-columns">
+                             <!-- Dataset-Informations-Form -->
+                             <form action="#" id="sky-form4" class="sky-form">
+                                 <header>Dataset Informations</header>
+
+                                 <fieldset>
+                                     <section>
+                                         <label class="input">
+                                             <input type="text" name="title" placeholder="Title" id="title">
+                                             <b class="tooltip tooltip-bottom-right">Enter a title</b>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="textarea">
+                                             <textarea rows="3" cols="39" name="description" placeholder="Description" id="description"></textarea>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="input">
+                                             <input type="text" name="tags" placeholder="Tags" id="tags">
+                                             <b class="tooltip tooltip-bottom-right">Enter a tag</b>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="select">
+                                             <select name="license" id="license">
+                                                 <option value="0" selected disabled>License</option>
+                                                 <option value="1">Creative Commons ...</option>
+                                                 <option value="2">......</option>
+                                                 <option value="3">.......</option>
+                                             </select>
+                                             <i></i>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="input">
+                                             <input type="text" name="source" placeholder="Source" id="source">
+                                             <b class="tooltip tooltip-bottom-right">e.g. http://example.com/dataset.json </b>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="input">
+                                             <input type="text" name="version" placeholder="Version" id="version">
+                                             <b class="tooltip tooltip-bottom-right">Dataset version</b>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="input">
+                                             <input type="text" name="author" placeholder="Author" id="author">
+                                             <b class="tooltip tooltip-bottom-right">Author name</b>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="input">
+                                             <i class="icon-append fa fa-user"></i>
+                                             <input type="email" name="email" placeholder="Author E-mail">
+                                             <b class="tooltip tooltip-bottom-right">Author E-mail</b>
+                                         </label>
+                                     </section>
+
+                                 </fieldset>
+
+
+                                 <footer>
+                                     <button type="submit" class="btn-u">Update Informations</button>
+                                 </footer>
+                             </form>
+                             <!-- End Dataset-Informations-Form -->
+                         </div>
+
+                         <!-- Resources-Form -->
+                         <div class="col-md-6">
+                             <form action="#" id="sky-form2" class="sky-form">
+                                 <header>Resources</header>
+
+                                 <fieldset>
+
+                                     <section>
+                                         <div class="row margin-right-5-5">
+                                             <pre>List Resources..... Option DELETE/MANAGE ... ...
+                                             </pre>
+                                         </div>
+                                     </section>
+
+                                     <b>Add New Resources:</b><br><br>
+
+                                     <section>
+                                         <div class="row margin-right-5-5">
+                                             File
+                                             <a href="#" class="btn-u"><i class="fa fa-cloud-upload"></i> Upload resource </a>
+                                             <a href="#" class="btn-u"><i class="fa"></i> Link or API </a>
+                                        </div>
+                                     </section>
+
+                                     <section>
+                                         <label class="input">
+                                             <input type="text" name="res_name" placeholder="Name" id="res_name">
+                                             <b class="tooltip tooltip-bottom-right">Enter a name for this resource</b>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="textarea">
+                                             <textarea rows="3" cols="39" name="res_description" placeholder="Description" id="res_description"></textarea>
+                                         </label>
+                                     </section>
+
+                                     <section>
+                                         <label class="select">
+                                             <select name="format" id="format">
+                                                 <option value="0" selected disabled>Format</option>
+                                                 <option value="1">json</option>
+                                                 <option value="2">csv</option>
+                                                 <option value="3">xml</option>
+                                                 <option value="3">...</option>
+                                             </select>
+                                             <i></i>
+                                         </label>
+                                     </section>
+
+                                 </fieldset>
+
+                                 <footer>
+                                     <button type="submit" class="btn-u">Add another resource</button>
+                                     <br><br>
+                                     <section class="margin-left-5">
+                                        <button type="submit" class="btn-u">DELETE Dataset</button>
+                                     </section>
+                                 </footer>
+                             </form>
+                         </div> <!-- end res form -->
+
+
+                     </div>
+                 </div><!--/end row-->
             </div>
-
-            <div class="row well bg-color-semitransparent" id="singleResource">
-
-            </div>
-
         </div><!--/container-->
     </div>
 
+
+
+
     <!--=== Footer Version 1 ===-->
     <div class="footer-v1">
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <!-- About -->
-                    <div class="col-md-4 md-margin-bottom-40">
-                        <a href="http://www.crs4.it" target = "_blank"><img id="logo-footer" class="footer-logo" src="lib/img/crs4.png" alt=""></a>
-                        <p>Il CRS4 è un centro di ricerca interdisciplinare privato fondato dalla Regione Autonoma della
-                            Sardegna.</p>
-
-                    </div><!--/col-md-3-->
-                    <!-- End About -->
-
-                    <!-- Link List -->
-                    <div class="col-md-4 md-margin-bottom-40">
-                        <div class="headline"><h2>Useful Links</h2></div>
-                        <ul class="list-unstyled link-list">
-                            <li><a href="http://www.crs4.it/research/information-society/smart-environments-and-technologies/" target="_blank">About us</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="http://cp2020.crs4.it" target="_blank">Site</a><i class="fa fa-angle-right"></i></li>
-                            <!--<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>-->
-                        </ul>
-                    </div><!--/col-md-3-->
-                    <!-- End Link List -->
-
-                    <!-- Address -->
-                    <div class="col-md-4 map-img md-margin-bottom-40">
-                        <div class="headline"><h2>Contact Us</h2></div>
-                        <address class="md-margin-bottom-40">
-                            Edificio 1 <br/>
-                            Loc. Pixina Manna <br/>
-                            Pula, CA <br/>
-                            Email: <a href="mailto:cport2020@gmail.com" class="">cport2020@gmail.com</a>
-                        </address>
-                    </div><!--/col-md-3-->
-                    <!-- End Address -->
-                </div>
-            </div>
-        </div><!--/footer-->
 
         <div class="copyright">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 md-margin-bottom-40">
                         <p>
                             2015 &copy; All Rights Reserved.
                             <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
@@ -208,64 +290,6 @@
     <!--=== End Footer Version 1 ===-->
 </div><!--/End Wrapper-->
 
-<script src="http://kincrew.github.com/xReader/xReader.full.js"></script>
-<script type="text/x-handlebars-template" id="singleResource_template">
-
-    {{#with result}}
-    <div class="well col-md-12">
-
-        <div class="row">
-            <div class="col-md-9 text-left">
-                <h2 class="color-red text-left">
-                    <a href="dataset_detail.html?id={{package_id}}"><<</a>
-                    {{name}}
-                </h2>
-                <p>{{description}}</p>
-            </div>
-            <div class="col-md-3">
-                <!--<button class="fa fa-cloud-download btn-u"> </button>-->
-                <a href="{{url}}" target="_blank" class="btn-u" title="Download Resource"><i class="fa fa-cloud-download"></i> </a>
-
-                <button class="btn-u " style="display:none;"> Edit</button>
-            </div>
-        </div>
-
-        <div class="table-search-v2">
-            <div class="panel panel-default text-left">
-                <div class="panel-heading text-bold">Resource Preview</div>
-                <div class="panel-body" id="contentResource" style=" display: -webkit-box; max-width: auto; height: 300px auto; margin: 0 auto;
-                font-size: auto; line-height: 1.4; -webkit-box-orient: vertical; overflow-x:auto; text-overflow: ellipsis;">
-
-                </div>
-
-            </div>
-
-            <div class="panel panel-default text-left">
-                <div class="panel-heading text-bold">Additional info</div>
-                <div class="panel-body">
-                    <b>Format:</b><span> {{format}}</span>
-                    <br>
-                    <b>Created:</b><span> {{created}}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="margin-bottom-30"></div>
-
-    </div>
-{{/with}}
-</script>
-
-
-
-<!--script type="text/x-handlebars-template" id="contentResource_template">
-    {{#with result}}
-    <div class="panel-body">
-         {{url}}
-    </div>
-    {{/with}}
-</script-->
-
 
 <!-- JS Global Compulsory -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -292,6 +316,7 @@
 <script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
 <!-- script type="text/javascript" src="https://raw.githubusercontent.com/i18next/i18next/master/i18next.min.js"></script -->
 <script type="text/javascript" src="assets/js/plugins/jquery-i18next.min.js"></script>
+
 
 <!-- JS Page Level -->
 <script type="text/javascript" src="assets/js/app.js"></script>
@@ -336,27 +361,6 @@
             fade: 1000,
             duration: 4000
         });
-
-        $("#searchButton").click(function () {
-            var query = $("#searchInput").val();
-            var page = "datasets.html";
-            if (query)
-                page += "?q=" + query
-            window.location = page;
-        })
-
-        var resourcesId = getParameterByName("id");
-        var url = resourcesURL + resourcesId;
-        var targetId = "singleResource";
-        var templateId = "singleResource_template";
-
-
-        getSimple(url, targetId, templateId);
-
-        var targetIdRes = "contentResource";
-        var templateIdRes = "contentResource_template";
-
-        getContentResource(url, targetIdRes, templateIdRes);
 
     });
 </script>

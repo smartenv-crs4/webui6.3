@@ -25,6 +25,7 @@ function signIn() {
 
     if(username == "admin" && password == "admin"){
       var apiKey_ckan = "9e15a233-30ea-4676-a70e-6cc70477c85e";
+      alert("apikey: " + apiKey_ckan);
     }
 }
 
