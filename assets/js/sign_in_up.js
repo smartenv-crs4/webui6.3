@@ -20,13 +20,17 @@ jQuery(document).on("translate", function(){
 function signIn() {
 
     //////forzatura
-    var username = "admin";
-    var password = "admin";
+    //var username = "admin";
+    //var password = "admin";
+    var username = jQuery("#signInUsernameEmail").val();
+    var password = jQuery("#signInPassword").val();
 
     if(username == "admin" && password == "admin"){
-      var apiKey_ckan = "9e15a233-30ea-4676-a70e-6cc70477c85e";
-      alert("apikey: " + apiKey_ckan);
+        var apiKey_ckan = "9e15a233-30ea-4676-a70e-6cc70477c85e";
+        alert("apikey: " + apiKey_ckan);
     }
+    else
+        alert("not valid");
 }
 
 
