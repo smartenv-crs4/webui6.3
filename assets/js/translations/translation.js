@@ -3,7 +3,7 @@ var translation = {
     en: {
         translation: {
             "nav": {
-              "home": "Home",
+                "home": "Home",
                 "about": "About",
                 "services": "Services",
                 "contacts": "Contacts",
@@ -43,16 +43,13 @@ var translation = {
                 "name": "Name",
                 "address": "Address",
                 "phone": "Telephone number",
-                "favoriteSuppliers": "Favorite suppliers",
                 "logo": "Logo",
                 "description": "Description",
                 "web": "Web site",
                 "categories": "Categories",
                 "pIva": "VATIN",
-                
                 "customer": "customer",
                 "supplier": "supplier",
-                
                 "passwordTitle": "Manage your password",
                 "passwordTitle2": "Below you can change your password",
                 "editPassword": "Change Password",
@@ -60,18 +57,27 @@ var translation = {
                 "newPasswordPlaceholder": "New password",
                 "newPassword2Placeholder": "Retype the new password",
                 "passwordSaved": "Your password has been updated successfully",
-                
                 "favoriteSuppliers": "Favorite suppliers",
                 "favoriteTitle": "Mange your favorite suppliers' list",
                 "favoriteTitle2": "Below you can add or remove suppliers from your list",
-                
                 "title": "Manage your profile information",
                 "edit": "Edit profile",
-                
                 "saved": "Your profile has been successfully updated",
                 "emptyText": "Empty",               
                 "cancel": "Cancel",
                 "save": "Save"
+            },
+            "homepage": {
+                "opendata": "OPEN DATA",
+                "project": "Cagliari Port",
+                "year": "2020",
+                "faq_opendata": "OPEN DATA",
+                "faq_project": "CAGLIARI PORT, THE PROJECT",
+                "des_crs4": "CRS4 is a private interdisciplinary research center, founded by the Sardinia Autonomous Region.",
+                "usef_link": "Useful Links",
+                "contact_us": "Contact Us",
+                "about_us": "About us",
+                "site": "Site",
             }
         }
 
@@ -120,16 +126,13 @@ var translation = {
                 "name": "Nome",
                 "address": "Indirizzo",
                 "phone": "Numero di telefono",
-                "favoriteSuppliers": "Fornitori preferiti",
                 "logo": "Logo",
                 "description": "Descrizione",
                 "web": "Sito web",
                 "categories": "Categorie",
                 "pIva": "Partita IVA",
-                
                 "customer": "cliente",
                 "supplier": "fornitore",
-                
                 "passwordTitle": "Gestisci la tua password",
                 "passwordTitle2": "Qui puoi cambiare la tua password",
                 "editPassword": "Cambia la password",
@@ -137,11 +140,9 @@ var translation = {
                 "newPasswordPlaceholder": "Inserisci la nuova password",
                 "newPassword2Placeholder": "Conferma la nuova password",
                 "passwordSaved": "La tua password è stata aggiornata correttamente",
-                
                 "favoriteSuppliers": "Fornitori preferiti",
                 "favoriteTitle": "Gestisci la tua lista dei fornitori preferiti",
                 "favoriteTitle2": "Qui puoi rimuovere e aggiungere fornitori dalla tua lista dei preferiti",
-                
                 "title": "Gestisci le informazioni del tuo profilo",
                 "edit": "Modifica il profilo",                
                 "saved": "Il tuo profilo è stato aggiornato correttamente",
@@ -150,6 +151,19 @@ var translation = {
                 "save": "Salva"
                 
                 
+            },
+            "homepage": {
+                "opendata": "OPEN DATA ",
+                "project": " Cagliari Port",
+                "year": "2020",
+                "faq_opendata": "OPEN DATA",
+                "faq_project": "IL PROGETTO CAGLIARI PORT",
+                "des_crs4": "Il CRS4 è un centro di ricerca interdisciplinare privato fondato dalla Regione Autonoma della Sardegna.",
+                "usef_link": "Links utili",
+                "contact_us": "Contattaci",
+                "about_us": "Chi siamo",
+                "site": "Sito",
+
             }
         }
     }

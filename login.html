@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"> <!--<![endif]-->
+
 <head>
 	<title>Login/Registration | Cagliari Port 2020</title>
 
@@ -20,10 +26,8 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 
 	<!-- CSS Header and Footer -->
-	<!-- link rel="stylesheet" href="assets/css/headers/header-v6.css" -->
-  <link rel="stylesheet" href="assets/css/headers/header-default.css">
-
-    <link rel="stylesheet" href="assets/css/footers/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="assets/css/headers/header-default.css">
+    <link rel="stylesheet" href="assets/css/footers/footer-v1.css">
 
 	<!-- CSS Implementing Plugins -->
 	<link rel="stylesheet" href="assets/plugins/animate.css">
@@ -56,163 +60,87 @@
 
 			<div class="row space-xlg-hor equal-height-columns one-top-padding autoHeight no-padding-bottom">
                 <div class="container content-md">
+                    <div class="row">
 
-                    <!--==login Block==-->
-				    <div class="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column" id="inupblock">
-                        <div class="form-block-header">
-                            <h2 class="margin-bottom-15" data-i18n="login.signIn"></h2>
-                        </div>
+                        <!--==login Block==-->
+                        <div class="form-block login-block col-md-6 col-sm-12 rounded-left equal-height-column" id="inupblock">
+                            <div class="form-block-header">
+                                <h2 class="margin-bottom-15" data-i18n="login.signIn"></h2>
+                            </div>
 
-                        <div class="alert alert-danger invisible margin-bottom-20" id="signInResponse"></div>
+                            <div class="alert alert-danger invisible margin-bottom-20" id="signInResponse"></div>
 
-                        <div class="input-group margin-bottom-20">
-                            <span class="input-group-addon rounded-left"><i class="icon-user color-white"></i></span>
-                            <input type="text" class="form-control rounded-right" data-i18n="[placeholder]login.yourEmail" id="signInUsernameEmail">
-                        </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon rounded-left"><i class="icon-user color-white"></i></span>
+                                <input type="text" class="form-control rounded-right" data-i18n="[placeholder]login.yourEmail" id="signInUsernameEmail">
+                            </div>
 
-                        <div class="input-group margin-bottom-20">
-                            <span class="input-group-addon rounded-left"><i class="icon-lock color-white"></i></span>
-                            <input type="password" class="form-control rounded-right" data-i18n="[placeholder]login.password" id="signInPassword">
-                        </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon rounded-left"><i class="icon-lock color-white"></i></span>
+                                <input type="password" class="form-control rounded-right" data-i18n="[placeholder]login.password" id="signInPassword">
+                            </div>
 
-                        <div class="row margin-bottom-70">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn-u btn-block rounded" onclick="signIn()" data-i18n="login.signIn"></button>
+                            <div class="row margin-bottom-70">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn-u btn-block rounded" onclick="signIn()" data-i18n="login.signIn"></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--==End login Block==-->
+                        <!--==End login Block==-->
 
-                    <!--==Reg Block==-->
-                    <div class="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column">
-                        <div class="form-block-header">
-                            <h2 class="margin-bottom-10" data-i18n="login.signUp"></h2>
-                        </div>
+                        <!--==Reg Block==-->
+                        <div class="form-block reg-block col-md-6 col-sm-12 rounded-right equal-height-column">
+                            <div class="form-block-header">
+                                <h2 class="margin-bottom-10" data-i18n="login.signUp"></h2>
+                            </div>
 
-                        <div class="alert alert-danger invisible margin-bottom-20" id="signUpResponse"></div>
+                            <div class="alert alert-danger invisible margin-bottom-20" id="signUpResponse"></div>
 
-                        <!--div class="input-group margin-bottom-20">
-                            <span class="input-group-addon rounded-left"><i class="icon-user"></i></span>
-                            <input type="email" class="form-control rounded-right" data-i18n="[placeholder]login.yourUsername" id="signUpUsername">
-                        </div-->
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon rounded-left"><i class="icon-envelope"></i></span>
+                                <input type="email" class="form-control rounded-right" data-i18n="[placeholder]login.yourEmail" id="signUpEmail">
+                            </div>
 
-
-                        <div class="input-group margin-bottom-20">
-                            <span class="input-group-addon rounded-left"><i class="icon-envelope"></i></span>
-                            <input type="email" class="form-control rounded-right" data-i18n="[placeholder]login.yourEmail" id="signUpEmail">
-                        </div>
-
-                        <div class="input-group margin-bottom-20">
-                            <span class="input-group-addon rounded-left"><i class="icon-pencil"></i></span>
-                            <input type="text" class="form-control rounded-right" data-i18n="[placeholder]login.yourName" id="signUpName">
-                        </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon rounded-left"><i class="icon-pencil"></i></span>
+                                <input type="text" class="form-control rounded-right" data-i18n="[placeholder]login.yourName" id="signUpName">
+                            </div>
 
 
-                        <div class="input-group margin-bottom-20">
-                            <span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
-                            <input type="password" class="form-control rounded-right" data-i18n="[placeholder]login.choosePassword" id="signUpPassword">
-                        </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
+                                <input type="password" class="form-control rounded-right" data-i18n="[placeholder]login.choosePassword" id="signUpPassword">
+                            </div>
 
-                        <div class="input-group margin-bottom-20">
-                            <span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
-                            <input type="password" class="form-control rounded-right" data-i18n="[placeholder]login.retypePassword" id="signUpPassword2">
-                        </div>
+                            <div class="input-group margin-bottom-20">
+                                <span class="input-group-addon rounded-left"><i class="icon-lock"></i></span>
+                                <input type="password" class="form-control rounded-right" data-i18n="[placeholder]login.retypePassword" id="signUpPassword2">
+                            </div>
 
-                        <!--div class="margin-bottom-20">
-                            <select name="userType" class="selectpicker form-control" title="You are a ..." id="signUpUserType">
-                                <option data-hidden="true" data-i18n="login.userType"></option>
-                                <option value="customer" data-i18n="login.customer"></option>
-                                <option value="supplier" data-i18n="login.supplier"></option>
-                            </select>
-                        </div-->
+                            <div class="checkbox margin-bottom-15">
+                                <label>
+                                    <input type="checkbox">
+                                    <p>I agree to terms &amp; conditions</p>
+                                </label>
+                            </div>
 
-                        <div class="checkbox margin-bottom-15">
-                            <label>
-                                <input type="checkbox">
-                                <p>I agree to terms &amp; conditions</p>
-                            </label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <button onclick="alert('Function not availaible at the moment!')" class="btn-u btn-block rounded" data-i18n="login.signUp"></button>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button onclick="alert('Function not availaible at the moment!')" class="btn-u btn-block rounded" data-i18n="login.signUp"></button>
+                                </div>
                             </div>
                         </div>
+                        <!--==End Reg Block==-->
                     </div>
-                    <!--==End Reg Block==-->
-
                 </div><!--/container-->
 		    </div>
 
     <!--=== End Content Part ===-->
 
 
-    <!--=== Footer Version 1 ===-->
-    <div class="footer-v1">
-
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 md-margin-bottom-40">
-                        <p>
-                            2015 &copy; All Rights Reserved.
-                            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                        </p>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div class="col-md-6">
-                        <ul class="footer-socials list-inline">
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                                   data-original-title="Facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                                   data-original-title="Skype">
-                                    <i class="fa fa-skype"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                                   data-original-title="Google Plus">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                                   data-original-title="Linkedin">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                                   data-original-title="Pinterest">
-                                    <i class="fa fa-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                                   data-original-title="Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title=""
-                                   data-original-title="Dribbble">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Social Links -->
-                </div>
-            </div>
-        </div><!--/copyright-->
-    </div>
-    <!--=== End Footer Version 1 ===-->
+        <!--=== Footer Version 1 ===-->
+        <div id="footer_p" ></div>
+        <!--=== End Footer Version 1 ===-->
     </div> <!-- end wrapper-->
 
 
@@ -241,6 +169,8 @@
 
     <script src="lib/js/custom.js"></script>
     <script src="assets/js/sign_in_up.js"></script>
+    <script src="assets/js/translations/translation.js"></script>
+    <script type="text/javascript" src="assets/js/footer.js"></script>
 
     <!-- JS Page Level -->
     <script src="assets/js/app.js"></script>

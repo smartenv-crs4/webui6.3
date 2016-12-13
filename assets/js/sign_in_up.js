@@ -19,7 +19,7 @@ jQuery(document).on("translate", function(){
 
 function signIn() {
 
-    //////forzatura
+    //////test
     //var username = "admin";
     //var password = "admin";
     var username = jQuery("#signInUsernameEmail").val();
@@ -30,7 +30,7 @@ function signIn() {
         alert("apikey: " + apiKey_ckan);
     }
     else
-        alert("not valid");
+        alert(i18next.t("error.invalid_auth"));
 }
 
 
