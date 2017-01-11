@@ -8,7 +8,7 @@ var footer_template = ` <div class="footer-v1 sticky-footer">
     <div class="row">
     <!-- About -->
     <div class="col-md-4 md-margin-bottom-40">
-    <a href="index.html"><img id="logo-footer" class="footer-logo" src="lib/img/crs4.png" alt=""></a>
+    <a href="http://www.crs4.it"><img id="logo-footer" class="footer-logo" src="lib/img/crs4.png" alt=""></a>
     <p data-i18n="homepage.des_crs4"></p>
 
 </div><!--/col-md-3-->
