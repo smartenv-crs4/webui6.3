@@ -7,7 +7,12 @@ var translation = {
                 "about": "About",
                 "services": "Services",
                 "contacts": "Contacts",
-                "help": "Help"
+                "help": "Help",
+                "login" : "Login",
+                "logout": "Logout",
+                "lang": "Language",
+                "en": "English",
+                "it": "Italian"
             },
             "cookieLaw": {
                 "message": "This website uses session storage, local storage and cookie to store on your browser your preferences and your account information.",
@@ -22,7 +27,16 @@ var translation = {
                 "internal_server_error": "Internal server error",
                 "invalid_auth": "Invalid email and/or password",
                 "password_differs": "Passwords must be equals",
-                "unknown_user_type": "Select a valid user type"                
+                "unknown_user_type": "Select a valid user type"
+            },
+            "warning": {
+                "warning": "Warning!",
+                "emptyResult": "No result to show"
+            },
+            "buttons": {
+                "send": "Send",
+                "add": "Add",
+                "details": "Details"
             },
             "login": {
                 "signUp": "Sign Up",
@@ -32,10 +46,7 @@ var translation = {
                 "yourName": "Your name (optional)",
                 "password": "Password",
                 "choosePassword": "Choose password",
-                "retypePassword": "Retype password",
-                "userType": "Yuu are a ...",
-                "customer": "Customer",
-                "supplier": "Supplier"              
+                "retypePassword": "Retype password"
             },
             "profile":{
                 "email": "Email",
@@ -46,10 +57,7 @@ var translation = {
                 "logo": "Logo",
                 "description": "Description",
                 "web": "Web site",
-                "categories": "Categories",
-                "pIva": "VATIN",
-                "customer": "customer",
-                "supplier": "supplier",
+
                 "passwordTitle": "Manage your password",
                 "passwordTitle2": "Below you can change your password",
                 "editPassword": "Change Password",
@@ -57,15 +65,24 @@ var translation = {
                 "newPasswordPlaceholder": "New password",
                 "newPassword2Placeholder": "Retype the new password",
                 "passwordSaved": "Your password has been updated successfully",
-                "favoriteSuppliers": "Favorite suppliers",
-                "favoriteTitle": "Mange your favorite suppliers' list",
-                "favoriteTitle2": "Below you can add or remove suppliers from your list",
+
                 "title": "Manage your profile information",
                 "edit": "Edit profile",
                 "saved": "Your profile has been successfully updated",
-                "emptyText": "Empty",               
+                "emptyText": "Empty",
                 "cancel": "Cancel",
-                "save": "Save"
+                "save": "Save",
+                "yes": "Yes",
+                "no": "No"
+            },
+            "pagination": {
+                "next": "Next",
+                "prev": "Prev",
+                "last": "Last",
+                "first": "First"
+            },
+            "datasets":{
+                "searchDatasets":"Search for datasets...."
             },
             "homepage": {
                 "opendata": "OPEN DATA",
@@ -77,7 +94,7 @@ var translation = {
                 "usef_link": "Useful Links",
                 "contact_us": "Contact Us",
                 "about_us": "About us",
-                "site": "Site",
+                "site": "Site"
             }
         }
 
@@ -89,7 +106,12 @@ var translation = {
                 "about": "Chi siamo",
                 "services": "Servizi",
                 "contacts": "Contatti",
-                "help": "Aiuto"
+                "help": "Aiuto",
+                "login" : "Accedi",
+                "logout": "Esci",
+                "lang": "Lingua",
+                "en": "Inglese",
+                "it": "Italiano"
             },
             "cookieLaw": {
                 "message": "Questo sito utilizza il session storage, il local storage e i cookie per salvare sul tuo browser le tue preferenze e le informazioni del tuo account.",
@@ -106,6 +128,15 @@ var translation = {
                 "password_differs": "Le password differiscono",
                 "unknown_user_type": "Seleziona il tipo di account che vuoi creare"
             },
+            "warning": {
+                "warning": "Attenzione!",
+                "emptyResult": "Nessun risultato da mostrare"
+            },
+            "buttons": {
+                "send": "Invia",
+                "add": "Aggiungi",
+                "details": "Dettagli"
+            },
             "login": {
                 "signUp": "Registrati",
                 "signIn": "Accedi",
@@ -114,11 +145,7 @@ var translation = {
                 "yourName": "Il tuo nome (facoltativo)",
                 "password": "Password",
                 "choosePassword": "Scegli una password",
-                "retypePassword": "Conferma password",
-                "userType": "Sei un ...",
-                "customer": "Cliente",
-                "supplier": "Fornitore"
-              
+                "retypePassword": "Conferma password"
             },
             "profile":{
                 "email": "Email",
@@ -129,10 +156,7 @@ var translation = {
                 "logo": "Logo",
                 "description": "Descrizione",
                 "web": "Sito web",
-                "categories": "Categorie",
-                "pIva": "Partita IVA",
-                "customer": "cliente",
-                "supplier": "fornitore",
+
                 "passwordTitle": "Gestisci la tua password",
                 "passwordTitle2": "Qui puoi cambiare la tua password",
                 "editPassword": "Cambia la password",
@@ -144,13 +168,23 @@ var translation = {
                 "favoriteTitle": "Gestisci la tua lista dei fornitori preferiti",
                 "favoriteTitle2": "Qui puoi rimuovere e aggiungere fornitori dalla tua lista dei preferiti",
                 "title": "Gestisci le informazioni del tuo profilo",
-                "edit": "Modifica il profilo",                
+
+                "edit": "Modifica il profilo",
                 "saved": "Il tuo profilo è stato aggiornato correttamente",
                 "emptyText": "Vuoto",
                 "cancel": "Annulla",
-                "save": "Salva"
-                
-                
+                "save": "Salva",
+                "yes": "Si",
+                "no": "No"
+            },
+            "pagination": {
+                "next": "Prossima",
+                "prev": "Precedente",
+                "last": "Ultima",
+                "first": "Prima"
+            },
+            "datasets":{
+                "searchDatasets":"Cerca datasets"
             },
             "homepage": {
                 "opendata": "OPEN DATA ",
@@ -162,8 +196,7 @@ var translation = {
                 "usef_link": "Links utili",
                 "contact_us": "Contattaci",
                 "about_us": "Chi siamo",
-                "site": "Sito",
-
+                "site": "Sito"
             }
         }
     }

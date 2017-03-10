@@ -224,50 +224,50 @@
 </div><!--/End Wrapper-->
 
 <!-- JS Global Compulsory -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/bootstrap-select.min.js"></script>
 
 <!-- JS Translation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/3.4.3/i18next.min.js"></script>
-<script src="assets/js/translations/translation.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.1.0/jquery-i18next.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
+<script type="text/javascript" src="assets/js/translations/translation.js"></script>
+<script type="text/javascript" src="assets/js/plugins/jquery-i18next.min.js"></script>
 
 <!-- JS Implementing Plugins -->
 <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-<!-- <script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/waypoints.min.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/jquery.counterup.min.js"></script>
-<script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>-->
+<script type="text/javascript" src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+
 <!-- JS Customization -->
-<script type="text/javascript" src="lib/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/common_header.js"></script>
+<script type="text/javascript" src="assets/js/handlebars-paginate.js"></script>
+<script type="text/javascript" src="assets/js/sign_in_up.js"></script>
 
-<script src="assets/js/translations/translation.js"></script>
-
+<script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/footer.js"></script>
-<!--script type="text/javascript" src="https://raw.githubusercontent.com/i18next/i18next-xhr-backend/master/i18nextXHRBackend.min.js"></script-->
+
+<!-- JS Translation -->
+<script type="text/javascript" src="assets/js/translations/translation.js"></script>
 <script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
-<!-- script type="text/javascript" src="https://raw.githubusercontent.com/i18next/i18next/master/i18next.min.js"></script -->
 <script type="text/javascript" src="assets/js/plugins/jquery-i18next.min.js"></script>
 
-
 <!-- JS Page Level -->
-<script type="text/javascript" src="assets/js/app.js"></script>
-<!--<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>-->
 <script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
-<script type="text/javascript" src="lib/js/common_header.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/handlebars.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/typeahead.bundle.js"></script>
+
+
 <script type="text/javascript">
     jQuery(document).ready(function () {
         App.init();
         //App.initCounter();
         //	App.initParallaxBg();
         //OwlCarousel.initOwlCarousel();
-        $('#header_p').html(header_template);
+        //$('#header_p').html(header_template);
 
-        i18next.init({
+        /*i18next.init({
             lng: 'en', // evtl. use language-detector https://github.com/i18next/i18next-browser-languageDetector
             resources: translation
         }, function (err, t) {
@@ -281,7 +281,7 @@
             });
 
 
-        });
+        });*/
 
         $(".search-block").backstretch([
             "lib/img/login_1.jpg",

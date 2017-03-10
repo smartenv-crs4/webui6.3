@@ -21,6 +21,10 @@ jQuery(document).on("translate", function(){
 });
 
 
+/*******************************************
+ ****************** SIGN-IN ****************
+ ******************************************/
+
  function signIn()
  {
 
@@ -57,17 +61,33 @@ jQuery(document).on("translate", function(){
      success: function(data, textStatus, xhr)
      {
        // success
-       alert("success: " + xhr.status);
-       if(xhr.status == 201)
+       //alert("success: " + xhr.status);
+       if(xhr.status == 200)
        {
 
-         console.log(sessionStorage.userId);
+         alert("credenziali");
+         alert(JSON.stringify(data["access_credentials"]));
+
+         /*
+          //==== in sign-up ====//
+          sessionStorage.token = data["access_credentials"]["apiKey"]["token"];
+          sessionStorage.userId = data["created_resource"]["_id"];
+          sessionStorage.ckan_apikey =data["created_resource"]["ckan_apikey"];
+          sessionStorage.email = data["created_resource"]["email"];
+          */
+
+         // DA VERIFICARE //
          sessionStorage.token = data["access_credentials"]["apiKey"]["token"];
          sessionStorage.userId = data["access_credentials"]["userId"];
-         sessionStorage.email = email;
+         sessionStorage.email = data["access_credentials"]["email"];
          sessionStorage.ckan_apikey = data["access_credentials"]["ckan_apikey"];
-         alert(sessionStorage.email);
-         redirectToPrevPage();
+         sessionStorage.username = data["access_credentials"]["ckan_username"];
+
+         alert("session-storage");
+         alert(JSON.stringify(sessionStorage));
+
+         //redirectToPrevPage();
+         redirectToDashboard();
 
          return;
        }
@@ -112,6 +132,11 @@ jQuery(document).on("translate", function(){
    });
  }
 
+
+/*******************************************
+ ****************** SIGN-UP ****************
+ ******************************************/
+
 function signUp() {
 
   var email = jQuery("#signUpEmail").val();
@@ -143,13 +168,6 @@ function signUp() {
     return;
   }
 
-
- /* if(userType !== "customer" && userType !== "supplier")
-  {
-    respBlock.html(i18next.t("error.unknown_user_type"));
-    respBlock.removeClass("invisible");
-    return;
-  }*/
   //////////////////// ckan username viene generato dal microservizio userms
   //data["user"]["username"] = username;
   /*
@@ -181,22 +199,28 @@ function signUp() {
     crossDomain : true,
     success: function(data, textStatus, xhr)
     {
-      alert(JSON.stringify(xhr));
+      //alert(JSON.stringify(xhr));
       // success
       if(xhr.status == 201)
       {
+
+
+        alert("data");
+        alert(JSON.stringify(data));
 
         sessionStorage.token = data["access_credentials"]["apiKey"]["token"];
         sessionStorage.userId = data["created_resource"]["_id"];
         sessionStorage.ckan_apikey =data["created_resource"]["ckan_apikey"];
         sessionStorage.email = data["created_resource"]["email"];
-
+        sessionStorage.username = data["created_resource"]["ckan_username"];
+        alert("sessionStorage");
         alert(JSON.stringify(sessionStorage));
-
-        redirectToPrevPage();
+        //redirectToPrevPage();
+        redirectToDashboard();
       }
       else
       {
+        alert(xhr.responseJSON.error_message);
         respBlock.html(xhr.responseJSON.error_message);
         respBlock.removeClass("invisible");
         return;
@@ -209,7 +233,7 @@ function signUp() {
       {
         case 400:
           if(xhr.responseJSON.error == "invalid_token")
-            respBlock.html(i18next.t("error.unauthorized"))
+            respBlock.html(i18next.t("error.unauthorized"));
           else if(xhr.responseJSON.error == "BadRequest")
             respBlock.html(i18next.t("error.missing_user_or_password"));
           else

@@ -16,15 +16,19 @@ var header_template = `	<div class="header">
               <li class="active ">
                 <a class="" data-lng="en" href="#">English <i class="fa fa-check"></i></a>
               </li>
-              <li><a href="#" data-lng="en">English</a></li>
-              <li><a  data-lng="it" href="#">Italiano</a></li>
+              <li><a href="#" data-lng="en" data-i18n="nav.en">English</a></li>
+              <li><a  data-lng="it" href="#" data-i18n="nav.it">Italiano</a></li>
             </ul>
           </li>
           <li class="topbar-devider"></li>
           <li><a href="#" data-i18n="nav.help">Help</a></li>
           <li class="topbar-devider"></li>
-          <li><a href="login.html">Login</a></li>
-          <!--li class="topbar-devider"></li>
+          <li id="h_login"><a href="login.html" data-i18n="nav.login"></a></li>          
+          <li id="h_logout"><a href="#" onclick="logout()" data-i18n="nav.logout"></a></li>
+          
+          <li style="padding-left:20px" id="h_user"><a href="dashboard.html" ><strong></strong></a></li>
+          <!--<li><a href="login.html">Login</a></li>
+          li class="topbar-devider"></li>
           <li><a href="login.html" onclick="logout()">Register</a></li-->
         </ul>
       </div>
@@ -43,13 +47,11 @@ var header_template = `	<div class="header">
       <div class="container">
         <ul class="nav navbar-nav">
           <!-- Home -->
-          <li class=" active">
-            <a href="datasets.html"  >
+          
+          <li class="active">
+            <a href="datasets.html">
               Datasets
             </a>
-            <ul class="dropdown-menu">
-
-            </ul>
           </li>
 
         </ul>

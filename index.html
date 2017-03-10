@@ -22,10 +22,10 @@
           href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS reset -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/normalize.min.css">
 
     <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- CSS Header and Footer -->
@@ -35,7 +35,7 @@
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/animate.css">
     <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
     <link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
     <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
@@ -74,7 +74,7 @@
                 </h1>
 
                 <div class="input-group">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search for datasets...">
+                    <input type="text" class="form-control" id="searchInput" data-i18n="[placeholder]datasets.searchDatasets">
 						<span class="input-group-btn">
 							<button class="btn-u btn-u-lg" type="button" id="searchButton"><i class="fa fa-search"></i></button>
 						</span>
@@ -109,72 +109,58 @@
 </div><!--/End Wrapper-->
 
 <!-- JS Global Compulsory -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- JS Translation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/3.4.3/i18next.min.js"></script>
-<script src="assets/js/translations/translation.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.1.0/jquery-i18next.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
+<script type="text/javascript" src="assets/js/translations/translation.js"></script>
+<script type="text/javascript" src="assets/js/plugins/jquery-i18next.min.js"></script>
 
 <!-- JS Implementing Plugins -->
 <script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
 <script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-<!-- <script type="text/javascript" src="assets/plugins/jquery.parallax.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/waypoints.min.js"></script>
-<script type="text/javascript" src="assets/plugins/counter/jquery.counterup.min.js"></script>
-<script type="text/javascript" src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>-->
-<!-- JS Customization -->
-<script type="text/javascript" src="lib/js/custom.js"></script>
 
-<script src="assets/js/translations/translation.js"></script>
+<!-- JS Customization -->
+<script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/common_header.js"></script>
+<script type="text/javascript" src="assets/js/handlebars-paginate.js"></script>
+
+<script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/footer.js"></script>
-<!--script type="text/javascript" src="https://raw.githubusercontent.com/i18next/i18next-xhr-backend/master/i18nextXHRBackend.min.js"></script-->
+
+<!-- JS Translation -->
+<script type="text/javascript" src="assets/js/translations/translation.js"></script>
 <script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
-<!-- script type="text/javascript" src="https://raw.githubusercontent.com/i18next/i18next/master/i18next.min.js"></script -->
 <script type="text/javascript" src="assets/js/plugins/jquery-i18next.min.js"></script>
 
 <!-- JS Page Level -->
-<script type="text/javascript" src="assets/js/app.js"></script>
-<!--<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>-->
 <script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
-<script type="text/javascript" src="lib/js/common_header.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/handlebars.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/typeahead.bundle.js"></script>
+<script type="text/javascript">
+    var isHome = true;
+</script>
+
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        App.init();
+       //App.init();
         //App.initCounter();
         //	App.initParallaxBg();
         //OwlCarousel.initOwlCarousel();
-        $('#header_p').html(header_template);
-
-        i18next.init({
-            lng: 'en', // evtl. use language-detector https://github.com/i18next/i18next-browser-languageDetector
-            resources: translation
-        }, function (err, t) {
-
-            jqueryI18next.init(i18next, $);
-            $('body').localize();
-
-            $('.lang-select').click(function () {
-                i18next.changeLanguage($(this).data('lang'));
-                $('body').localize();
-            });
+       // $('#header_p').html(header_template);
 
 
-        });
 
         $(".search-block").backstretch([
             "lib/img/login_1.jpg",
             "lib/img/login_2.jpg",
             "lib/img/login_3.jpg",
-            //"assets/img/port/login_4.jpg",
             "lib/img/login_5.jpg",
             "lib/img/login_7.jpg",
-            "lib/img/login_8.jpg",
+            "lib/img/login_8.jpg"
         ], {
             fade: 1000,
             duration: 4000
@@ -184,7 +170,7 @@
             var query = $("#searchInput").val();
             var page = "datasets.html";
             if (query)
-                page += "?q=" + query
+                page += "?q=" + query;
             window.location = page;
         })
 

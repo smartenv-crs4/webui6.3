@@ -1,23 +1,62 @@
-var baseurl = "http://156.148.37.152/api/ckan/v1/";
+//var baseurl = "http://156.148.37.152/api/ckan/v1/";
+var baseurl = "https://smartapi.crs4.it/api/ckan/v1/";  //baseurl per api ckan
+//https://smartapi.crs4.it/api/ckan/v1/activities?id=test
 var datasetsURL = baseurl + "datasets";
 var tagsURL = baseurl + "tags";
 var singleDatasetURL = baseurl + "datasets/";
 
 var resourcesURL = baseurl + "resources/";
 
-var _userMsUrl  = "http://156.148.37.152/api/user/v1/"; //Error: connect ECONNREFUSED 156.148.37.152:3000           //http://156.148.37.233:3001/;
+//var _userMsUrl  = "http://156.148.37.152/api/user/v1/"; //Error: connect ECONNREFUSED 156.148.37.152:3000           //http://156.148.37.233:3001/;
+var _userMsUrl  = "https://smartapi.crs4.it/api/user/v1";  ///autenticazione tramite microservizio
 
-
+var DateFormats = {
+    short: "DD MMMM - YYYY",
+    long: "dddd DD.MM.YYYY HH:mm"
+};
 //var content_resource = "";
 
 //var lng = localStorage.lng;
 
 
-jQuery(document).ready(function () {
 
-    //alert (lng);
 
-    jQuery('#header_p').html(header_template);
+jQuery(document).ready(function() {
+
+    Handlebars.registerHelper('formatDate', function(datetime, format) {
+        if (moment) {
+            // can use other formats like 'lll' too
+            format = DateFormats[format] || format;
+
+            return moment(datetime).startOf('day').fromNow();
+            //return moment(datetime).format(format);
+        }
+        else {
+            return datetime;
+        }
+    });
+
+    /*Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+        if(v1 === v2) {
+            return options.fn(this);
+        }
+        return options.inverse(this);
+    });*/
+
+    //jQuery('#header_p').html(header_template);
+    /*if(sessionStorage.token)
+    {
+        alert(sessionStorage.token);
+    }*/
+
+    var headerCompiled = Handlebars.compile(header_template);
+    var headerHTML = headerCompiled({
+        //isLogged: isLogged(),
+        //isHome : window['isHome'] || false
+    });
+
+    jQuery('#header_p').html(headerHTML);
+
     if(jQuery('#footer_p').length > 0)
     {
         var footerCompiled = Handlebars.compile(footer_template);
@@ -26,9 +65,10 @@ jQuery(document).ready(function () {
 
     jQuery('body').localize();
 
+    //alert(localStorage.lng);   //OK
 
 
-    if (localStorage.lng != undefined) {
+    if (localStorage.lng) {
         var l = jQuery(".languages a[data-lng='" + localStorage.lng + "']");
         if (l.length > 0) {
             if (localStorage.lng != jQuery(".languages .active a").first().attr("data-lng")) {
@@ -38,16 +78,17 @@ jQuery(document).ready(function () {
                 var c = document.createElement("i");
                 c.className = "fa fa-check";
                 lngSel.find("a").first().append(c);
-                i18next.changeLanguage(localStorage.lng, function () {});
-                jQuery('body').localize();
+                //i18next.changeLanguage(localStorage.lng, function (){});
             }
+            //i18next.changeLanguage(localStorage.lng, function (){});
+            jQuery('body').localize();
         }
     }
     else
     {
         localStorage.lng = jQuery(".languages .active a").first().data("lng");
 
-        i18next.changeLanguage(localStorage.lng, function(){});
+        //i18next.changeLanguage(localStorage.lng, function(){});
         jQuery('body').localize();
     }
 
@@ -61,11 +102,10 @@ jQuery(document).ready(function () {
             var c = document.createElement("i");
             c.className = "fa fa-check";
             lngSel.find("a").first().append(c);
-            i18next.changeLanguage(localStorage.lng, function () {});
+            //i18next.changeLanguage(localStorage.lng, function (){});
             jQuery('body').localize();
             jQuery(document).trigger('translate');
         }
-
     });
 
     if (jQuery(".footer-language").length > 0) {
@@ -78,35 +118,47 @@ jQuery(document).ready(function () {
         fl.change(function () {
             var lng = jQuery(this).val();
             localStorage.lng = lng;
-            i18next.changeLanguage(localStorage.lng, function () {});
+            //i18next.changeLanguage(localStorage.lng, function (){});
             jQuery('body').localize();
             jQuery(document).trigger('translate');
-
         });
     }
+
+////// AGGIORNAMENTO MENU' DOPO LOGIN  /////////
+    if(sessionStorage.token)
+    {
+        jQuery("#h_login").hide();
+        jQuery("#h_user strong").html(sessionStorage.name);  /// DA MODIFICARE CON USERNAME
+    }
+    else
+    {
+        jQuery("#h_logout").hide();
+        jQuery("#h_user").hide();
+    }
+
     loadCookieLawBar();
 
 });
+
 
 i18next.init({
     lng: localStorage.lng, // evtl. use language-detector https://github.com/i18next/i18next-browser-languageDetector
     fallbackLng: "en",
     resources: translation
-}, function (err, t) {
-    jqueryI18next.init(i18next, jQuery,
-        {
-            tName: 't', // --> appends $.t = i18next.t
-            i18nName: 'i18n', // --> appends $.i18n = i18next
-            handleName: 'localize', // --> appends $(selector).localize(opts);
-            selectorAttr: 'data-i18n', // selector for translating elements
-            targetAttr: 'i18n-target', // data-() attribute to grab target element to translate (if diffrent then itself)
-            optionsAttr: 'i18n-options', // data-() attribute that contains options, will load/set if useOptionsAttr = true
-            useOptionsAttr: false, // see optionsAttr
-            parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text
-        });
+    }, function (err, t) {
+        jqueryI18next.init(i18next, jQuery,
+            {
+                tName: 't', // --> appends $.t = i18next.t
+                i18nName: 'i18n', // --> appends $.i18n = i18next
+                handleName: 'localize', // --> appends $(selector).localize(opts);
+                selectorAttr: 'data-i18n', // selector for translating elements
+                targetAttr: 'i18n-target', // data-() attribute to grab target element to translate (if diffrent then itself)
+                optionsAttr: 'i18n-options', // data-() attribute that contains options, will load/set if useOptionsAttr = true
+                useOptionsAttr: false, // see optionsAttr
+                parseDefaultValueFromContent: true // parses default values from content ele.val or ele.text
+            });
 
 });
-
 
 
 /*******************************************
@@ -138,6 +190,141 @@ function getParameterByName(name, url) {
 }
 
 
+/*****************************************
+ ********dopo signin e signup ************
+ ******************************************/
+
+
+function redirectToPrevPage()
+{
+    if(sessionStorage.prevPage != undefined)
+    {
+        var p = sessionStorage.prevPage;
+        sessionStorage.prevPage = undefined;
+        window.location.href = p;
+    }
+    else
+    {
+        redirectToHome();
+    }
+}
+/*******************************************/
+function redirectToHome()
+{
+    window.location.href = "index.html";
+}
+/*******************************************/
+function redirectToDashboard()
+{
+    sessionStorage.prevPage = window.location.href;
+    window.location.href = "dashboard.html";
+}
+
+/*******************************************/
+function logout()
+{
+    //sessionStorage.token = undefined;
+    //sessionStorage.userId = undefined;
+    sessionStorage.clear();
+    window.location.replace("login.html");
+}
+
+
+
+/*******************************************/
+//GET ACTIVITY USER LIST  // dashboard utente
+/*******************************************/
+
+function getActivities(targetid, templateid) {
+
+
+    //alert("yes");
+
+    var user_apikey = "cf142393-6986-408b-a9b4-dfb133f368c8";
+
+    /*if(sessionStorage.ckan_apikey){
+        user_apikey = sessionStorage.ckan_apikey;
+    } else{
+        //data["apikey"] = "9e15a233-30ea-4676-a70e-6cc70477c85e";
+        user_apikey = "cf142393-6986-408b-a9b4-dfb133f368c8";
+    }*/
+
+    //alert(user_apikey);
+
+    jQuery.ajax({
+        url: baseurl + "dashboard",
+        type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        crossDomain : true,
+        success: function(data, textStatus, xhr)
+        {
+            // success
+
+            if(xhr.status == 200)
+            {
+
+                //alert("success: " + xhr.status);
+                var target = "#" + targetid;
+                var r;
+                var mydata = data.result;
+
+                var compiled = cacheCompile(templateid, {
+                        result: mydata
+                    }
+                );
+
+                $(target).empty();
+                $(target).html(compiled);
+
+
+
+
+                return;
+            }
+            // error
+            else
+            {
+                //respBlock.html(xhr.responseJSON.error_message);
+                alert(JSON.stringify(xhr.responseJSON));
+                //respBlock.removeClass("invisible");
+                return;
+            }
+        },
+        error: function(xhr, status)
+        {
+            alert("error: " + xhr.status);
+            switch(xhr.status)
+            {
+                case 400:
+                    if(xhr.responseJSON.error == "invalid_token")
+                        alert("error.unauthorized");
+                    else if(xhr.responseJSON.error == "BadRequest")
+                        alert("error.missing_user_or_password");
+                    else
+                        alert(xhr.responseJSON.error_message);
+                    break;
+                case 500:
+                    alert("error.internal_server_error");
+                    break;
+                case 403:
+                    alert("error.invalid_auth");
+                    break;
+                default:
+                    alert(xhr.responseJSON.error_message);
+            }
+            //respBlock.removeClass("invisible");
+            return;
+        },
+        beforeSend: function(xhr, settings)
+        {
+            xhr.setRequestHeader('Authorization', user_apikey);
+        }
+    });
+}
+
+
+
 
 /*******************************************
  ******************* getDatasets ***********
@@ -156,6 +343,7 @@ function getDatasets(url,targetid, templateid, page, limit) {
         console.log(data);
 
         var mydata = data.result;
+
         var total = 0;
         if (data.result.count>0 && data.result.results){
             mydata =  data.result.results.slice((page - 1) * limit, page * limit);
@@ -361,7 +549,27 @@ function readXMLResponse(url, target){
     });
 }
 
+/////////////////
 
+function getMyDatasets(){
+
+    window.open("datasets.html?q=author:test"); ////////////+sessionStorage.username);
+
+
+
+    /* var url = datasetsURL;
+
+
+
+    if (sessionStorage.username){
+        url+="?q="+"author:"+ sessionStorage.username;
+    }
+
+    url+="?q="+"author:test";
+    getDatasets(url,"datasetrows", "datasetrows_template", 1, 5);
+*/
+
+}
 
 
 

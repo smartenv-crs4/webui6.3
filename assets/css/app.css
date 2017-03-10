@@ -2344,7 +2344,7 @@ img.image-md {
 /*Text Colors
 ------------------------------------*/
 .color-sea { color: #1abc9c;}
-.color-red { color: #d40000;}
+.color-red { color: #e74c3c;}
 .color-aqua { color: #27d7e7;}
 .color-blue { color: #3498db;}
 .color-grey { color: #95a5a6;}
@@ -2571,4 +2571,8 @@ img.img-center,
 		transform: translateY(36px);
 		-webkit-transform: translateY(36px);
 	}
+}
+
+.more, .less {
+	cursor: pointer;
 }
