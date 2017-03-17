@@ -65,8 +65,8 @@ jQuery(document).on("translate", function(){
        if(xhr.status == 200)
        {
 
-         alert("credenziali");
-         alert(JSON.stringify(data["access_credentials"]));
+         //alert("credenziali");
+         //alert(JSON.stringify(data["access_credentials"]));
 
          /*
           //==== in sign-up ====//
@@ -79,12 +79,12 @@ jQuery(document).on("translate", function(){
          // DA VERIFICARE //
          sessionStorage.token = data["access_credentials"]["apiKey"]["token"];
          sessionStorage.userId = data["access_credentials"]["userId"];
-         sessionStorage.email = data["access_credentials"]["email"];
+         sessionStorage.email = email;
          sessionStorage.ckan_apikey = data["access_credentials"]["ckan_apikey"];
          sessionStorage.username = data["access_credentials"]["ckan_username"];
 
-         alert("session-storage");
-         alert(JSON.stringify(sessionStorage));
+         //alert("session-storage");
+         //alert(JSON.stringify(sessionStorage));
 
          //redirectToPrevPage();
          redirectToDashboard();
@@ -140,7 +140,7 @@ jQuery(document).on("translate", function(){
 function signUp() {
 
   var email = jQuery("#signUpEmail").val();
-  var name = jQuery("#signUpName").val();
+  //var name = jQuery("#signUpName").val();
   var password = jQuery("#signUpPassword").val();
   var password2 = jQuery("#signUpPassword2").val();
 
@@ -185,7 +185,7 @@ function signUp() {
   data["user"] = new Object();
   data["user"]["email"] = email;
   data["user"]["password"] = password;
-  data["user"]["name"] = name;
+  //data["user"]["name"] = name;
   data["user"]["type"] = userType;
   //alert(JSON.stringify(data));
 
@@ -205,16 +205,16 @@ function signUp() {
       {
 
 
-        alert("data");
-        alert(JSON.stringify(data));
+        //alert("data");
+        //alert(JSON.stringify(data));
 
         sessionStorage.token = data["access_credentials"]["apiKey"]["token"];
         sessionStorage.userId = data["created_resource"]["_id"];
         sessionStorage.ckan_apikey =data["created_resource"]["ckan_apikey"];
-        sessionStorage.email = data["created_resource"]["email"];
+        sessionStorage.email = email;
         sessionStorage.username = data["created_resource"]["ckan_username"];
-        alert("sessionStorage");
-        alert(JSON.stringify(sessionStorage));
+        //alert("sessionStorage");
+        //alert(JSON.stringify(sessionStorage));
         //redirectToPrevPage();
         redirectToDashboard();
       }

@@ -47,13 +47,13 @@ var header_template = `	<div class="header">
       <div class="container">
         <ul class="nav navbar-nav">
           <!-- Home -->
-          
-          <li class="active">
-            <a href="datasets.html">
-              Datasets
-            </a>
+          <li class="dropdown">
+            <a href="#">Datasets</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="datasets.html">View Datasets </a></li>
+                    <li id="h_addData"><a href="add_dataset.html">Add Dataset </a></li>
+                </ul>
           </li>
-
         </ul>
       </div><!--/end container-->
     </div><!--/navbar-collapse-->

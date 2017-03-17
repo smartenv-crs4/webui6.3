@@ -25,10 +25,15 @@ jQuery(document).ready(function() {
 
     Handlebars.registerHelper('formatDate', function(datetime, format) {
         if (moment) {
-            // can use other formats like 'lll' too
-            format = DateFormats[format] || format;
 
-            return moment(datetime).startOf('day').fromNow();
+
+            if(format == "short" || format == "long"){
+                // can use other formats like 'lll' too
+                format = DateFormats[format] || format;
+                return moment(datetime).format(format);
+            }
+            else
+                return moment(datetime).startOf('day').fromNow();
             //return moment(datetime).format(format);
         }
         else {
@@ -78,9 +83,12 @@ jQuery(document).ready(function() {
                 var c = document.createElement("i");
                 c.className = "fa fa-check";
                 lngSel.find("a").first().append(c);
+                
                 //i18next.changeLanguage(localStorage.lng, function (){});
+                //i18next.sync.reload();
             }
             //i18next.changeLanguage(localStorage.lng, function (){});
+            //i18next.sync.reload();
             jQuery('body').localize();
         }
     }
@@ -89,6 +97,7 @@ jQuery(document).ready(function() {
         localStorage.lng = jQuery(".languages .active a").first().data("lng");
 
         //i18next.changeLanguage(localStorage.lng, function(){});
+        //i18next.sync.reload();
         jQuery('body').localize();
     }
 
@@ -102,7 +111,9 @@ jQuery(document).ready(function() {
             var c = document.createElement("i");
             c.className = "fa fa-check";
             lngSel.find("a").first().append(c);
+
             //i18next.changeLanguage(localStorage.lng, function (){});
+            //i18next.sync.reload();
             jQuery('body').localize();
             jQuery(document).trigger('translate');
         }
@@ -118,7 +129,9 @@ jQuery(document).ready(function() {
         fl.change(function () {
             var lng = jQuery(this).val();
             localStorage.lng = lng;
+
             //i18next.changeLanguage(localStorage.lng, function (){});
+            //i18next.sync.reload();
             jQuery('body').localize();
             jQuery(document).trigger('translate');
         });
@@ -128,12 +141,13 @@ jQuery(document).ready(function() {
     if(sessionStorage.token)
     {
         jQuery("#h_login").hide();
-        jQuery("#h_user strong").html(sessionStorage.name);  /// DA MODIFICARE CON USERNAME
+        jQuery("#h_user strong").html(sessionStorage.username);
     }
     else
     {
         jQuery("#h_logout").hide();
         jQuery("#h_user").hide();
+        jQuery("#h_addData").hide();
     }
 
     loadCookieLawBar();
@@ -240,14 +254,11 @@ function getActivities(targetid, templateid) {
 
     //alert("yes");
 
-    var user_apikey = "cf142393-6986-408b-a9b4-dfb133f368c8";
+    var user_apikey = "";   // "cf142393-6986-408b-a9b4-dfb133f368c8";
 
-    /*if(sessionStorage.ckan_apikey){
+    if(sessionStorage.ckan_apikey){
         user_apikey = sessionStorage.ckan_apikey;
-    } else{
-        //data["apikey"] = "9e15a233-30ea-4676-a70e-6cc70477c85e";
-        user_apikey = "cf142393-6986-408b-a9b4-dfb133f368c8";
-    }*/
+    }
 
     //alert(user_apikey);
 
@@ -553,21 +564,9 @@ function readXMLResponse(url, target){
 
 function getMyDatasets(){
 
-    window.open("datasets.html?q=author:test"); ////////////+sessionStorage.username);
+    //alert(sessionStorage.username);
 
-
-
-    /* var url = datasetsURL;
-
-
-
-    if (sessionStorage.username){
-        url+="?q="+"author:"+ sessionStorage.username;
-    }
-
-    url+="?q="+"author:test";
-    getDatasets(url,"datasetrows", "datasetrows_template", 1, 5);
-*/
+    window.location.href="datasets.html?q=author:" + sessionStorage.username;
 
 }
 
