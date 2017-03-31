@@ -82,6 +82,7 @@ var translation = {
                 "first": "First"
             },
             "datasets":{
+                "pageTitle": "Create Dataset",
                 "searchDatasets": "Search for datasets....",
                 "addDataset": "Dataset Informations",
                 "title": "Title",
@@ -97,7 +98,7 @@ var translation = {
                 "api": "Link or API",
                 "nameRes": "Name of Resource",
                 "formatRes": "Format (select)",
-                "submit": "Submit",
+                "submit": "Create Dataset",
                 "addNextRes": "Add another resource",
                 "titleInfo": "Enter a title",
                 "tagsInfo": "Enter a comma separated tags",
@@ -106,6 +107,7 @@ var translation = {
                 "authorInfo": "Author name",
                 "authorEmailInfo": "Author E-mail",
                 "nameResInfo": "Enter a name for this resource",
+                "uploadUrl": "Enter the URL of the resource or the API",
                 "uploadTitle": "Upload a file on your computer",
                 "linkTitle": "Link to a URL on the internet (you can also link to an API)",
                 "link": "Link"
@@ -210,6 +212,7 @@ var translation = {
                 "first": "Prima"
             },
             "datasets":{
+                "pageTitle": "Crea un Dataset",
                 "searchDatasets": "Cerca datasets",
                 "addDataset": "Informazioni sul dataset",
                 "title": "Titolo",
@@ -225,7 +228,7 @@ var translation = {
                 "api": "Link o API",
                 "nameRes": "Nome",
                 "formatRes": "Formato (seleziona)",
-                "submit": "Carica",
+                "submit": "Carica Dataset",
                 "addNextRes": "Carica un'altra risorsa",
                 "titleInfo": "Inserisci il nome del dataset",
                 "tagsInfo": "Inserisci i tag separati da virgola",
@@ -234,6 +237,7 @@ var translation = {
                 "authorInfo": "Nome autore",
                 "authorEmailInfo": "E-mail autore",
                 "nameResInfo": "inserisci un nome per questa risorsa",
+                "uploadUrl": "Inserisce la URL della risorsa remota o della API",
                 "uploadTitle": "Carica un file dal tuo computer",
                 "linkTitle": "URL per una risorsa remota (puoi inserire anche un link ad una API)",
                 "link": "Link"

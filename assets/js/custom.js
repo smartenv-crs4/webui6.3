@@ -83,7 +83,7 @@ jQuery(document).ready(function() {
                 var c = document.createElement("i");
                 c.className = "fa fa-check";
                 lngSel.find("a").first().append(c);
-                
+
                 //i18next.changeLanguage(localStorage.lng, function (){});
                 //i18next.sync.reload();
             }
@@ -570,6 +570,19 @@ function getMyDatasets(){
 
 }
 
+///////////////////////////////
+function display_div_url(){
+
+    jQuery("#link-or-api").show();
+    jQuery("#link_resource").hide();
+
+}
+function hide_div_url(){
+
+    jQuery("#link-or-api").hide();
+    jQuery("#link_resource").show();
+
+}
 
 
 /*

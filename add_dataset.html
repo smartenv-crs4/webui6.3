@@ -66,14 +66,14 @@
     <div class="search-block parallaxBg one-top-padding autoHeight no-padding-bottom equal-height-columns">
         <div class="container">
             <div class="row well bg-color-semitransparent">
-                 <h2 class="color-red">Add Dataset</h2>
+                 <h2 class="color-red" data-i18n="datasets.pageTitle"></h2>
                  <!-- Begin Content -->
                  <div class="col-md-12">
                      <div class="row margin-bottom-40">
                          <div class="col-md-2"></div>
                          <div class="col-md-8">
                              <!-- Reg-Form -->
-                             <form action="#" id="addDataset" class="sky-form">
+                             <div id="addDataset" class="sky-form">
                                  <header data-i18n="datasets.addDataset"></header>
 
                                  <fieldset>
@@ -99,13 +99,6 @@
 
                                      <section>
                                          <label class="select">
-                                             <!--select-- name="license" id="license">
-                                                 <option value="0" selected disabled data-i18n="datasets.license">License</option>
-                                                 <option value="1">Creative Commons ...</option>
-                                                 <option value="2">......</option>
-                                                 <option value="3">.......</option>
-                                             </select-->
-
                                              <select id="license" name="license">
                                                  <option value="0" selected disabled data-i18n="datasets.license">License</option>
                                                  <option value="cc-by">Creative Commons Attribution</option>
@@ -162,94 +155,85 @@
                                              <b class="tooltip tooltip-bottom-right" data-i18n="datasets.authorEmailInfo"></b>
                                          </label>
                                      </section>
-
-
-
                                  </fieldset>
+                                 <!-- End Dataset-Informations-Form -->
 
-<!---->
+                                 <!-- Resources-Data -->
+                                 <div id="addRes" class="sky-form">
+                                     <header data-i18n="datasets.addResources"></header>
 
-                             <!-- End Dataset-Informations-Form -->
-                     <!--    </div>-->
+                                     <fieldset>
 
-                         <!-- Resources-Form -->
-                             <!-- <div class="col-md-6">-->
-                             <form action="#" id="addRes" class="sky-form">
-                                 <header data-i18n="datasets.addResources"></header>
+                                         <section>
+                                             <!-- div url -->
+                                             <div id="link-or-api" class="control-group control-full" style="display:none;">
 
-                                 <fieldset>
+                                                 <div class="text-left">
+                                                     URL
+                                                     <input id="field-image-url" type="text" name="url" value="" size="70" placeholder="http://example.com/my-resource.json">
+                                                     <i class="btn-u icon-close" onclick="hide_div_url();">
 
-                                     <section>
-
-                                         <div id="link-or-api" class="control-group control-full" style="display: none;">
-                                             <label class="control-label" for="field-image-url">URL</label>
-                                             <div class="controls ">
-
-                                                 <a href="javascript:;" class="btn btn-danger btn-remove-url" title="Rimuovi">
-                                                     <i class="icon-remove"></i>
-                                                 </a>
-                                                 <input id="field-image-url" type="text" name="url" value="" placeholder="http://example.com/my-image.jpg">
+                                                     </i>
+                                                 </div>
                                              </div>
-                                         </div>
+                                             <!-- END div url -->
 
-                                         <div class="row margin-right-5-5" id="link_resource">
-                                             <input name="url-file-upload" value="" type="hidden">
-                                             <a href="javascript:document.getElementById('file-upload').click();" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.uploadTitle"> <!-- data-i18n="datasets.upload"-->
-                                                 <input type="file" id="file-upload" style="display:none;">
-                                                 <i class="fa fa-cloud-upload">
+                                             <div class="row margin-right-5-5" id="link_resource">
+                                                 <input name="url-file-upload" value="" type="hidden">
+                                                 <!-- href="javascript:document.getElementById('file-upload').click();"-->
+                                                 <a href="javascript:alert('Function not available at the moment!');" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.uploadTitle"> <!-- data-i18n="datasets.upload"-->
+                                                     <input type="file" id="file-upload" style="display:none;">
+                                                     <i class="fa fa-cloud-upload"></i>
+                                                     Upload
+                                                 </a>
+                                                 <a href="javascript:display_div_url();" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.linkTitle"> <!--data-i18n="datasets.api"-->
+                                                     <i class="icon-link"></i>
+                                                      Link
+                                                 </a>
+                                            </div>
+                                         </section>
 
-                                                 </i>
-                                                 Upload
-                                             </a>
-                                             <a href="javascript:document.getElementById('link-or-api').style.display.visible;" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.linkTitle"> <!--data-i18n="datasets.api"-->
-                                                 <i class="icon-link">
+                                         <section>
+                                             <label class="input">
+                                                 <input type="text" name="res_name" data-i18n="[placeholder]datasets.nameRes" id="res_name">
+                                                 <b class="tooltip tooltip-bottom-right" data-i18n="datasets.nameResInfo"></b>
+                                             </label>
+                                         </section>
 
-                                                 </i>
-                                                  Link
-                                             </a>
-                                        </div>
-                                     </section>
+                                         <section>
+                                             <label class="textarea">
+                                                 <textarea rows="3" cols="39" name="res_description" data-i18n="[placeholder]datasets.desc" id="res_description"></textarea>
+                                             </label>
+                                         </section>
 
-                                     <section>
-                                         <label class="input">
-                                             <input type="text" name="res_name" data-i18n="[placeholder]datasets.nameRes" id="res_name">
-                                             <b class="tooltip tooltip-bottom-right" data-i18n="datasets.nameResInfo"></b>
-                                         </label>
-                                     </section>
+                                         <section>
+                                             <label class="select">
+                                                 <select name="format" id="format">
+                                                     <option value="0" selected disabled data-i18n="datasets.formatRes"></option>
+                                                     <option value="1">json</option>
+                                                     <option value="2">csv</option>
+                                                     <option value="3">xml</option>
+                                                     <option value="4">...</option>
+                                                 </select>
+                                             </label>
+                                         </section>
 
-                                     <section>
-                                         <label class="textarea">
-                                             <textarea rows="3" cols="39" name="res_description" data-i18n="[placeholder]datasets.desc" id="res_description"></textarea>
-                                         </label>
-                                     </section>
+                                         <section>
+                                            <a href="javascript:alert('Add Resource');" class="btn-u" style="display: inline-block;" data-i18n="datasets.addNextRes"></a>
+                                         </section>
+                                     </fieldset>
 
-                                     <section>
-                                         <label class="select">
-                                             <select name="format" id="format">
-                                                 <option value="0" selected disabled data-i18n="datasets.formatRes"></option>
-                                                 <option value="1">json</option>
-                                                 <option value="2">csv</option>
-                                                 <option value="3">xml</option>
-                                                 <option value="4">...</option>
-                                             </select>
-                                         </label>
-                                     </section>
-
-                                 </fieldset>
-
+                                 </div>
                                  <footer>
-                                     <button type="submit" class="btn-u" data-i18n="datasets.addNextRes"></button>
+                                     <button type="submit" onclick="alert('Create Dataset');" class="btn-u" data-i18n="datasets.submit"></button>
                                  </footer>
-                             </form>
-                                 <footer>
-                                     <button type="submit" class="btn-u" data-i18n="datasets.submit">Submit</button>
-                                 </footer>
-                             </form>
+                             </div>
                          </div>
-                     </div>
-                 </div><!--/end row-->
+                     </div><!--/end row-->
+                 </div>
             </div>
         </div><!--/container-->
+
     </div>
 
 
@@ -296,12 +280,15 @@
 <script type="text/javascript" src="assets/js/plugins/typeahead.bundle.js"></script>
 
 <script type="text/javascript">
+
     jQuery(document).ready(function () {
         App.init();
         //App.initCounter();
         //App.initParallaxBg();
         //OwlCarousel.initOwlCarousel();
         //$('#header_p').html(header_template);
+
+
 
         if(sessionStorage.username){
             //alert(sessionStorage.username);
@@ -322,7 +309,11 @@
             duration: 4000
         });
 
+
+
     });
+
+    alert("Under construction!");
 </script>
 <!--[if lt IE 9]>
 <script src="assets/plugins/respond.js"></script>
