@@ -85,10 +85,11 @@ var translation = {
                 "pageTitle": "Create Dataset",
                 "searchDatasets": "Search for datasets....",
                 "addDataset": "Dataset Informations",
-                "title": "Title",
+                "title": "Dataset Title (Required field)",
                 "desc": "Description",
                 "tags": "Tags",
                 "license": "License (select)",
+                "license_null": "License not specified",
                 "source": "Source",
                 "version": "Version",
                 "author": "Author",
@@ -98,6 +99,7 @@ var translation = {
                 "api": "Link or API",
                 "nameRes": "Name of Resource",
                 "formatRes": "Format (select)",
+                "formatRes_null": "Format not specified",
                 "submit": "Create Dataset",
                 "addNextRes": "Add another resource",
                 "titleInfo": "Enter a title",
@@ -110,7 +112,10 @@ var translation = {
                 "uploadUrl": "Enter the URL of the resource or the API",
                 "uploadTitle": "Upload a file on your computer",
                 "linkTitle": "Link to a URL on the internet (you can also link to an API)",
-                "link": "Link"
+                "link": "Link",
+                "messageNoUrlResources": "You don't have indicate the resource url!",
+                "required_field": "Required Field",
+                "loaded": "The dataset has been loaded correctly!"
             },
             "homepage": {
                 "opendata": "OPEN DATA",
@@ -123,6 +128,13 @@ var translation = {
                 "contact_us": "Contact Us",
                 "about_us": "About us",
                 "site": "Site"
+            },
+            "dashboard": {
+                "label_date": "Date",
+                "label_author": "Author",
+                "label_activity": "Activity",
+                "label_dataset": "Dataset",
+                "labels": "Date -- Author -- Activity -- Dataset"
             }
         }
 
@@ -213,12 +225,13 @@ var translation = {
             },
             "datasets":{
                 "pageTitle": "Crea un Dataset",
-                "searchDatasets": "Cerca datasets",
+                "searchDatasets": "Cerca nei datasets",
                 "addDataset": "Informazioni sul dataset",
-                "title": "Titolo",
+                "title": "Titolo del dataset (Campo obbligatorio)",
                 "desc": "Descrizione",
                 "tags": "Tags",
                 "license": "Licenza (seleziona)",
+                "license_null": "Licenza non specificata",
                 "source": "Source",
                 "version": "Versione",
                 "author": "Autore",
@@ -228,6 +241,7 @@ var translation = {
                 "api": "Link o API",
                 "nameRes": "Nome",
                 "formatRes": "Formato (seleziona)",
+                "formatRes_null": "Format non specificato",
                 "submit": "Carica Dataset",
                 "addNextRes": "Carica un'altra risorsa",
                 "titleInfo": "Inserisci il nome del dataset",
@@ -240,7 +254,10 @@ var translation = {
                 "uploadUrl": "Inserisce la URL della risorsa remota o della API",
                 "uploadTitle": "Carica un file dal tuo computer",
                 "linkTitle": "URL per una risorsa remota (puoi inserire anche un link ad una API)",
-                "link": "Link"
+                "link": "Link",
+                "messageNoUrlResources": "Non hai indicato la url della risorsa!",
+                "required_field": "Campo Obbligatorio",
+                "loaded": "Il dataset è stato caricato correttamente!"
             },
             "homepage": {
                 "opendata": "OPEN DATA ",
@@ -253,6 +270,13 @@ var translation = {
                 "contact_us": "Contattaci",
                 "about_us": "Chi siamo",
                 "site": "Sito"
+            },
+            "dashboard": {
+                "label_date": "Data",
+                "label_author": "Autore",
+                "label_activity": "Attività",
+                "label_dataset": "Dataset",
+                "labels": "Data -- Autore -- Attività -- Dataset"
             }
         }
     }

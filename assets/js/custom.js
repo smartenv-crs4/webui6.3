@@ -4,22 +4,16 @@ var baseurl = "https://smartapi.crs4.it/api/ckan/v1/";  //baseurl per api ckan
 var datasetsURL = baseurl + "datasets";
 var tagsURL = baseurl + "tags";
 var singleDatasetURL = baseurl + "datasets/";
-
 var resourcesURL = baseurl + "resources/";
-
-//var _userMsUrl  = "http://156.148.37.152/api/user/v1/"; //Error: connect ECONNREFUSED 156.148.37.152:3000           //http://156.148.37.233:3001/;
 var _userMsUrl  = "https://smartapi.crs4.it/api/user/v1";  ///autenticazione tramite microservizio
 
 var DateFormats = {
     short: "DD MMMM - YYYY",
     long: "dddd DD.MM.YYYY HH:mm"
 };
+
 //var content_resource = "";
-
 //var lng = localStorage.lng;
-
-
-
 
 jQuery(document).ready(function() {
 
@@ -70,9 +64,9 @@ jQuery(document).ready(function() {
 
     jQuery('body').localize();
 
-    //alert(localStorage.lng);   //OK
-
-
+    /*********************
+     INTERNATIONALIZATION
+     *********************/
     if (localStorage.lng) {
         var l = jQuery(".languages a[data-lng='" + localStorage.lng + "']");
         if (l.length > 0) {
@@ -85,10 +79,8 @@ jQuery(document).ready(function() {
                 lngSel.find("a").first().append(c);
 
                 //i18next.changeLanguage(localStorage.lng, function (){});
-                //i18next.sync.reload();
             }
             //i18next.changeLanguage(localStorage.lng, function (){});
-            //i18next.sync.reload();
             jQuery('body').localize();
         }
     }
@@ -97,7 +89,6 @@ jQuery(document).ready(function() {
         localStorage.lng = jQuery(".languages .active a").first().data("lng");
 
         //i18next.changeLanguage(localStorage.lng, function(){});
-        //i18next.sync.reload();
         jQuery('body').localize();
     }
 
@@ -113,7 +104,6 @@ jQuery(document).ready(function() {
             lngSel.find("a").first().append(c);
 
             //i18next.changeLanguage(localStorage.lng, function (){});
-            //i18next.sync.reload();
             jQuery('body').localize();
             jQuery(document).trigger('translate');
         }
@@ -131,13 +121,15 @@ jQuery(document).ready(function() {
             localStorage.lng = lng;
 
             //i18next.changeLanguage(localStorage.lng, function (){});
-            //i18next.sync.reload();
             jQuery('body').localize();
             jQuery(document).trigger('translate');
         });
     }
 
-////// AGGIORNAMENTO MENU' DOPO LOGIN  /////////
+    /*************************************
+     ** AGGIORNAMENTO MENU' DOPO LOGIN  **
+     *************************************/
+
     if(sessionStorage.token)
     {
         jQuery("#h_login").hide();
@@ -154,7 +146,9 @@ jQuery(document).ready(function() {
 
 });
 
-
+/*****************************
+ * INIT INTERNATIONALIZATION *
+ *****************************/
 i18next.init({
     lng: localStorage.lng, // evtl. use language-detector https://github.com/i18next/i18next-browser-languageDetector
     fallbackLng: "en",
@@ -204,13 +198,12 @@ function getParameterByName(name, url) {
 }
 
 
-/*****************************************
- ********dopo signin e signup ************
- ******************************************/
+/*************************************
+ *** FUNCTIONS AFTER SIGNIN/SIGNUP ***
+ *************************************/
 
 
-function redirectToPrevPage()
-{
+function redirectToPrevPage() {
     if(sessionStorage.prevPage != undefined)
     {
         var p = sessionStorage.prevPage;
@@ -223,20 +216,17 @@ function redirectToPrevPage()
     }
 }
 /*******************************************/
-function redirectToHome()
-{
+function redirectToHome() {
     window.location.href = "index.html";
 }
 /*******************************************/
-function redirectToDashboard()
-{
+function redirectToDashboard() {
     sessionStorage.prevPage = window.location.href;
     window.location.href = "dashboard.html";
 }
 
 /*******************************************/
-function logout()
-{
+function logout() {
     //sessionStorage.token = undefined;
     //sessionStorage.userId = undefined;
     sessionStorage.clear();
@@ -245,22 +235,17 @@ function logout()
 
 
 
-/*******************************************/
-//GET ACTIVITY USER LIST  // dashboard utente
-/*******************************************/
+/**************************************************
+**** GET ACTIVITY USER LIST - DASHBOARD UTENTE ****
+***************************************************/
 
 function getActivities(targetid, templateid) {
-
-
-    //alert("yes");
 
     var user_apikey = "";   // "cf142393-6986-408b-a9b4-dfb133f368c8";
 
     if(sessionStorage.ckan_apikey){
         user_apikey = sessionStorage.ckan_apikey;
     }
-
-    //alert(user_apikey);
 
     jQuery.ajax({
         url: baseurl + "dashboard",
@@ -271,10 +256,8 @@ function getActivities(targetid, templateid) {
         success: function(data, textStatus, xhr)
         {
             // success
-
             if(xhr.status == 200)
             {
-
                 //alert("success: " + xhr.status);
                 var target = "#" + targetid;
                 var r;
@@ -287,10 +270,6 @@ function getActivities(targetid, templateid) {
 
                 $(target).empty();
                 $(target).html(compiled);
-
-
-
-
                 return;
             }
             // error
@@ -309,17 +288,17 @@ function getActivities(targetid, templateid) {
             {
                 case 400:
                     if(xhr.responseJSON.error == "invalid_token")
-                        alert("error.unauthorized");
+                        alert($.t("error.unauthorized"));
                     else if(xhr.responseJSON.error == "BadRequest")
-                        alert("error.missing_user_or_password");
+                        alert($.t("error.missing_user_or_password"));
                     else
                         alert(xhr.responseJSON.error_message);
                     break;
                 case 500:
-                    alert("error.internal_server_error");
+                    alert($.t("error.internal_server_error"));
                     break;
                 case 403:
-                    alert("error.invalid_auth");
+                    alert($.t("error.invalid_auth"));
                     break;
                 default:
                     alert(xhr.responseJSON.error_message);
@@ -334,12 +313,9 @@ function getActivities(targetid, templateid) {
     });
 }
 
-
-
-
-/*******************************************
- ******************* getDatasets ***********
- *******************************************/
+/**************************************
+ ************ GET DATASETS ************
+ **************************************/
 function getDatasets(url,targetid, templateid, page, limit) {
 
     if (!limit)
@@ -376,12 +352,8 @@ function getDatasets(url,targetid, templateid, page, limit) {
             );
         }
 
-
-
         $(target).empty();
         $(target).html(compiled);
-
-
 
         var pagination = cacheCompile("pagination_template", {
             pagination: {
@@ -403,7 +375,6 @@ function getDatasets(url,targetid, templateid, page, limit) {
 
 
 function getSimple(url, targetid, templateid, cb) {
-
 
     var target = "#" + targetid;
 
@@ -560,8 +531,7 @@ function readXMLResponse(url, target){
     });
 }
 
-/////////////////
-
+/*** DASHBOARD - button getMyDatasets ***/
 function getMyDatasets(){
 
     //alert(sessionStorage.username);
@@ -570,24 +540,24 @@ function getMyDatasets(){
 
 }
 
-///////////////////////////////
+/*** FORM ADD RESOURCE ***/
 function display_div_url(){
 
     jQuery("#link-or-api").show();
-    jQuery("#link_resource").hide();
+    jQuery("#upload_resource").hide();
 
 }
 function hide_div_url(){
 
     jQuery("#link-or-api").hide();
-    jQuery("#link_resource").show();
+    jQuery("#upload_resource").show();
 
 }
 
 
-/*
-///////////////cookies
- */
+/****************
+ *** COOKIES ****
+ ****************/
 
 
 function loadCookieLawBar()
