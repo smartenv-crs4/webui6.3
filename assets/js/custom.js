@@ -429,6 +429,7 @@ function readJSONResponse(url, div_text, target){
             $(json).each(function(i,val){
                 $.each(val,function(k,v){
                     div_text += "<br>&emsp;<b>" + k+ "</b> : "+ v ;
+
                 });
             });
 
