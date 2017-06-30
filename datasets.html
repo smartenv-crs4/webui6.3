@@ -70,7 +70,7 @@
                     <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1-->
 
                     <div class="input-group">
-                        <input type="text" class="form-control" id="searchInput" placeholder="Search datasets...">
+                        <input type="text" class="form-control" id="searchInput" data-i18n="[placeholder]datasets.searchDatasets">
 						<span class="input-group-btn">
 							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
 						</span>
@@ -86,13 +86,6 @@
                         <div class="headline-v2"><h2>Tags</h2></div>
 
                     </div>
-                        <!--h2>Filtri</h2>
-                            <ul class="list-row  margin-bottom-50 color-white text-left">
-                                <li><span class="label label-success">Just Updated</span></li>
-                                <li><span class="label label-info"> Recent</span></li>
-                                <li><span class="label label-warning">Old</span></li>
-                                <li><span class="label label-danger">Very Old</span></li>
-                            </ul-->
 
                     <div id="tags_container"></div>
 
@@ -250,25 +243,7 @@
         //OwlCarousel.initOwlCarousel();
         Handlebars.registerHelper('paginate', paginate);
 
-        /*$('#header_p').html(header_template);
-
-        i18next.init({
-            lng: 'en', // evtl. use language-detector https://github.com/i18next/i18next-browser-languageDetector
-            resources: translation
-        }, function (err, t) {
-
-            jqueryI18next.init(i18next, $);
-            $('body').localize();
-
-            $('.lang-select').click(function () {
-                i18next.changeLanguage($(this).data('lang'));
-                $('body').localize();
-            });
-
-
-        });*/
-
-         url = datasetsURL;
+        url = datasetsURL;
 
         var query = getParameterByName('q');
 

@@ -70,7 +70,7 @@
                     <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1-->
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search datasets..." id="searchInput">
+                        <input type="text" class="form-control" data-i18n="[placeholder]datasets.searchDatasets" id="searchInput">
 						<span class="input-group-btn">
 							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
 						</span>
@@ -115,8 +115,8 @@
             </h2>
             <p>{{notes}}</p>
         </div>
-        <div class="col-md-3" >
-            <a href="manage_dataset.html" class="btn-u pull-right">Edit Dataset</a>
+        <div class="col-md-3" id="buttonEditDataset"  style="display: none;">
+            <a href="manage_dataset.html?id={{id}}" class="btn-u pull-right" >Edit Dataset</a>
         </div>
 
     </div>
@@ -194,6 +194,7 @@
 
 <!-- JS Customization -->
 <script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/datasets_functions.js"></script>
 <script type="text/javascript" src="assets/js/common_header.js"></script>
 <script type="text/javascript" src="assets/js/handlebars-paginate.js"></script>
 <script type="text/javascript" src="assets/js/sign_in_up.js"></script>
@@ -214,12 +215,6 @@
 <script type="text/javascript">
     jQuery(document).ready(function () {
         App.init();
-        //App.initCounter();
-        //	App.initParallaxBg();
-        //OwlCarousel.initOwlCarousel();
-        //$('#header_p').html(header_template);
-
-
 
         $(".search-block").backstretch([
             "lib/img/login_1.jpg",
@@ -248,6 +243,10 @@
         var templateId = "singleDataset_template";
 
         getSimple(url, targetId, templateId);
+
+        if(sessionStorage.username){
+            allowEditDataset(sessionStorage.username, datasetId);
+        }
 
 
     });

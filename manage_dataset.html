@@ -27,6 +27,7 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/plugins/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" type="text/css" media="all" />
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
@@ -62,172 +63,197 @@
     <div id="header_p"></div>
     <!--=== End Header ===-->
 
-    <!--=== Form Block ===-->
+    <!--=== FORM Block ===-->
     <div class="search-block parallaxBg one-top-padding autoHeight no-padding-bottom equal-height-columns">
         <div class="container">
-
-            <div class="row well bg-color-semitransparent ">
-                <h2 class="color-red">Manage Dataset</h2>
-
-
+            <div class="row well bg-color-semitransparent">
+                <h2 class="color-red" data-i18n="datasets.managePageTitle"></h2>
                 <!-- Begin Content -->
-                 <div class="col-md-12">
-                     <div class="row margin-bottom-40">
-                         <div class="col-md-6 equal-height-columns">
-                             <!-- Dataset-Informations-Form -->
-                             <form action="#" id="sky-form4" class="sky-form">
-                                 <header>Dataset Informations</header>
+                <div class="col-md-12">
+                    <div class="row margin-bottom-40">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <!-- Reg-Form -->
+                            <div id="manageDataset" class="sky-form">
+                                <header data-i18n="datasets.addDataset"></header>
 
-                                 <fieldset>
-                                     <section>
-                                         <label class="input">
-                                             <input type="text" name="title" placeholder="Title" id="title">
-                                             <b class="tooltip tooltip-bottom-right">Enter a title</b>
-                                         </label>
-                                     </section>
+                                <fieldset>
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" name="title" id="title" data-i18n="[placeholder]datasets.title">
+                                            <b class="tooltip tooltip-bottom-right" data-i18n="datasets.titleInfo"></b>
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="textarea">
+                                            <textarea rows="3" cols="39" name="description" data-i18n="[placeholder]datasets.desc" id="description"></textarea>
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" name="tags" data-i18n="[placeholder]datasets.tags" id="tags">
+                                            <b class="tooltip tooltip-bottom-right" data-i18n="datasets.tagsInfo"></b>
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="select">
+                                            <select id="license" name="license">
+                                                <option value="0" selected disabled data-i18n="datasets.license">License</option>
+                                                <option value="cc-by">Creative Commons Attribution</option>
+                                                <option value="cc-by-sa">Creative Commons Attribution Share-Alike</option>
+                                                <option value="cc-zero">Creative Commons CCZero</option>
+                                                <option value="cc-nc">Creative Commons Non-Commercial (Any)</option>
+                                                <option value="gfdl">GNU Free Documentation License</option>
+                                                <option value="odc-by">Open Data Commons Attribution License</option>
+                                                <option value="odc-odbl">Open Data Commons Open Database License (ODbL)</option>
+                                                <option value="odc-pddl">Open Data Commons Public Domain Dedication and License (PDDL)</option>
+                                                <option value="other-at">Other (Attribution)</option>
+                                                <option value="other-nc">Other (Non-Commercial)</option>
+                                                <option value="other-closed">Other (Not Open)</option>
+                                                <option value="other-open">Other (Open)</option>
+                                                <option value="other-pd">Other (Public Domain)</option>
+                                                <option value="uk-ogl">UK Open Government Licence (OGL)</option>
+                                                <option value="notspecified" data-i18n="datasets.license_null"></option>
+                                            </select>
+                                        </label>
+                                        <span class="info-blocks info-blocks-in">
+                                             <i class="icon-info"></i>
+                                             License definitions and additional information can be found at
+                                             <a href="http://opendefinition.org/licenses/">opendefinition.org</a>
+                                         </span>
+                                    </section>
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" name="source" data-i18n="[placeholder]datasets.source" id="source">
+                                            <b class="tooltip tooltip-bottom-right" data-i18n="datasets.sourceInfo"></b>
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" name="version" data-i18n="[placeholder]datasets.version" id="version">
+                                            <b class="tooltip tooltip-bottom-right" data-i18n="datasets.versionInfo"></b>
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="input">
+                                            <input type="text" name="author" data-i18n="[placeholder]datasets.author" id="author">
+                                            <b class="tooltip tooltip-bottom-right" data-i18n="datasets.authorInfo"></b>
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-user"></i>
+                                            <input type="email" name="email" data-i18n="[placeholder]datasets.authorEmail" id="author_email">
+                                            <b class="tooltip tooltip-bottom-right" data-i18n="datasets.authorEmailInfo"></b>
+                                        </label>
+                                    </section>
+                                </fieldset>
+                                <!-- End Dataset-Informations-Form -->
 
-                                     <section>
-                                         <label class="textarea">
-                                             <textarea rows="3" cols="39" name="description" placeholder="Description" id="description"></textarea>
-                                         </label>
-                                     </section>
-
-                                     <section>
-                                         <label class="input">
-                                             <input type="text" name="tags" placeholder="Tags" id="tags">
-                                             <b class="tooltip tooltip-bottom-right">Enter a tag</b>
-                                         </label>
-                                     </section>
-
-                                     <section>
-                                         <label class="select">
-                                             <select name="license" id="license">
-                                                 <option value="0" selected disabled>License</option>
-                                                 <option value="1">Creative Commons ...</option>
-                                                 <option value="2">......</option>
-                                                 <option value="3">.......</option>
-                                             </select>
-                                             <i></i>
-                                         </label>
-                                     </section>
-
-                                     <section>
-                                         <label class="input">
-                                             <input type="text" name="source" placeholder="Source" id="source">
-                                             <b class="tooltip tooltip-bottom-right">e.g. http://example.com/dataset.json </b>
-                                         </label>
-                                     </section>
-
-                                     <section>
-                                         <label class="input">
-                                             <input type="text" name="version" placeholder="Version" id="version">
-                                             <b class="tooltip tooltip-bottom-right">Dataset version</b>
-                                         </label>
-                                     </section>
-
-                                     <section>
-                                         <label class="input">
-                                             <input type="text" name="author" placeholder="Author" id="author">
-                                             <b class="tooltip tooltip-bottom-right">Author name</b>
-                                         </label>
-                                     </section>
-
-                                     <section>
-                                         <label class="input">
-                                             <i class="icon-append fa fa-user"></i>
-                                             <input type="email" name="email" placeholder="Author E-mail">
-                                             <b class="tooltip tooltip-bottom-right">Author E-mail</b>
-                                         </label>
-                                     </section>
-
-                                 </fieldset>
+                                <!-- Resources-Data -->
 
 
-                                 <footer>
-                                     <button type="submit" class="btn-u">Update Informations</button>
-                                 </footer>
-                             </form>
-                             <!-- End Dataset-Informations-Form -->
-                         </div>
 
-                         <!-- Resources-Form -->
-                         <div class="col-md-6">
-                             <form action="#" id="sky-form2" class="sky-form">
-                                 <header>Resources</header>
+                                <!-- FORM RESOURCES -->
+                                <div id="addRes" class="sky-form" >
+                                    <header data-i18n="datasets.manageResources"></header>
 
-                                 <fieldset>
 
-                                     <section>
-                                         <div class="row margin-right-5-5">
-                                             <pre>List Resources..... Option DELETE/MANAGE ... ...
-                                             </pre>
-                                         </div>
-                                     </section>
-
-                                     <b>Add New Resources:</b><br><br>
-
-                                     <section>
-                                         <div class="row margin-right-5-5">
-                                             File
-                                             <a href="#" class="btn-u"><i class="fa fa-cloud-upload"></i> Upload resource </a>
-                                             <a href="#" class="btn-u"><i class="fa"></i> Link or API </a>
+                                    <fieldset>
+                                        <div style="text-align: left;">
+                                            <b data-i18n='datasets.listRes'></b>
+                                            <div id="listRes" style="font-size: xx-small"></div>
                                         </div>
-                                     </section>
 
-                                     <section>
-                                         <label class="input">
-                                             <input type="text" name="res_name" placeholder="Name" id="res_name">
-                                             <b class="tooltip tooltip-bottom-right">Enter a name for this resource</b>
-                                         </label>
-                                     </section>
+                                        <div id="buttonUpdateRes">
+                                            <br>
+                                            <a href="javascript:updateDataset_addNewRes();" class="btn-u" style="display: inline-block;" data-i18n="datasets.updateAddNextRes"></a>
+                                            <br>
+                                        </div>
+                                        <div id="formNewRes" style="display: none">
+                                            <section>
+                                                <!-- div url -->
+                                                <div id="link-or-api" class="control-group control-full" style="display:none;">
 
-                                     <section>
-                                         <label class="textarea">
-                                             <textarea rows="3" cols="39" name="res_description" placeholder="Description" id="res_description"></textarea>
-                                         </label>
-                                     </section>
+                                                    <div class="text-left">
+                                                        URL
+                                                        <input id="resource-link-or-api" type="text" name="url" value="" size="70" placeholder="http://example.com/my-resource.json">
+                                                        <i class="btn-u icon-close" onclick="hide_div_url();">
 
-                                     <section>
-                                         <label class="select">
-                                             <select name="format" id="format">
-                                                 <option value="0" selected disabled>Format</option>
-                                                 <option value="1">json</option>
-                                                 <option value="2">csv</option>
-                                                 <option value="3">xml</option>
-                                                 <option value="3">...</option>
-                                             </select>
-                                             <i></i>
-                                         </label>
-                                     </section>
-
-                                 </fieldset>
-
-                                 <footer>
-                                     <button type="submit" class="btn-u">Add another resource</button>
-                                     <br><br>
-                                     <section class="margin-left-5">
-                                        <button type="submit" class="btn-u">DELETE Dataset</button>
-                                     </section>
-                                 </footer>
-                             </form>
-                         </div> <!-- end res form -->
-
-
-                     </div>
-                 </div><!--/end row-->
+                                                        </i>
+                                                    </div>
+                                                </div>
+                                                <!-- END div url -->
+                                                <div class="row margin-right-5-5" id="upload_resource">
+                                                    <input name="url-file-upload" value="" type="hidden">
+                                                    <!-- href="javascript:document.getElementById('file-upload').click();"-->
+                                                    <a href="javascript:display_div_url();" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.linkTitle"> <!--data-i18n="datasets.api"-->
+                                                        <i class="icon-link"></i>
+                                                        Link
+                                                    </a>
+                                                    <a href="javascript:alert('Function not available at the moment!');" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.uploadTitle"> <!-- data-i18n="datasets.upload"-->
+                                                        <input type="file" id="file-upload" style="display:none;">
+                                                        <i class="fa fa-cloud-upload"></i>
+                                                        Upload
+                                                    </a>
+                                                </div>
+                                            </section>
+                                            <section>
+                                                <label class="input">
+                                                    <input type="text" name="res_name" data-i18n="[placeholder]datasets.nameRes" id="res_name">
+                                                    <b class="tooltip tooltip-bottom-right" data-i18n="datasets.nameResInfo"></b>
+                                                </label>
+                                            </section>
+                                            <section>
+                                                <label class="textarea">
+                                                    <textarea rows="3" cols="39" name="res_description" data-i18n="[placeholder]datasets.desc" id="res_description"></textarea>
+                                                </label>
+                                            </section>
+                                            <section>
+                                                <label class="select">
+                                                    <select name="format" id="format">
+                                                        <option value="0" selected disabled data-i18n="datasets.formatRes"></option>
+                                                        <option value="json">json</option>
+                                                        <option value="csv">csv</option>
+                                                        <option value="xml">xml</option>
+                                                        <option value="api">API</option>
+                                                        <option value="notspecified" data-i18n="datasets.formatRes_null"></option>
+                                                    </select>
+                                                </label>
+                                            </section>
+                                            <section class="text-right">
+                                                <a href="javascript:addNewResource(update_dataset_resources);" class="btn-u" style="display: inline-block; position: relative" data-i18n="datasets.addNextRes"></a>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+                                </div> <!-- FORM RESOURCES -->
+                                <footer>
+                                    <button onclick="javascript:deleteConfirm(recoveredDatasetInformations, 'dataset');" class="btn-u confirm" data-i18n="datasets.deleteDataset"></button>
+                                    <button type="submit" onclick="updateDataset();" class="btn-u" data-i18n="datasets.submitUpdate"></button>
+                                </footer>
+                            </div>
+                        </div>
+                    </div><!--/end row-->
+                </div>
             </div>
         </div><!--/container-->
-    </div>
+    </div><!--=== END FORM Block ===-->
+
     <!--=== Footer Version 1 ===-->
     <div id="footer_p" ></div>
     <!--=== End Footer Version 1 ===-->
 </div><!--/End Wrapper-->
+
+
+<!-- emtpy div id=dialog //-->
+<div id="dialog"></div>
 
 <!-- JS Global Compulsory -->
 <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/plugins/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
 
 <!-- JS Translation -->
 <script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
@@ -241,8 +267,10 @@
 
 <!-- JS Customization -->
 <script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/datasets_functions.js"></script>
 <script type="text/javascript" src="assets/js/common_header.js"></script>
 <script type="text/javascript" src="assets/js/handlebars-paginate.js"></script>
+<script type="text/javascript" src="assets/js/sign_in_up.js"></script>
 <script type="text/javascript" src="assets/js/sign_in_up.js"></script>
 
 <script type="text/javascript" src="assets/js/app.js"></script>
@@ -259,29 +287,18 @@
 <script type="text/javascript" src="assets/js/plugins/typeahead.bundle.js"></script>
 
 
+
+
 <script type="text/javascript">
     jQuery(document).ready(function () {
         App.init();
-        //App.initCounter();
-        //	App.initParallaxBg();
-        //OwlCarousel.initOwlCarousel();
-        //$('#header_p').html(header_template);
+        var datasetId = getParameterByName("id");
 
-        /*i18next.init({
-            lng: 'en', // evtl. use language-detector https://github.com/i18next/i18next-browser-languageDetector
-            resources: translation
-        }, function (err, t) {
+        if(sessionStorage.username){
 
-            jqueryI18next.init(i18next, $);
-            $('body').localize();
-
-            $('.lang-select').click(function () {
-                i18next.changeLanguage($(this).data('lang'));
-                $('body').localize();
-            });
-
-
-        });*/
+            recoveryDatasetInformations(datasetId);
+        }
+     
 
         $(".search-block").backstretch([
             "lib/img/login_1.jpg",
@@ -295,6 +312,8 @@
             fade: 1000,
             duration: 4000
         });
+
+
 
     });
 </script>
