@@ -210,7 +210,13 @@ function signUp() {
 
         sessionStorage.token = data["access_credentials"]["apiKey"]["token"];
         sessionStorage.userId = data["created_resource"]["_id"];
-        sessionStorage.ckan_apikey =data["created_resource"]["ckan_apikey"];
+        if(data["created_resource"]["ckan_apikey"]){
+          sessionStorage.ckan_apikey =data["created_resource"]["ckan_apikey"];
+        } else{
+          alert(i18next.t("error.invalid_auth"));
+          window.location.replace("login.html");
+        }
+
         sessionStorage.email = email;
         sessionStorage.username = data["created_resource"]["ckan_username"];
         //alert("sessionStorage");
@@ -257,9 +263,6 @@ function signUp() {
     beforeSend: function(xhr, settings)
     {
       xhr.setRequestHeader('Authorization','Bearer ' + _access_token);
-      //xhr.setRequestHeader('Access-Control-Allow-Origin', true);
-      //alert(JSON.stringify(xhr));
-
     }
   });
 }

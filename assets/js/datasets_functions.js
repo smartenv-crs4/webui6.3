@@ -340,7 +340,7 @@ function addNewResource(array_dataset){
     $("#format").val('0');
 
 
-    alert(array_dataset);
+    //alert(array_dataset);
 
 
 }
@@ -355,7 +355,7 @@ function recoveryDatasetInformations(id) {
     if(sessionStorage.ckan_apikey){
         user_apikey = sessionStorage.ckan_apikey;
     }
-    alert(user_apikey);
+    //alert(user_apikey);
     jQuery.ajax({
         url: addDataset_url+"/"+id,
         type: "GET",
@@ -503,7 +503,7 @@ function updateDataset_addNewRes(){
  */
 function deleteConfirm(id, type){
 
-    alert(id);
+    //alert(id);
 
     /**
      * confirm con jquery.ui dialog
@@ -826,9 +826,8 @@ function deleteDataset(id) {
             // success
             if(xhr.status == 200)
             {
-                window.location.href="datasets.html";
                 alert($.t('datasets.datasetDeleted'));
-
+                window.location.href="datasets.html";
             }
             else
             {
