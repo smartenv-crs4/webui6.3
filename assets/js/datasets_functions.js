@@ -417,11 +417,12 @@ function recoveryDatasetInformations(id) {
 
                     var id = JSON.stringify(temp_res[i].id);
                     //alert(id);
+                    var deleteRes = JSON.stringify("resource");
                     html_content += "<PRE><small><i>"+temp_res[i].name + "&nbsp; &nbsp; " +
                                     "[format " + temp_res[i].format + "] &nbsp; &nbsp; " +
                                     "<a target='_blank' href='" + temp_res[i].url + "'>" +
                                     $.t('datasets.linkToRes')+"</i></a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b align='right'>" +
-                                    "<button onclick='javascript:deleteConfirm("+id+", 'resource');' class='btn-u confirm' style='font-family: Arial; position: relative; right: 20px;'>" +
+                                    "<button onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ");' class='btn-u confirm' style='font-family: Arial; position: relative; right: 20px;'>" +
                                     $.t('datasets.deleteRes') + "</button> </b>" +
                                     "</small></PRE>";
                 }
