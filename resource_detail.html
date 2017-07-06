@@ -27,6 +27,7 @@
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/plugins/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" type="text/css" media="all" />
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="assets/css/headers/header-default.css">
@@ -88,7 +89,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search datasets..." id="searchInput">
+                        <input type="text" class="form-control" data-i18n="[placeholder]datasets.searchDatasets" id="searchInput">
                         <span class="input-group-btn">
 							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
 						</span>
@@ -107,6 +108,8 @@
     <div id="footer_p" ></div>
     <!--=== End Footer Version 1 ===-->
 </div><!--/End Wrapper-->
+<!-- emtpy div id=dialog //-->
+<div id="dialog"></div>
 
 <script src="http://kincrew.github.com/xReader/xReader.full.js"></script>
 <script type="text/x-handlebars-template" id="singleResource_template">
@@ -123,10 +126,10 @@
                 <p>{{description}}</p>
             </div>
             <div class="col-md-3">
-                <!--<button class="fa fa-cloud-download btn-u"> </button>-->
-                <a href="{{url}}" target="_blank" class="btn-u" title="Download Resource"><i class="fa fa-cloud-download"></i> </a>
-
-                <button class="btn-u " style="display:none;"> Edit</button>
+                <a href="{{url}}" target="_blank" class="fa fa-cloud-download btn-u" title="Download Resource"></a>
+                <a href="javascript:deleteConfirm('{{id}}', 'deleteResource', '0')" target="_blank" class="icon-trash btn-u" title="Delete Resource"> </a>
+                <!--button class="btn-u icon-trash" id="deleteRes" onclick="javascript:deleteConfirm('{{id}}', 'deleteResource', '0')" ></button-->
+                <button class="btn-u " style="display:none;">Edit</button>
             </div>
         </div>
 
@@ -171,6 +174,7 @@
 <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/plugins/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
 
 <!-- JS Translation -->
 <script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
@@ -186,6 +190,7 @@
 
 <!-- JS Customization -->
 <script type="text/javascript" src="assets/js/custom.js"></script>
+<script type="text/javascript" src="assets/js/datasets_functions.js"></script>
 <script type="text/javascript" src="assets/js/common_header.js"></script>
 <script type="text/javascript" src="assets/js/handlebars-paginate.js"></script>
 <script type="text/javascript" src="assets/js/sign_in_up.js"></script>
@@ -207,10 +212,6 @@
 <script type="text/javascript">
     jQuery(document).ready(function () {
         App.init();
-        //App.initCounter();
-        //	App.initParallaxBg();
-        //OwlCarousel.initOwlCarousel();
-        //$('#header_p').html(header_template);
 
         $(".search-block").backstretch([
             "lib/img/login_1.jpg",
@@ -245,6 +246,10 @@
         var templateIdRes = "contentResource_template";
 
         getContentResource(url, targetIdRes, templateIdRes);
+
+        if(sessionStorage){
+            sessionStorage.prevPage=window.location.href;
+        }
 
     });
 </script>

@@ -104,7 +104,7 @@ var translation = {
                 "formatRes_null": "Format not specified",
                 "submit": "Create Dataset",
                 "submitUpdate": "Update Dataset",
-                "addNextRes": "Add another resource",
+                "addNextRes": "Add resource",
                 "updateAddNextRes": "Add a new resource",
                 "titleInfo": "Enter a title",
                 "tagsInfo": "Enter a comma separated tags",
@@ -131,7 +131,9 @@ var translation = {
                 "buttonConfirm": "Confirm",
                 "buttonCancel": "Cancel",
                 "resourceDeleted": "The resource has been deleted correctly!",
-                "datasetDeleted": "The dataset has been deleted correctly!"
+                "datasetDeleted": "The dataset has been deleted correctly!",
+                "resetUpdate":"Back",
+                "downloadRes":"Download resource"
             },
             "homepage": {
                 "opendata": "OPEN DATA",
@@ -151,6 +153,9 @@ var translation = {
                 "label_activity": "Activity",
                 "label_dataset": "Dataset",
                 "labels": "Date -- Author -- Activity -- Dataset"
+            },
+            "titles":{
+                "detailRes":"Open Data CP2020 | Resource details"
             }
         }
 
@@ -262,7 +267,7 @@ var translation = {
                 "formatRes_null": "Format non specificato",
                 "submit": "Carica Dataset",
                 "submitUpdate": "Carica modifiche al Dataset",
-                "addNextRes": "Carica un'altra risorsa",
+                "addNextRes": "Carica una risorsa",
                 "updateAddNextRes": "Carica una nuova risorsa",
                 "titleInfo": "Inserisci il nome del dataset",
                 "tagsInfo": "Inserisci i tag separati da virgola",
@@ -289,7 +294,9 @@ var translation = {
                 "buttonConfirm": "Procedi",
                 "buttonCancel": "Annulla",
                 "resourceDeleted": "La risorsa è stata eliminata correttamente!",
-                "datasetDeleted": "Il dataset è stato eliminato correttamente!"
+                "datasetDeleted": "Il dataset è stato eliminato correttamente!",
+                "resetUpdate":"Indietro",
+                "downloadRes":"Scarica risorsa"
 
             },
             "homepage": {

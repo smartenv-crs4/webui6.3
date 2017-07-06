@@ -228,8 +228,9 @@
                                     </fieldset>
                                 </div> <!-- FORM RESOURCES -->
                                 <footer>
-                                    <button onclick="javascript:deleteConfirm(recoveredDatasetInformations, 'dataset');" class="btn-u confirm" data-i18n="datasets.deleteDataset"></button>
+                                    <button onclick="javascript:redirectToPage(sessionStorage.prevPage);" class="btn-u confirm" data-i18n="datasets.resetUpdate"></button>
                                     <button type="submit" onclick="updateDataset();" class="btn-u" data-i18n="datasets.submitUpdate"></button>
+                                    <button onclick="javascript:deleteConfirm(recoveredDatasetInformations, 'dataset');" class="btn-u confirm" data-i18n="datasets.deleteDataset"></button>
                                 </footer>
                             </div>
                         </div>
@@ -298,7 +299,6 @@
 
             recoveryDatasetInformations(datasetId);
         }
-     
 
         $(".search-block").backstretch([
             "lib/img/login_1.jpg",

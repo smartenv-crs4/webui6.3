@@ -93,6 +93,7 @@ function allowEditDataset(username, id){
 
                 if (author==username){
                     $("#buttonEditDataset").show();
+                    $("#buttonDeleteRes").show();
                 }
             }
             else
@@ -333,6 +334,9 @@ function addNewResource(array_dataset){
     res["resource_type"] = format; //in base al format
     array_dataset.push(res);
 
+    // visualizzare la lista delle risorse inserite
+    var html_content = htmlListResources(array_dataset);
+    $("#listRes").html(html_content);
 
     $("#res_name").val('');
     $("#res_description").val('');
@@ -340,9 +344,34 @@ function addNewResource(array_dataset){
     $("#format").val('0');
 
 
-    //alert(array_dataset);
+}
 
 
+function htmlListResources(temp_res){
+
+
+    var html_content = "";
+
+
+    for (var i= 0;i < temp_res.length; i++){
+
+        var id = JSON.stringify(temp_res[i].id);
+        //alert(id);
+        var element_id = "element_"+i;
+        var button_id = "button_"+i;
+        var deleteRes = JSON.stringify("resource");
+
+        html_content += "<PRE><div><small><i id='"+element_id+"'>"+temp_res[i].name + "&nbsp; &nbsp; " +
+            "[format " + temp_res[i].format + "] &nbsp; &nbsp; " +
+            "<a target='_blank' href='" + temp_res[i].url + "'>" +
+            $.t('datasets.linkToRes')+"</i></a> &nbsp; &nbsp; &nbsp; <b align='right'>" +
+            "<button id='"+button_id+"' onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ","+JSON.stringify(i)+ ");' class='btn-u confirm' style='font-family: Arial; position: relative; right: 20px;'>" +
+            $.t('datasets.deleteRes') + "</button></b>" +
+            "</small></div></PRE>";
+    }
+
+
+    return html_content;
 }
 
 /**
@@ -350,7 +379,7 @@ function addNewResource(array_dataset){
  * @param id
  */
 function recoveryDatasetInformations(id) {
-    //alert("recovery dataset informations for " + id);
+
     var user_apikey = "";
     if(sessionStorage.ckan_apikey){
         user_apikey = sessionStorage.ckan_apikey;
@@ -413,19 +442,23 @@ function recoveryDatasetInformations(id) {
                 }
 
                 var html_content = "";
-                for (var i= 0;i < temp_res.length; i++){
+
+                html_content += htmlListResources(temp_res);
+                /*for (var i= 0;i < temp_res.length; i++){
 
                     var id = JSON.stringify(temp_res[i].id);
                     //alert(id);
+                    var element_id = "element_"+i;
+                    var button_id = "button_"+i;
                     var deleteRes = JSON.stringify("resource");
-                    html_content += "<PRE><small><i>"+temp_res[i].name + "&nbsp; &nbsp; " +
+                    html_content += "<PRE><div><small><i id='"+element_id+"'>"+temp_res[i].name + "&nbsp; &nbsp; " +
                                     "[format " + temp_res[i].format + "] &nbsp; &nbsp; " +
                                     "<a target='_blank' href='" + temp_res[i].url + "'>" +
-                                    $.t('datasets.linkToRes')+"</i></a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b align='right'>" +
-                                    "<button onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ");' class='btn-u confirm' style='font-family: Arial; position: relative; right: 20px;'>" +
-                                    $.t('datasets.deleteRes') + "</button> </b>" +
-                                    "</small></PRE>";
-                }
+                                    $.t('datasets.linkToRes')+"</i></a> &nbsp; &nbsp; &nbsp; <b align='right'>" +
+                                    "<button id='"+button_id+"' onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ","+JSON.stringify(i)+ ");' class='btn-u confirm' style='font-family: Arial; position: relative; right: 20px;'>" +
+                                    $.t('datasets.deleteRes') + "</button></b>" +
+                                    "</small></div></PRE>";
+                }*/
                 html_content += "";
 
                 $("#listRes").html(html_content);
@@ -502,9 +535,8 @@ function updateDataset_addNewRes(){
  * @param id
  * @param type
  */
-function deleteConfirm(id, type){
+function deleteConfirm(id, type, element_id){
 
-    //alert(id);
 
     /**
      * confirm con jquery.ui dialog
@@ -514,10 +546,13 @@ function deleteConfirm(id, type){
     var default_message_for_dialog = "";
     if(type == "resource"){
         default_message_for_dialog = $.t("datasets.confirmDeleteResource");
+    }else if(type == "deleteResource"){
+        default_message_for_dialog = $.t("datasets.confirmDeleteResource");
     }
     else if(type == "dataset"){
         default_message_for_dialog = $.t("datasets.confirmDeleteDataset");
     }
+
 
     //var default_message_for_dialog = $.t("datasets.confirmDeleteResource");
     var textConfirm = $.t("datasets.buttonConfirm");
@@ -525,6 +560,7 @@ function deleteConfirm(id, type){
     var icon = '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span>';
 
     $('#dialog').html('<P>' + icon + default_message_for_dialog + '</P>');
+
     $( "#dialog" ).dialog({
         dialogClass: "no-close",
         modal: true,
@@ -544,6 +580,8 @@ function deleteConfirm(id, type){
                 text: textConfirm,
                 click: function() {
                     if(type == "resource"){
+                        deleteResourceFromArray(id, element_id);
+                    }else if(type == "deleteResource"){
                         deleteResource(id);
                     }
                     else if(type == "dataset"){
@@ -560,6 +598,21 @@ function deleteConfirm(id, type){
 }
 
 
+/**
+ *
+ * @param id
+ * @param element_id
+ */
+function deleteResourceFromArray(id, element_id){
+    //alert(element_id);
+    document.getElementById("element_"+element_id).style.color="red";
+    document.getElementById("element_"+element_id).style.textDecoration="line-through";
+    document.getElementById("button_"+element_id).disabled=true;
+    document.getElementById("button_"+element_id).style.opacity="0.5";
+    //alert(JSON.stringify(update_dataset_resources[element_id]));
+    update_dataset_resources.splice(element_id,1);
+
+}
 /**
  *
  * @param id
@@ -751,7 +804,8 @@ function updateDataset() {
                 alert($.t('datasets.updateLoaded'));
 
                 // se il dataset viene salvato senza errori il redirect è verso la pagina di dettaglio del dataset
-                window.location.href="datasets.html?id="+name;
+                //window.location.href="datasets.html?id="+name;
+                window.location.href=sessionStorage.prevPage;
             }
             else
             {

@@ -233,6 +233,10 @@ function logout() {
     window.location.replace("login.html");
 }
 
+function redirectToPage(page) {
+    window.location.href = page;
+}
+
 
 
 /**************************************************
@@ -397,6 +401,7 @@ function getContentResource(url, targetid, templateid) {
     $.get(url, function (data) {
         console.log(data);
         var url_res = data.result.url;
+        //alert(JSON.stringify(data.result));
 
 
         $(document).ready(function () { // load json file using jquery ajax
@@ -412,7 +417,13 @@ function getContentResource(url, targetid, templateid) {
                 $(target).html(div_text);
             }
 
+            /*if(sessionStorage.username){
+                allowEditDataset(sessionStorage.username, data.result.package_id);
+            }*/
+
         });
+
+
     });
 }
 

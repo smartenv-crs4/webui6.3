@@ -201,8 +201,10 @@
                 fade: 1000,
                 duration: 4000
             });
-        });
 
+            if(sessionStorage)
+                sessionStorage.prevPage=window.location.href;
+        });
 
     </script>
 

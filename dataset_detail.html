@@ -244,11 +244,12 @@
 
         getSimple(url, targetId, templateId);
 
+        if(sessionStorage)
+            sessionStorage.prevPage=window.location.href;
+
         if(sessionStorage.username){
             allowEditDataset(sessionStorage.username, datasetId);
         }
-
-
     });
 </script>
 <!--[if lt IE 9]>

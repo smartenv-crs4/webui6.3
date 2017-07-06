@@ -73,7 +73,7 @@
 
                 <div class="well bg-color-light col-md-12">
                     <div class="col-md-9 text-left">
-                        <h2 class="color-red">Activity list - <span class="font-light">user</span> </h2>
+                        <h2 class="color-red">Activity list - <i><span id="username" class="font-light"></span></i> </h2>
                     </div>
 
                     <div class="row" >
@@ -127,7 +127,7 @@
         <div class="text-bold" data-i18n="dashboard.labels"> </div>
         {{#each result}}
 
-            <pre>{{formatDate timestamp "startOf"}} -- {{data.package.author}} -- {{activity_type}} -- {{data.package.title}}</pre>
+            <pre class="font-open-sans"> {{activity_type}} [{{data.package.title}}] -  <i>({{formatDate timestamp "startOf"}})</i></pre>
 
 
         {{/each}}
@@ -192,6 +192,11 @@
             fade: 1000,
             duration: 4000
         });
+
+        if (sessionStorage.username){
+            $("#username").html(sessionStorage.username);
+        }
+        sessionStorage.prevPage=window.location.href;
 
     });
 </script>

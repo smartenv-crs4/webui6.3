@@ -95,7 +95,7 @@
                         <div class="col-md-9">
                             <h2 class="color-red text-left"> <a href="index.html"><<</span></a> Datasets </h2>
                         </div>
-                        <div class="col-md-3" hidden="hidden">
+                        <div id="addNewDataset" class="col-md-3" hidden="hidden">
                             <!--<button class="btn-u pull-right">+ Add new Dataset</button>-->
                             <a href="add_dataset.html" class="btn-u pull-right">+ Add new Dataset</a>
                         </div>
@@ -267,6 +267,13 @@
                 page += "?q=" + query;
             window.location = page;
         })
+
+        if(sessionStorage)
+            sessionStorage.prevPage=window.location.href;
+        if(sessionStorage.username){
+            $("#addNewDataset").show();
+        }
+
     });
 </script>
 <!--[if lt IE 9]>
