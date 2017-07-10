@@ -244,7 +244,10 @@
 
         getSimple(url, targetId, templateId);
 
-        if(sessionStorage)
+        if(sessionStorage){
+            sessionStorage.prevPage=window.location.href;
+            sessionStorage.currentDatasetId=datasetId;
+        }
             sessionStorage.prevPage=window.location.href;
 
         if(sessionStorage.username){

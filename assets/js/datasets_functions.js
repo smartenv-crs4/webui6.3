@@ -537,7 +537,6 @@ function updateDataset_addNewRes(){
  */
 function deleteConfirm(id, type, element_id){
 
-
     /**
      * confirm con jquery.ui dialog
      * using --> https://api.jqueryui.com/dialog/
@@ -641,11 +640,15 @@ function deleteResource(id){
             // success
             if(xhr.status == 200)
             {
+                var dataset_id="";
                 for (var i= 0;i < update_dataset_resources.length; i++){
-                    if(update_dataset_resources[i].id == id)
+                    if(update_dataset_resources[i].id == id){
                         update_dataset_resources.splice(i,1);
+                    }
+
                 }
-                window.location.reload();
+                window.location.href="dataset_detail.html?id="+sessionStorage.currentDatasetId;
+                //window.location.reload();
                 //alert(JSON.stringify(update_dataset_resources));
                 alert($.t('datasets.resourceDeleted'));
 
