@@ -40,6 +40,7 @@ var addDataset_url = "https://smartapi.crs4.it/api/ckan/v1/datasets";  //baseurl
 var updateDataset_url = "https://smartapi.crs4.it/api/ckan/v1/dataset_update";  //baseurl per ckan api dataset update
 var dataset_delete_url = "https://smartapi.crs4.it/api/ckan/v1/dataset_delete";
 var resource_delete_url = "https://smartapi.crs4.it/api/ckan/v1/resource_delete";
+//var tag_delete_url = "https://smartapi.crs4.it/api/ckan/v1/tag_delete";
 
 var dataset_resources = [];  //array da utilizzare nel caso di caricamento di più risorse
 var update_dataset_resources = [];  //array da utilizzare nel caso di caricamento di più risorse
@@ -99,10 +100,10 @@ function allowEditDataset(username, id){
             else
             {
                 //alert(xhr.status);
-                alert(xhr.responseJSON.error_message);
-                //respBlock.html(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
+                //respBlock.html(xhr.responseJSON.error.message);
                 //respBlock.removeClass("invisible");
-                alert(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
                 return;
             }
         },
@@ -110,7 +111,7 @@ function allowEditDataset(username, id){
         {
             //alert("error1");
             alert("Error: "+xhr.status);
-            //alert(xhr.responseJSON.error_message);
+            //alert(xhr.responseJSON.error.message);
             switch(xhr.status)
             {
                 case 400:
@@ -121,8 +122,8 @@ function allowEditDataset(username, id){
                     //respBlock.html(i18next.t("error.missing_user_or_password"));
                         alert($.t("error.missing_user_or_password"));
                     else
-                    //respBlock.html(xhr.responseJSON.error_message);
-                        alert(xhr.responseJSON.error_message);
+                    //respBlock.html(xhr.responseJSON.error.message);
+                        alert(xhr.responseJSON.error.message);
                     break;
                 case 401:
                     //respBlock.html(i18next.t("error.bad_request"));
@@ -137,8 +138,8 @@ function allowEditDataset(username, id){
                     alert($.t("error.internal_server_error"));
                     break;
                 default:
-                    //respBlock.html(xhr.responseJSON.error_message);
-                    alert(xhr.responseJSON.error_message);
+                    //respBlock.html(xhr.responseJSON.error.message);
+                    alert(xhr.responseJSON.error.message);
             }
             //respBlock.removeClass("invisible");
 
@@ -165,12 +166,19 @@ function addDataset() {
 
     var resources = [];
     if (dataset_resources.length < 1){
-        addNewResource(dataset_resources);
+        alert("impossibile creare il dataset vuoto, inserire almeno una risorsa!");
+        $("#formNewRes").show();
+        $("#buttonUpdateRes").hide();
+        display_div_url();
+        $("#resource-link-or-api").focus();
+        return;
+        //addNewResource(dataset_resources);
         resources = dataset_resources;
     } else {
         resources = dataset_resources;
     }
-    dataset_resources = []  //azzero l'array globale delle risorse
+
+
 
     var tags = [];
     var t = jQuery("#tags").val().split(",");
@@ -196,18 +204,28 @@ function addDataset() {
     // BODY OF THE REQUEST
     var data = new Object();
     data["title"] = title;  //jQuery("#title").val();
+
     data["name"] = name.toLowerCase(); // dataset title words in lowercase characters separated by a -
+
     data["notes"] = jQuery("#description").val();
+
     data["author"] = jQuery("#author").val();
+
     data["author_email"] = jQuery("#author_email").val();
+
     var license_id = jQuery("#license").val();
     data["license_id"] = license_id;  ///////codificare la licenza con la nomenclatutra completa
     data["license_title"] = licenses.license_id;   ///verificare che stia funzionando
 
     data["url"] = jQuery("#source").val();
+
     data["version"] = jQuery("#version").val();
+
     data["type"] = "dataset";
-    data["resources"] = resources;
+
+    data["resources"] = dataset_resources;
+    dataset_resources = []  //azzero l'array globale delle risorse
+
     data["tags"] = tags;
 
 
@@ -222,6 +240,8 @@ function addDataset() {
         crossDomain : true,
         success: function(data, textStatus, xhr)
         {
+            alert("status-"+xhr.status);
+
             // success
             if(xhr.status == 200)
             {
@@ -232,31 +252,26 @@ function addDataset() {
             }
             else
             {
-                //alert(xhr.status);
-                alert(xhr.responseJSON.error_message);
-                //respBlock.html(xhr.responseJSON.error_message);
-                //respBlock.removeClass("invisible");
-                alert(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.name);
                 return;
             }
         },
         error: function(xhr, status)
         {
-            //alert("error1");
-            alert("Error: "+xhr.status);
-            //alert(xhr.responseJSON.error_message);
+            //alert(JSON.stringify(xhr));
+            alert("Error "+ xhr.status + ": " + xhr.statusText + ": " + xhr.responseJSON.error.name);  //error name
             switch(xhr.status)
             {
                 case 400:
-                    if(xhr.responseJSON.error == "invalid_token")
+                    if(xhr.responseJSON.error.message == "invalid_token")
                         //respBlock.html(i18next.t("error.unauthorized"));
                         alert($.t("error.unauthorized"));
-                    else if(xhr.responseJSON.error == "BadRequest")
+                    else if(xhr.responseJSON.error.message == "BadRequest")
                         //respBlock.html(i18next.t("error.missing_user_or_password"));
                         alert($.t("error.missing_user_or_password"));
                     else
-                        //respBlock.html(xhr.responseJSON.error_message);
-                        alert(xhr.responseJSON.error_message);
+                        //respBlock.html(xhr.responseJSON.error.message);
+                        alert(xhr.responseJSON.error.message);
                     break;
                 case 401:
                     //respBlock.html(i18next.t("error.bad_request"));
@@ -271,8 +286,8 @@ function addDataset() {
                     alert($.t("error.internal_server_error"));
                     break;
                 default:
-                    //respBlock.html(xhr.responseJSON.error_message);
-                    alert(xhr.responseJSON.error_message);
+                    //respBlock.html(xhr.responseJSON.error.message);
+                    alert(xhr.responseJSON.error.message);
             }
             //respBlock.removeClass("invisible");
 
@@ -305,7 +320,8 @@ function addNewResource(array_dataset){
     if (res_url != "")
         res["url"] =  res_url; //resource-link-or-api
     else{
-        alert($.t('datasets.required_field'));   ///Required field
+        alert($.t('datasets.url_resource_required_field'));   ///Required field
+        display_div_url();
         $("#resource-link-or-api").focus();
         return false;
     }
@@ -469,10 +485,10 @@ function recoveryDatasetInformations(id) {
             else
             {
                 //alert(xhr.status);
-                alert(xhr.responseJSON.error_message);
-                //respBlock.html(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
+                //respBlock.html(xhr.responseJSON.error.message);
                 //respBlock.removeClass("invisible");
-                alert(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
                 return;
             }
         },
@@ -480,7 +496,7 @@ function recoveryDatasetInformations(id) {
         {
             //alert("error1");
             alert("Error: "+xhr.status);
-            //alert(xhr.responseJSON.error_message);
+            //alert(xhr.responseJSON.error.message);
             switch(xhr.status)
             {
                 case 400:
@@ -491,8 +507,8 @@ function recoveryDatasetInformations(id) {
                     //respBlock.html(i18next.t("error.missing_user_or_password"));
                         alert($.t("error.missing_user_or_password"));
                     else
-                    //respBlock.html(xhr.responseJSON.error_message);
-                        alert(xhr.responseJSON.error_message);
+                    //respBlock.html(xhr.responseJSON.error.message);
+                        alert(xhr.responseJSON.error.message);
                     break;
                 case 401:
                     //respBlock.html(i18next.t("error.bad_request"));
@@ -507,8 +523,8 @@ function recoveryDatasetInformations(id) {
                     alert($.t("error.internal_server_error"));
                     break;
                 default:
-                    //respBlock.html(xhr.responseJSON.error_message);
-                    alert(xhr.responseJSON.error_message);
+                    //respBlock.html(xhr.responseJSON.error.message);
+                    alert(xhr.responseJSON.error.message);
             }
             //respBlock.removeClass("invisible");
 
@@ -656,10 +672,10 @@ function deleteResource(id){
             else
             {
                 //alert(xhr.status);
-                alert(xhr.responseJSON.error_message);
-                //respBlock.html(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
+                //respBlock.html(xhr.responseJSON.error.message);
                 //respBlock.removeClass("invisible");
-                alert(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
                 return;
             }
         },
@@ -674,7 +690,7 @@ function deleteResource(id){
                     else if(xhr.responseJSON.error == "BadRequest")
                         alert($.t("error.missing_user_or_password"));
                     else
-                        alert(xhr.responseJSON.error_message);
+                        alert(xhr.responseJSON.error.message);
                     break;
                 case 401:
                     alert($.t("error.bad_request"));
@@ -686,7 +702,7 @@ function deleteResource(id){
                     alert($.t("error.internal_server_error"));
                     break;
                 default:
-                    alert(xhr.responseJSON.error_message);
+                    alert(xhr.responseJSON.error.message);
             }
             return;
         },
@@ -718,10 +734,6 @@ function updateDataset() {
         return false;
     }
 
-    //name
-    var name = title.replace(/ /gi, "-");
-
-
     // BODY OF THE REQUEST
     //var data = new Object();
 
@@ -734,11 +746,12 @@ function updateDataset() {
         recoveredDatasetInformations.title = title;
     }
 
-    //data["name"] = name.toLowerCase(); // dataset title words in lowercase characters separated by a -
+    //name
+    /*var name = title.replace(/ /gi, "-"); // dataset title words in lowercase characters separated by a -
     name = name.toLowerCase();
     if (recoveredDatasetInformations.name != name){
         recoveredDatasetInformations.name = name;
-    }
+    }*/
 
     var notes = jQuery("#description").val();
     if (recoveredDatasetInformations.notes != notes){
@@ -813,10 +826,10 @@ function updateDataset() {
             else
             {
                 //alert(xhr.status);
-                alert(xhr.responseJSON.error_message);
-                //respBlock.html(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
+                //respBlock.html(xhr.responseJSON.error.message);
                 //respBlock.removeClass("invisible");
-                alert(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
                 return;
             }
         },
@@ -831,7 +844,7 @@ function updateDataset() {
                     else if(xhr.responseJSON.error == "BadRequest")
                         alert($.t("error.missing_user_or_password"));
                     else
-                        alert(xhr.responseJSON.error_message);
+                        alert(xhr.responseJSON.error.message);
                     break;
                 case 401:
                     alert($.t("error.bad_request"));
@@ -843,7 +856,7 @@ function updateDataset() {
                     alert($.t("error.internal_server_error"));
                     break;
                 default:
-                    alert(xhr.responseJSON.error_message);
+                    alert(xhr.responseJSON.error.message);
             }
             return;
         },
@@ -868,9 +881,11 @@ function deleteDataset(id) {
     if(sessionStorage.ckan_apikey){
         user_apikey = sessionStorage.ckan_apikey;
     }
+
     // BODY OF THE REQUEST
     var data = new Object();
     data["id"] = id;
+
 
     jQuery.ajax({
         url: dataset_delete_url,
@@ -884,12 +899,14 @@ function deleteDataset(id) {
             // success
             if(xhr.status == 200)
             {
+                //cancello anche i tags assocciati al dataset appena eliminato
+
                 alert($.t('datasets.datasetDeleted'));
                 window.location.href="datasets.html";
             }
             else
             {
-                alert(xhr.responseJSON.error_message);
+                alert(xhr.responseJSON.error.message);
                 return;
             }
         },
@@ -904,7 +921,7 @@ function deleteDataset(id) {
                     else if(xhr.responseJSON.error == "BadRequest")
                         alert($.t("error.missing_user_or_password"));
                     else
-                        alert(xhr.responseJSON.error_message);
+                        alert(xhr.responseJSON.error.message);
                     break;
                 case 401:
                     alert($.t("error.bad_request"));
@@ -916,7 +933,7 @@ function deleteDataset(id) {
                     alert($.t("error.internal_server_error"));
                     break;
                 default:
-                    alert(xhr.responseJSON.error_message);
+                    alert(xhr.responseJSON.error.message);
             }
             return;
         },
@@ -925,4 +942,86 @@ function deleteDataset(id) {
             xhr.setRequestHeader('Authorization', user_apikey);
         }
     });
+
+
 }
+
+
+
+
+
+
+
+
+
+////////// i tag possono essere eliminati solo da utente sysadmin
+/**
+ *
+ * @param id_tag
+ * @param user_apikey
+ */
+/*
+function tag_delete(id_tag, user_apikey){
+    //https://smartapi.crs4.it/api/ckan/v1/tag_delete
+    //alert("delete tag");
+
+    // BODY OF THE REQUEST
+    var data = new Object();
+    data["id"] = id_tag;
+
+    jQuery.ajax({
+        url: tag_delete_url,
+        type: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        crossDomain : true,
+        success: function(data, textStatus, xhr)
+        {
+            // success
+            alert(xhr.status);
+            if(xhr.status == 200)
+            {
+                //non fare nulla
+                alert("eliminato tag "+JSON.stringify(data));
+            }
+            else
+            {
+                alert(xhr.responseJSON.error.message);
+                return;
+            }
+        },
+        error: function(xhr, status)
+        {
+            alert("Error: "+xhr.status);
+            switch(xhr.status)
+            {
+                case 400:
+                    if(xhr.responseJSON.error == "invalid_token")
+                        alert($.t("error.unauthorized"));
+                    else if(xhr.responseJSON.error == "BadRequest")
+                        alert($.t("error.missing_user_or_password"));
+                    else
+                        alert(xhr.responseJSON.error.message);
+                    break;
+                case 401:
+                    alert($.t("error.bad_request"));
+                    break;
+                case 403:
+                    alert($.t("error.invalid_auth"));
+                    break;
+                case 500:
+                    alert($.t("error.internal_server_error"));
+                    break;
+                default:
+                    alert(xhr.responseJSON.error.message);
+            }
+            return;
+        },
+        beforeSend: function(xhr)
+        {
+            xhr.setRequestHeader('Authorization', user_apikey);
+        }
+    });
+
+}*/

@@ -133,13 +133,15 @@ jQuery(document).ready(function() {
     if(sessionStorage.token)
     {
         jQuery("#h_login").hide();
+        jQuery("#h_addData").show();
+        jQuery("#h_myData").show();
+        jQuery("#h_myDatalink").prop("href", "datasets.html?q="+sessionStorage.username);
         jQuery("#h_user strong").html(sessionStorage.username);
     }
     else
     {
         jQuery("#h_logout").hide();
         jQuery("#h_user").hide();
-        jQuery("#h_addData").hide();
     }
 
     loadCookieLawBar();
@@ -279,7 +281,7 @@ function getActivities(targetid, templateid) {
             // error
             else
             {
-                //respBlock.html(xhr.responseJSON.error_message);
+                //respBlock.html(xhr.responseJSON.error.message);
                 alert(JSON.stringify(xhr.responseJSON));
                 //respBlock.removeClass("invisible");
                 return;
@@ -296,7 +298,7 @@ function getActivities(targetid, templateid) {
                     else if(xhr.responseJSON.error == "BadRequest")
                         alert($.t("error.missing_user_or_password"));
                     else
-                        alert(xhr.responseJSON.error_message);
+                        alert(xhr.responseJSON.error.message);
                     break;
                 case 500:
                     alert($.t("error.internal_server_error"));
@@ -305,7 +307,7 @@ function getActivities(targetid, templateid) {
                     alert($.t("error.invalid_auth"));
                     break;
                 default:
-                    alert(xhr.responseJSON.error_message);
+                    alert(xhr.responseJSON.error.message);
             }
             //respBlock.removeClass("invisible");
             return;
