@@ -134,7 +134,9 @@ var translation = {
                 "resourceDeleted": "The resource has been deleted correctly!",
                 "datasetDeleted": "The dataset has been deleted correctly!",
                 "resetUpdate":"Back",
-                "downloadRes":"Download resource"
+                "downloadRes":"Download resource",
+                "goToRes":"Go to the resource",
+                "resourcePreview": "Resource Preview"
             },
             "homepage": {
                 "opendata": "OPEN DATA",
@@ -298,7 +300,9 @@ var translation = {
                 "resourceDeleted": "La risorsa è stata eliminata correttamente!",
                 "datasetDeleted": "Il dataset è stato eliminato correttamente!",
                 "resetUpdate":"Indietro",
-                "downloadRes":"Scarica risorsa"
+                "downloadRes":"Scarica risorsa",
+                "goToRes":"Visualizza la risorsa",
+                "resourcePreview": "Anteprima"
 
             },
             "homepage": {
