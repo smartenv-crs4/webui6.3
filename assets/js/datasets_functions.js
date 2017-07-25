@@ -358,6 +358,7 @@ function addNewResource(array_dataset){
     $("#res_description").val('');
     $("#resource-link-or-api").val('');
     $("#format").val('0');
+    hide_div_url();
 
 
 }
@@ -377,11 +378,11 @@ function htmlListResources(temp_res){
         var button_id = "button_"+i;
         var deleteRes = JSON.stringify("resource");
 
-        html_content += "<PRE><div><small><i id='"+element_id+"'>"+temp_res[i].name + "&nbsp; &nbsp; " +
+        html_content += "<PRE style='align-self: center;'><div><small><i id='"+element_id+"'>"+temp_res[i].name + "&nbsp; &nbsp; " +
             "[format " + temp_res[i].format + "] &nbsp; &nbsp; " +
-            "<a target='_blank' href='" + temp_res[i].url + "'>" +
-            $.t('datasets.linkToRes')+"</i></a> &nbsp; &nbsp; &nbsp; <b align='right'>" +
-            "<button id='"+button_id+"' onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ","+JSON.stringify(i)+ ");' class='btn-u confirm' style='font-family: Arial; position: relative; right: 20px;'>" +
+            "<a target='_blank' href='" + temp_res[i].url + "'>[" +
+            $.t('datasets.linkToRes')+"]</i></a> &nbsp; &nbsp; &nbsp; <b class='pull-right'>" +
+            "<button id='"+button_id+"' onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ","+JSON.stringify(i)+ ");' class='btn-u confirm pull-right' style='font-family: Arial; position: relative; right: 20px;'>" +
             $.t('datasets.deleteRes') + "</button></b>" +
             "</small></div></PRE>";
     }
