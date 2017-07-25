@@ -38,16 +38,4 @@ if(empty($errors)==true){
     echo "ERROR -- ".$txt;
 }
 
-//if (move_uploaded_file($_FILES['myfile']['tmp_name'], $uploadfile)) {
-//    echo "".$uploadfile;
-//} else {
-//    echo "ERROR";
-//}
-
-//echo 'Alcune informazioni di debug:';
-
-//print_r($_FILES);
-
-//echo "</pre><script>$('#progress').html('100% - upload completato')</script>";
-
 ?>
