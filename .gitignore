@@ -2,8 +2,8 @@
 # http://git-scm.com/docs/gitignore
 
 
-
+.gitignore
 .DS_Store
 .idea/
-files/
+files/*
 log.txt
