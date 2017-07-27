@@ -28,13 +28,13 @@ if(in_array($file_ext,$extensions)=== false){
 
 if(empty($errors)==true){
     move_uploaded_file($file_tmp, $file_newname);
-    echo "".$uploadfile;
+    echo "".$file_newname;
 }else{
-    $myfile = fopen("log.txt", "a") or die("Unable to open file!");
+    $log_file = fopen("log.txt", "a") or die("Unable to open file!");
     $date_log = date('d/m/Y H:i:s');
     $txt = "\n".$date_log."-".implode("\n", $errors);
-    fwrite($myfile, $txt);
-    fclose($myfile);
+    fwrite($log_file, $txt);
+    fclose($log_file);
     echo "ERROR -- ".$txt;
 }
 

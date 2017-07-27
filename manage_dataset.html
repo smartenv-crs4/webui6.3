@@ -183,6 +183,14 @@
                                                         </i>
                                                     </div>
                                                 </div>
+
+                                                <!-- qui inserisco il form per l'upload -->
+                                                <div id="form-upload" class="control-group control-full" style="display:none;">
+                                                    <form  action="#" id="myform" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+                                                        <p><input type="file" name="file-to-upload" id="file-upload"> <input id="file-submit" type="submit" value="ok"> <i class="btn-u icon-close pull-right" onclick="hide_div_upload();"></i></p>
+                                                    </form>
+                                                </div>
+
                                                 <!-- END div url -->
                                                 <div class="row margin-right-5-5" id="upload_resource">
                                                     <input name="url-file-upload" value="" type="hidden">
@@ -191,8 +199,8 @@
                                                         <i class="icon-link"></i>
                                                         Link
                                                     </a>
-                                                    <a href="javascript:alert('Function not available at the moment!');" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.uploadTitle"> <!-- data-i18n="datasets.upload"-->
-                                                        <input type="file" id="file-upload" style="display:none;">
+                                                    <a href="javascript:display_div_upload();" class="btn-u" style="display: inline-block;" data-i18n="[title]datasets.uploadTitle"> <!-- data-i18n="datasets.upload"-->
+                                                        <!--input type="file" id="file-upload" style="display:none;"-->
                                                         <i class="fa fa-cloud-upload"></i>
                                                         Upload
                                                     </a>
