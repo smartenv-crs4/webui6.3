@@ -278,7 +278,7 @@ var translation = {
                 "versionInfo": "Versione del dataset (es. 1.0)",
                 "authorInfo": "Nome autore",
                 "authorEmailInfo": "E-mail autore",
-                "nameResInfo": "inserisci un nome per questa risorsa",
+                "nameResInfo": "Inserisci un nome per questa risorsa",
                 "uploadUrl": "Inserisce la URL della risorsa remota o della API",
                 "uploadTitle": "Carica un file dal tuo computer",
                 "linkTitle": "URL per una risorsa remota (puoi inserire anche un link ad una API)",
