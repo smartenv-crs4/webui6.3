@@ -2,8 +2,8 @@
  * Created by valentinamarotto on 25/07/17.
  */
 
-//var repo_files_uploaded = "http://seitre.crs4.it:3000/";
-var repo_files_uploaded = "http://localhost/webui6.3";
+var repo_files_uploaded = "http://seitre.crs4.it:3000/";
+//var repo_files_uploaded = "http://localhost/webui6.3";
 
 
 $(document).ready(function(){
