@@ -5,6 +5,9 @@
 var repo_files_uploaded = "http://seitre.crs4.it:3000/";
 //var repo_files_uploaded = "http://localhost/webui6.3";
 
+var path_save_seitre = "/var/www/html/save.php";
+var path_save_local = "save.php";
+
 
 $(document).ready(function(){
     $("#myform").submit(function(e){
@@ -22,7 +25,7 @@ $(document).ready(function(){
 
 function saveFile(formData) {
     $.ajax({
-        url: 'save.php',
+        url: path_save_seitre,
         type: 'POST',
         data: formData,
         timeout:30000,
