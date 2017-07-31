@@ -61,7 +61,7 @@ function saveFile(formData) {
         },
         error: function(data){
             //$('#outputServer').html('Errore nell\' invio...');
-            alert("errore nel caricamento " + data);
+            alert("errore nel caricamento " + JSON.stringify(data));
         },
         complete: function(){
             $('#mysubmit').removeAttr("disabled");
