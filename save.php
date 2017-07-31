@@ -30,7 +30,7 @@ if(empty($errors)==true){
     move_uploaded_file($file_tmp, $file_newname);
     echo "".$file_newname;
 }else{
-    $log_file = fopen("log.txt", "a") or die("Unable to open file!");
+    $log_file = fopen("/repositories/seitre/webui6.3/log.txt", "a") or die("Unable to open file!");
     $date_log = date('d/m/Y H:i:s');
     $txt = "\n".$date_log."-".implode("\n", $errors);
     fwrite($log_file, $txt);
