@@ -1,27 +1,15 @@
 <?php
 
 // Allow from any origin
-    if (isset($_SERVER['HTTP_ORIGIN'])) {
-        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-        header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400');    // cache for 1 day
-    }
-
-    // Access-Control headers are received during OPTIONS requests
-    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-            header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-
-        exit(0);
-    }
+    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 
     date_default_timezone_set('Europe/Rome');
 
-    $uploaddir = '/repositories/seitre/webui6.3/files/';
+    $uploaddir = '/home/seitre/repositories/seitre/webui6.3/';
     $uploadfile = $uploaddir.basename($_FILES['file-to-upload']['name']);
     $path = dirname($uploadfile);
 
@@ -42,14 +30,14 @@
     if(in_array($file_ext,$extensions)=== false){
         $errors[]="extension not allowed, please choose a json, csv or xml file";
     }
-    
+
 
 
     if(empty($errors)==true){
         move_uploaded_file($file_tmp, $file_newname);
         echo "".$file_newname;
     }else{
-        $log_file = fopen("/repositories/seitre/webui6.3/log.txt", "a") or die("Unable to open file!");
+        $log_file = fopen("/home/seitre/repositories/seitre/webui6.3/log.txt", "a") or die("Unable to open file!");
         $date_log = date('d/m/Y H:i:s');
         $txt = "\n".$date_log."-".implode("\n", $errors);
         fwrite($log_file, $txt);
