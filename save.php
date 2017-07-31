@@ -2,7 +2,7 @@
 
 date_default_timezone_set('Europe/Rome');
 
-$uploaddir = './files/';
+$uploaddir = '/repositories/seitre/webui6.3/files/';
 $uploadfile = $uploaddir.basename($_FILES['file-to-upload']['name']);
 $path = dirname($uploadfile);
 
