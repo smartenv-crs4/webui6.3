@@ -27,7 +27,8 @@ var translation = {
                 "internal_server_error": "Internal server error",
                 "invalid_auth": "Invalid email and/or password",
                 "password_differs": "Passwords must be equals",
-                "unknown_user_type": "Select a valid user type"
+                "unknown_user_type": "Select a valid user type",
+                "invalid_username": "That login name is not available"
             },
             "warning": {
                 "warning": "Warning!",
@@ -190,7 +191,8 @@ var translation = {
                 "internal_server_error": "Errore interno del server",
                 "invalid_auth": "Email e/o password errati",
                 "password_differs": "Le password differiscono",
-                "unknown_user_type": "Seleziona il tipo di account che vuoi creare"
+                "unknown_user_type": "Seleziona il tipo di account che vuoi creare",
+                "invalid_username": "Lo username inserito non è valido"
             },
             "warning": {
                 "warning": "Attenzione!",

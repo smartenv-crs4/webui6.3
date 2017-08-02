@@ -240,7 +240,7 @@ function addDataset() {
         crossDomain : true,
         success: function(data, textStatus, xhr)
         {
-            alert("status-"+xhr.status);
+            //alert("status-"+xhr.status);
 
             // success
             if(xhr.status == 200)

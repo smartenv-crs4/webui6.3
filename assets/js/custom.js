@@ -570,10 +570,10 @@ function hide_div_url(){
 
 function display_div_upload(){
 
-    //alert("Not availaible at the moment");
+    alert("Not availaible at the moment");
 
-    jQuery("#form-upload").show();
-    jQuery("#upload_resource").hide();
+    //jQuery("#form-upload").show();
+    //jQuery("#upload_resource").hide();
 
 }
 function hide_div_upload(){

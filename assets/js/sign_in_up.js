@@ -102,22 +102,22 @@ jQuery(document).on("translate", function(){
      },
      error: function(xhr, status)
      {
-       alert("error: " + xhr.status);
+       //alert(JSON.stringify(xhr.responseJSON));
        switch(xhr.status)
        {
          case 400:
            if(xhr.responseJSON.error == "invalid_token")
-             respBlock.html(i18next.t("error.unauthorized"));
+             respBlock.html($.t("error.unauthorized"));
            else if(xhr.responseJSON.error == "BadRequest")
-             respBlock.html(i18next.t("error.missing_user_or_password"));
+             respBlock.html($.t("error.missing_user_or_password"));
            else
              respBlock.html(xhr.responseJSON.error_message);
            break;
          case 500:
-           respBlock.html(i18next.t("error.internal_server_error"));
+           respBlock.html($.t("error.internal_server_error"));
            break;
          case 403:
-           respBlock.html(i18next.t("error.invalid_auth"));
+           respBlock.html($.t("error.invalid_auth"));
            break;
          default:
            respBlock.html(xhr.responseJSON.error_message);
@@ -226,33 +226,31 @@ function signUp() {
       }
       else
       {
-        alert(xhr.responseJSON.error_message);
         respBlock.html(xhr.responseJSON.error_message);
+        alert(JSON.stringify(xhr.responseJSON));
         respBlock.removeClass("invisible");
         return;
       }
     },
     error: function(xhr, status)
     {
-      alert(xhr.responseJSON.error_message);
+      //alert(JSON.stringify(xhr));
       switch(xhr.status)
       {
         case 400:
-          if(xhr.responseJSON.error == "invalid_token")
-            respBlock.html(i18next.t("error.unauthorized"));
-          else if(xhr.responseJSON.error == "BadRequest")
-            respBlock.html(i18next.t("error.missing_user_or_password"));
+          if(xhr.responseText == "That login name is not available.")
+            respBlock.html($.t("error.invalid_username"));
           else
-            respBlock.html(xhr.responseJSON.error_message);
+            respBlock.html(xhr.responseText);
           break;
         case 401:
-          respBlock.html(i18next.t("error.bad_request"));
+          respBlock.html($.t("error.bad_request"));
           break;
         case 403:
-          respBlock.html(i18next.t("error.invalid_auth"));
+          respBlock.html($.t("error.invalid_auth"));
           break;
         case 500:
-          respBlock.html(i18next.t("error.internal_server_error"));
+          respBlock.html($.t("error.internal_server_error"));
           break;
         default:
           respBlock.html(xhr.responseJSON.error_message);
