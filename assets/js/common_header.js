@@ -50,9 +50,9 @@ var header_template = `	<div class="header">
           <li class="dropdown">
             <a href="#">Datasets</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="datasets.html">View All Datasets </a></li>
-                    <li id="h_myData" style="display: none"><a href="" id="h_myDatalink">View My Datasets </a></li>
-                    <li id="h_addData" style="display: none"><a href="add_dataset.html">Add New Dataset </a></li>
+                    <li><a href="datasets.html" data-i18n="datasets.viewAllDatasets"></a></li>
+                    <li id="h_myData" style="display: none"><a href="" id="h_myDatalink" data-i18n="datasets.viewMyDatasets"></a></li>
+                    <li id="h_addData" style="display: none"><a href="add_dataset.html" data-i18n="datasets.addNewDataset"></a></li>
                 </ul>
           </li>
         </ul>

@@ -94,7 +94,8 @@ function allowEditDataset(username, id){
 
                 if (author==username){
                     $("#buttonEditDataset").show();
-                    $("#buttonDeleteRes").show();
+                    $("#deleteRes").show();
+                    //$("#res-delete-button").show();
                 }
             }
             else

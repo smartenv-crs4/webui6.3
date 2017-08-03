@@ -127,15 +127,15 @@
             </div>
             <div class="col-md-3">
                 <a href="{{url}}" target="_blank" class="fa fa-cloud-download btn-u" id="buttonGoToRes" data-i18n="[title]datasets.goToRes" ></a>
-                <a href="javascript:deleteConfirm('{{id}}', 'deleteResource', '0')" target="_blank" class="icon-trash btn-u" title="Delete Resource"> </a>
-                <!--button class="btn-u icon-trash" id="deleteRes" onclick="javascript:deleteConfirm('{{id}}', 'deleteResource', '0')" ></button-->
+                <!--a href="javascript:deleteConfirm('{{id}}', 'deleteResource', '0')" target="_blank" class="icon-trash btn-u" title="Delete Resource" id="res-delete-button" style="display: none;"> </a-->
+                <button class="btn-u icon-trash" id="deleteRes" onclick="javascript:deleteConfirm('{{id}}', 'deleteResource', '0')" style="display: none;"></button>
                 <button class="btn-u " style="display:none;">Edit</button>
             </div>
         </div>
 
         <div class="table-search-v2">
             <div class="panel panel-default text-left">
-                <div class="panel-heading text-bold" data-i18n="dataset.resourcePreview"></div>
+                <div class="panel-heading text-bold" data-i18n="datasets.resourcePreview">Resource Preview</div>
                 <div class="panel-body" id="contentResource" style=" display: -webkit-box; max-width: auto; height: 300px auto; margin: 0 auto;
                 font-size: auto; line-height: 1.4; -webkit-box-orient: vertical; overflow-x:auto; text-overflow: ellipsis;">
 

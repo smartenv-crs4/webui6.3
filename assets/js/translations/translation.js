@@ -137,7 +137,12 @@ var translation = {
                 "resetUpdate":"Back",
                 "downloadRes":"Download resource",
                 "goToRes":"Go to the resource",
-                "resourcePreview": "Resource Preview"
+                "resourcePreview": "Resource Preview",
+                "viewAllDatasets":"View All Aatasets",
+                "viewMyDatasets": "View My Datasets",
+                "addNewDataset": "Add New Dataset"
+
+
             },
             "homepage": {
                 "opendata": "OPEN DATA",
@@ -304,7 +309,10 @@ var translation = {
                 "resetUpdate":"Indietro",
                 "downloadRes":"Scarica risorsa",
                 "goToRes":"Visualizza la risorsa",
-                "resourcePreview": "Anteprima"
+                "resourcePreview": "Anteprima",
+                "viewAllDatasets":"Tutti i Datasets ",
+                "viewMyDatasets": "I miei Datasets",
+                "addNewDataset": "Aggiungi un nuovo Dataset"
 
             },
             "homepage": {
