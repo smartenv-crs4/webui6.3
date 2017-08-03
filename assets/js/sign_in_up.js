@@ -111,15 +111,19 @@ jQuery(document).on("translate", function(){
            else if(xhr.responseJSON.error == "BadRequest")
              respBlock.html($.t("error.missing_user_or_password"));
            else
+             //alert(xhr.responseJSON.error_message);
              respBlock.html(xhr.responseJSON.error_message);
            break;
          case 500:
+           alert($.t("error.internal_server_error"));
            respBlock.html($.t("error.internal_server_error"));
            break;
          case 403:
+           alert($.t("error.invalid_auth"));
            respBlock.html($.t("error.invalid_auth"));
            break;
          default:
+           alert(xhr.responseJSON.error_message);
            respBlock.html(xhr.responseJSON.error_message);
        }
        respBlock.removeClass("invisible");

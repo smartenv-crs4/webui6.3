@@ -86,7 +86,7 @@ var translation = {
                 "addPageTitle": "Create Dataset",
                 "managePageTitle": "Manage Dataset",
                 "searchDatasets": "Search for datasets....",
-                "addDataset": "Dataset Informations",
+                "addDataset": "Dataset Information",
                 "title": "Dataset Title (Required field)",
                 "desc": "Description",
                 "tags": "Tags",
