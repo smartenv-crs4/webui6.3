@@ -37,7 +37,9 @@ var translation = {
             "buttons": {
                 "send": "Send",
                 "add": "Add",
-                "details": "Details"
+                "details": "Details",
+                "edit": "Edit",
+                "delete": "Delete"
             },
             "login": {
                 "signUp": "Sign Up",
@@ -87,9 +89,9 @@ var translation = {
                 "managePageTitle": "Manage Dataset",
                 "searchDatasets": "Search for datasets....",
                 "addDataset": "Dataset Information",
-                "title": "Dataset Title (Required field)",
+                "title": "Dataset Title *",
                 "desc": "Description",
-                "tags": "Tags",
+                "tags": "Tags *",
                 "license": "License (select)",
                 "license_null": "License not specified",
                 "source": "Source",
@@ -108,7 +110,8 @@ var translation = {
                 "addNextRes": "Add resource",
                 "updateAddNextRes": "Add a new resource",
                 "titleInfo": "Enter a title",
-                "tagsInfo": "Enter a comma separated tags",
+                "descriptionInfo": "eg. Some useful notes about the data",
+                "tagsInfo": "Enter a comma separated tags, eg. economy, mental health, governme",
                 "sourceInfo": "e.g. http://example.com/dataset.json ",
                 "versionInfo": "Version of dataset (e.g. 1.0)",
                 "authorInfo": "Author name",
@@ -119,6 +122,9 @@ var translation = {
                 "linkTitle": "Link to a URL on the internet (you can also link to an API)",
                 "link": "Link",
                 "messageNoUrlResources": "You don't have indicate the resource url!",
+                "required_field_title": "Required Field: enter a title",
+                "required_field_tags": "Required Field: enter at east one tag",
+                "required_field_resource": "Can not create the empty dataset, insert at least one resource!",
                 "required_field": "Required Field",
                 "url_resource_required_field": "The URL of resource is required!",
                 "loaded": "The dataset has been loaded correctly!",
@@ -140,7 +146,8 @@ var translation = {
                 "resourcePreview": "Resource Preview",
                 "viewAllDatasets":"View All Aatasets",
                 "viewMyDatasets": "View My Datasets",
-                "addNewDataset": "Add New Dataset"
+                "addNewDataset": "Add New Dataset",
+                "titleNoResult": "No Datasets found"
 
 
             },
@@ -160,6 +167,8 @@ var translation = {
                 "label_date": "Date",
                 "label_author": "Author",
                 "label_activity": "Activity",
+                "label_licence": "Licence",
+                "label_version": "Version",
                 "label_dataset": "Dataset",
                 "labels": "Date -- Author -- Activity -- Dataset"
             },
@@ -206,7 +215,9 @@ var translation = {
             "buttons": {
                 "send": "Invia",
                 "add": "Aggiungi",
-                "details": "Dettagli"
+                "details": "Dettagli",
+                "edit": "Modifica",
+                "delete": "Cancella"
             },
             "login": {
                 "signUp": "Registrati",
@@ -259,9 +270,9 @@ var translation = {
                 "managePageTitle": "Modifica Dataset",
                 "searchDatasets": "Cerca nei datasets",
                 "addDataset": "Informazioni sul dataset",
-                "title": "Titolo del dataset (Campo obbligatorio)",
+                "title": "Titolo del dataset *",
                 "desc": "Descrizione",
-                "tags": "Tags",
+                "tags": "Tags *",
                 "license": "Licenza (seleziona)",
                 "license_null": "Licenza non specificata",
                 "source": "Source",
@@ -280,7 +291,8 @@ var translation = {
                 "addNextRes": "Carica una risorsa",
                 "updateAddNextRes": "Carica una nuova risorsa",
                 "titleInfo": "Inserisci il nome del dataset",
-                "tagsInfo": "Inserisci i tag separati da virgola",
+                "descriptionInfo": "Aggiungi delle note sul dataset",
+                "tagsInfo": "Inserisci i tag separati da virgola, es: economy, mental health, governament",
                 "sourceInfo": "e.g. http://example.com/dataset.json ",
                 "versionInfo": "Versione del dataset (es. 1.0)",
                 "authorInfo": "Nome autore",
@@ -291,6 +303,9 @@ var translation = {
                 "linkTitle": "URL per una risorsa remota (puoi inserire anche un link ad una API)",
                 "link": "Link",
                 "messageNoUrlResources": "Non hai indicato la url della risorsa!",
+                 "required_field_title": "Campo Obbligatorio: inserisci un titolo",
+                 "required_field_tags": "Campo Obbligatorio: inserisci almeno un tag",
+                 "required_field_resource": "Impossibile creare il dataset vuoto, inserire almeno una risorsa!",
                 "required_field": "Campo Obbligatorio",
                 "url_resource_required_field": "Il link della risorsa è obbligatorio!",
                 "loaded": "Il dataset è stato caricato correttamente!",
@@ -312,7 +327,8 @@ var translation = {
                 "resourcePreview": "Anteprima",
                 "viewAllDatasets":"Tutti i Datasets ",
                 "viewMyDatasets": "I miei Datasets",
-                "addNewDataset": "Aggiungi un nuovo Dataset"
+                "addNewDataset": "Aggiungi un nuovo Dataset",
+                "titleNoResult": "Nessun Dataset trovato"
 
             },
             "homepage": {
@@ -331,6 +347,8 @@ var translation = {
                 "label_date": "Data",
                 "label_author": "Autore",
                 "label_activity": "Attività",
+                "label_licence": "Licenza",
+                "label_version": "Versione",
                 "label_dataset": "Dataset",
                 "labels": "Data -- Autore -- Attività -- Dataset"
             }

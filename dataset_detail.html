@@ -63,21 +63,26 @@
     <!--=== End Header ===-->
 
     <!--=== Search Block ===-->
-    <div class="search-block parallaxBg one-top-padding autoHeight no-padding-bottom">
+    <div class="parallaxBg">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-10 col-md-offset-1">
                     <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1-->
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" data-i18n="[placeholder]datasets.searchDatasets" id="searchInput">
-						<span class="input-group-btn">
-							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
-						</span>
+                    <div class="input-group margin-bottom-20">
+                        <span id="spanProduct" class="spanSearch">
+                            <input type="text" id="searchInput" class="form-control" data-i18n="[placeholder]datasets.searchDatasets">
+                            </span>
+                            <span class="input-group-btn">
+                                <button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
-            <div class="row well bg-color-semitransparent" id="singleDataset">
+            <div class="row" id="singleDataset">
             </div>
         </div>
     </div><!--/container-->
@@ -89,7 +94,7 @@
 
 <script type="text/x-handlebars-template" id="singleDataset_template">
     {{#with result}}
-    <div class="col-md-2 bg-color-semitransparent">
+    <div class="col-md-2 bg-color-semitransparent margin-bottom-20" style="padding-bottom: 320px">
 
         <div class="margin-top-20">
             <!--  <h2>Tags</h2>-->
@@ -105,12 +110,12 @@
 
         </ul>
     </div>
-    <div class="col-md-10 well" >
+    <div class="col-md-10" >
     <div class="row">
         <div class="col-md-9 text-left">
             <h2 class="color-red text-left">
                 <!--a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a> - -->
-                <a href="datasets.html"><<</a>
+                <!--a href="datasets.html"><<</a> - -->
                 {{title}}
             </h2>
             <p>{{notes}}</p>
@@ -122,7 +127,7 @@
     </div>
 
     <div class="table-search-v2">
-        <div class="table-responsive">
+        <div>
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -137,7 +142,7 @@
                     <td class="bg-color-white">
                         <div class="row">
                             <div class="col-md-10"><h3><a href="resource_detail.html?id={{id}}">{{name}}</a></h3></div>
-                            <div class="col-md-2 ">
+                            <div class="col-md-2">
                                 <button class="btn-u pull-right" onclick="window.location = 'resource_detail.html?id={{id}}'">Explore</button>
                             </div>
                         </div>

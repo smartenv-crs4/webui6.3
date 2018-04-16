@@ -47,6 +47,11 @@ var header_template = `	<div class="header">
       <div class="container">
         <ul class="nav navbar-nav">
           <!-- Home -->
+          <li {{#if isHome}}class="active"{{/if}} >
+            <a href="index.html"  >
+              Home
+            </a>
+          </li>
           <li class="dropdown">
             <a href="#">Datasets</span></a>
                 <ul class="dropdown-menu">

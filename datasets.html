@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
     <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+    <link rel="stylesheet" href="assets/plugins/jquery/jquery-ui-1.12.1.custom/jquery-ui.css" type="text/css" media="all" />
+
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
 
@@ -63,25 +65,30 @@
     <!--=== End Header ===-->
 
     <!--=== Search Block ===-->
-    <div class="search-block parallaxBg one-top-padding autoHeight no-padding-bottom">
-        <div class="container">
+    <div class="parallaxBg">
+        <div class="container" >
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-10 col-md-offset-1">
                     <!--h1>OPEN DATA <span class="color-red">Cagliari Port</span>2020</h1-->
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="searchInput" data-i18n="[placeholder]datasets.searchDatasets">
-						<span class="input-group-btn">
-							<button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
-						</span>
+                    <div class="input-group margin-bottom-20">
+                        <span id="spanProduct" class="spanSearch">
+                            <input type="text" id="searchInput" class="form-control" data-i18n="[placeholder]datasets.searchDatasets">
+                            </span>
+                            <span class="input-group-btn">
+                                <button class="btn-u btn-u-lg" id="searchButton" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
-            <div class="row well bg-color-semitransparent">
+            <div class="row margin-bottom-20">
 
 
-                <div class="col-md-2 bg-color-semitransparent">
-                    <div class="margin-top-20">
+                <div class="col-md-2 bg-color-semitransparent ">
+                    <div class="margin-top-20 ">
                         <!--  <h2>Tags</h2>-->
                         <div class="headline-v2"><h2>Tags</h2></div>
 
@@ -90,29 +97,35 @@
                     <div id="tags_container"></div>
 
                 </div>
-                <div class="col-md-10 well">
+                <div class="col-md-10">
                     <div class="row">
-                        <div class="col-md-9">
-                            <h2 class="color-red text-left"> <a href="index.html"><<</span></a> Datasets </h2>
+                        <div class="col-md-8">
+                            <h2 class="color-red text-left"> <span class="glyphicon glyphicon-th-list"></span></a> Datasets </h2>
                         </div>
-                        <div id="addNewDataset" class="col-md-3" hidden="hidden">
+                        <div id="myDataset" class="col-md-2" hidden="hidden">
+                            <a href="#" class="btn-u pull-right">My Dataset</a>
+                        </div>
+                        <div id="addNewDataset" class="col-md-2" hidden="hidden">
                             <!--<button class="btn-u pull-right">+ Add new Dataset</button>-->
-                            <a href="add_dataset.html" class="btn-u pull-right">+ Add new Dataset</a>
+                            <a href="add_dataset.html" class="btn-u pull-right" data-i18n="datasets.addNewDataset"></a>
                         </div>
                     </div>
 
-                    <div class="table-search-v2">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                </thead>
-
-                                <tbody class="text-left" id="datasetrows">
-
-                                </tbody>
-                            </table>
+                    <div class="table-search-v2" id="table-result">
+                        <div class="table-responsive" id="datasetrows">
+                            
                         </div>
                     </div>
+                    
+                    
+                    <div id="divNoResult" style="display: none; margin-top: 80px">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="jumbotron" style="text-align: center">
+                              <h2 id="titleNoResult" data-i18n="datasets.titleNoResult"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    
 
                     <div class="margin-bottom-30"></div>
 
@@ -132,32 +145,73 @@
     <!--=== End Footer Version 1 ===-->
 </div><!--/End Wrapper-->
 
+<!-- emtpy div id=dialog //-->
+<div id="dialog"></div>
 
 <script type="text/x-handlebars-template" id="datasetrows_template">
-    <tr>
-        <th class="   hidden-sm">Datasets</th>
-        <th>Status</th>
-    </tr>
-
-    {{#each result}}
-
-    <tr>
-
-        <td>
-            <h3><a href="dataset_detail.html?id={{id}}">{{title}}</a></h3>
+     {{session_username}} {{#each result}}
+<div class="panel panel-default" style="padding: 10px">
+            <div class="page-header">
+            <h3><a data-id="{{id}}" class="lnk" style="cursor: pointer">{{title}}</a> <span class="label label-aqua">{{state}}</span>
+            <span class="pull-right">
+            {{#if_eq author ../session_username}}
+            <button class="btn-u delete glyphicon glyphicon-trash" data-id="{{id}}" data-i18n="[title]buttons.delete"></button>
+            <button class="btn-u edit glyphicon glyphicon-cog" data-id="{{id}}" data-i18n="[title]buttons.edit"></button>
+            {{/if_eq}}
+            <button class="btn-u lnk glyphicon glyphicon-arrow-down" id="button-{{id}}" data-id="{{id}}" data-i18n="[title]buttons.details"></button></h3>
+            </span>
+            </div>
+            <!-- <div class="page-header"><h3><a class="lnk" data-id="{{id}}" href="dataset_detail.html?id={{id}}">{{title}}</a> <span class="label label-aqua">{{state}}</span></h3></div> -->
             <p>{{notes}}</p>
             <ul class="list-inline tags-v1  color-white">
                 {{#each tags}}
                 <li><a href="datasets.html?q={{display_name}}">{{display_name}}</a></li>
                 {{/each}}
             </ul>
-        </td>
-        <td>
-            <span class="label label-aqua">{{state}}</span>
-        </td>
+            
+            <div class="panel panel-default" id="panel-{{id}}" style="display: none">
+                <div class="panel-heading"><span data-i18n="datasets.manageResources"></span><span> ({{num_resources}})</span></div>                    
+                
+                
+                    <div class="panel-body">
+  
+            {{#each resources}}
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div><h4>{{name}}</h4></div>
 
-    </tr>
+                    <p>{{description}}</p>
+                    <p class="label label-default {{#if_eq format 'JSON'}}  label-success   {{/if_eq}}  {{#if_eq format 'CSV'}}  label-primary   {{/if_eq}} ">&nbsp;{{format}}&nbsp;</p>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn-u pull-right" onclick="window.location = '{{url}}'">Explore</button>
+                </div>
+            </div>
+            
+            {{/each}}
+            
+                </div>
+             
+             <div class="panel-footer">
+                     <p><b><span data-i18n="dashboard.label_author"></span>:</b> <span>author</span></p>
+                     <p><b><span data-i18n="dashboard.label_date"></span>:</b> <span>{{formatDate metadata_created "short"}}</span></p>
+                     <p><b><span data-i18n="dashboard.label_version"></span>:</b> <span>{{version}}</span></p>
+                     <p><b><span data-i18n="dashboard.label_licence"></span>:</b> <a href="{{license_url}}" target="_blank">{{license_title}}</a></p>
+             </div>
+            
+            </div>
+            
+            
+            </div>
+        
+  </div>      
     {{/each}}
+
+    
+  
+    
+    
 </script>
 
 <script type="text/x-handlebars-template" id="pagination_template">
@@ -202,6 +256,7 @@
 <script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/plugins/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js" ></script>
 
 <!-- JS Translation -->
 <script type="text/javascript" src="assets/js/plugins/i18next.min.js"></script>
@@ -220,6 +275,7 @@
 <script type="text/javascript" src="assets/js/common_header.js"></script>
 <script type="text/javascript" src="assets/js/handlebars-paginate.js"></script>
 <script type="text/javascript" src="assets/js/sign_in_up.js"></script>
+<script type="text/javascript" src="assets/js/datasets_functions.js"></script>
 
 <script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/footer.js"></script>
@@ -271,10 +327,100 @@
         if(sessionStorage)
             sessionStorage.prevPage=window.location.href;
         if(sessionStorage.username){
+            $("#myDataset").show();
             $("#addNewDataset").show();
+            //jQuery("#addNewDataset").prop("href", "datasets.html?q="+sessionStorage.username);
         }
+        
+        $("#myDataset").click(function () {
+            window.location = "datasets.html?q="+sessionStorage.username; 
+        })
+        
+        
+        $(".lnk").click(function () {
+            
+            if ($("#panel-" + $(this).attr("data-id")).css("display") == 'none')
+            {
+                $("#button-" + $(this).attr("data-id")).removeClass('glyphicon-arrow-down');
+                $("#button-" + $(this).attr("data-id")).addClass('glyphicon-arrow-up');
+                $("#panel-" + $(this).attr("data-id")).css("display","block");
+            }
+            
+            else
+            {    
+                $("#button-" + $(this).attr("data-id")).removeClass('glyphicon-arrow-up');
+                $("#button-" + $(this).attr("data-id")).addClass('glyphicon-arrow-down');
+                $("#panel-" + $(this).attr("data-id")).css("display","none");
+            }     
+        })
+        
+        
+        $(".edit").click(function () {
+            window.location.href = "manage_dataset.html?id="+$(this).attr("data-id");    
+        })
+        
+        $(".delete").click(function () {
+            var id= ($(this).attr('data-id'));
+            default_message_for_dialog = $.t("datasets.confirmDeleteDataset");
+            var textConfirm = $.t("datasets.buttonConfirm");
+            var textCancel = $.t("datasets.buttonCancel");
+            var icon = '<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 0 0;"></span>';
 
+            $('#dialog').html('<P>' + icon + default_message_for_dialog + '</P>');
+            
+            $( "#dialog" ).dialog({
+                            dialogClass: "no-close",
+                            modal: true,
+                            bgiframe: true,
+                            width: 300,
+                            height: 200,
+                            autoOpen: false,
+                            title: $.t("datasets.confirmDialog"),
+                            buttons: [
+                                {
+                                    text: textCancel,
+                                    click: function() {
+                                        $( this ).dialog( "close" );
+                                    }
+                                },
+                                {
+                                    text: textConfirm,
+                                    click: function() {
+                                        deleteDataset(id);
+                                        $( this ).dialog( "close" );
+                                    }
+                                }
+                            ]
+                        });
+            $("#dialog").dialog("open");  
+        })
+       
     });
+    
+    
+    Handlebars.registerHelper('if_eq', function(a, b, opts) {
+      if(a) a=a.toString();
+      if(b) b=b.toString();
+      if (a == b) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+  });
+  
+  
+  
+  Handlebars.registerHelper('if_not_eq', function(a, b, opts) {
+      if(a) a=a.toString();
+      if(b) b=b.toString();
+      if (a != b) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+  });  
+    
+    
 </script>
 <!--[if lt IE 9]>
 <script src="assets/plugins/respond.js"></script>

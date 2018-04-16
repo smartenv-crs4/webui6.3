@@ -1,11 +1,11 @@
 //var baseurl = "http://156.148.37.152/api/ckan/v1/";
-var baseurl = "https://smartapi.crs4.it/api/ckan/v1/";  //baseurl per api ckan
+var baseurl = "http://smartapi.crs4.it/api/ckan/v1/";  //baseurl per api ckan
 //https://smartapi.crs4.it/api/ckan/v1/activities?id=test
 var datasetsURL = baseurl + "datasets";
 var tagsURL = baseurl + "tags";
 var singleDatasetURL = baseurl + "datasets/";
 var resourcesURL = baseurl + "resources/";
-var _userMsUrl  = "https://smartapi.crs4.it/api/user/v1";  ///autenticazione tramite microservizio
+var _userMsUrl  = "http://smartapi.crs4.it/api/user/v1";  ///autenticazione tramite microservizio
 
 var DateFormats = {
     short: "DD MMMM - YYYY",
@@ -332,10 +332,13 @@ function getDatasets(url,targetid, templateid, page, limit) {
     var target = "#" + targetid;
 
 
-    $.get(url, function (data) {
-        console.log(data);
-
-        var mydata = data.result;
+    $.ajax({
+       url: url
+       , success: function(data)
+       {
+           var mydata = data.result;
+         
+         
 
         var total = 0;
         if (data.result.count>0 && data.result.results){
@@ -349,7 +352,72 @@ function getDatasets(url,targetid, templateid, page, limit) {
         }
 
         if (data.result.count==0 || data.result.length==0){
-            var compiled = "<b>Non sono presenti dataset per la ricerca effettuata! <br><br><br> <a href='datasets.html'>>> Vedi tutti i dataset presenti <<</a> </b>";
+            $('#table-result').css('display','none');
+            $('#divNoResult').css('display', 'block');
+            /*
+            var compiled = 'prova';
+            var compiled = '<div class="col-md-8 col-md-offset-2">';
+            var compiled =+ '<div class="jumbotron" style="text-align: center">';
+            var compiled =+ '<h2 id="titleNoResult">Nessun risultato trovato</h2>';
+            var compiled =+ '</div>';
+            var compiled =+ '</div>';
+            */
+        }
+        else{
+           
+            var compiled = cacheCompile(templateid, {
+                    result: mydata,
+                    session_username: sessionStorage.getItem("username")
+                }
+            );
+        }
+
+        $(target).empty();
+        $(target).html(compiled);
+
+        var pagination = cacheCompile("pagination_template", {
+            pagination: {
+                page: page,
+                pageCount: Math.ceil(total)
+            }
+        });
+
+
+        $("#pagination_container").empty();
+        if (total > 1)
+            $("#pagination_container").html(pagination);
+        $(target).localize();
+        $("ul.pagination").localize();
+        $(target).trigger('onload');
+
+       }
+       , async: false 
+    })
+    /*
+    $.get(url
+    
+    , function (data) {
+        //console.log(data);
+
+        var mydata = data.result;
+        
+        console.log(mydata);
+
+        var total = 0;
+        if (data.result.count>0 && data.result.results){
+            mydata =  data.result.results.slice((page - 1) * limit, page * limit);
+            total = data.result.count / limit;
+        }
+
+        if (data.result.length>0 &&  (!data.result.results)) {
+            mydata = data.result.slice((page - 1) * limit, page * limit);
+            total = data.result.length / limit;
+        }
+
+        if (data.result.count==0 || data.result.length==0){
+            $('#table-result').css('display','none');
+            $('#divNoResult').css('display', 'block');
+            
         }
         else{
             var compiled = cacheCompile(templateid, {
@@ -377,6 +445,7 @@ function getDatasets(url,targetid, templateid, page, limit) {
         $(target).trigger('onload');
 
     });
+    */
 }
 
 
@@ -385,7 +454,7 @@ function getSimple(url, targetid, templateid, cb) {
     var target = "#" + targetid;
 
     $.get(url, function (data) {
-        console.log(data);
+        
         var compiled = cacheCompile(templateid, data);
 
         $(target).empty();

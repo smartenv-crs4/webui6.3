@@ -17,20 +17,20 @@
     "version":"version",
     "type":"dataset",
     "resources":[
-    	{
-        	"name":"resource name",
-        	"url":"url of remote resource",
-        	"description":"text/description",
-        	"format":"json (or other format)",
-        	"mimetype":"application/json",
-        	"resource_type":"json"
+        {
+            "name":"resource name",
+            "url":"url of remote resource",
+            "description":"text/description",
+            "format":"json (or other format)",
+            "mimetype":"application/json",
+            "resource_type":"json"
         },
         ...
     ],
     "tags":[
-    	{"id":"tag1", "name":"tag1"},
-    	{"id":"tag2", "name":"tag2"},
-    	...
+        {"id":"tag1", "name":"tag1"},
+        {"id":"tag2", "name":"tag2"},
+        ...
 }
 
  *
@@ -165,16 +165,34 @@ function addDataset() {
         user_apikey = sessionStorage.ckan_apikey;
     }
 
+    // inserire tutti i campi del form
+    var title = jQuery("#title").val();
+    if (title == ""){
+        alert($.t('datasets.required_field_title'));   ///Required field
+        $("#title").focus();
+        return false;
+    }
+    
+    var title = jQuery("#tags").val();
+    if (title == ""){
+        alert($.t('datasets.required_field_tags'));   ///Required field
+        $("#tags").focus();
+        return false;
+    }
+    
+    
+    
     var resources = [];
     if (dataset_resources.length < 1){
-        alert("impossibile creare il dataset vuoto, inserire almeno una risorsa!");
-        $("#formNewRes").show();
+        alert($.t('datasets.required_field_resource'));
+        $('#addRes').css('display', 'block');
+        $("#formNewRes").css('display', 'block');
         $("#buttonUpdateRes").hide();
         display_div_url();
         $("#resource-link-or-api").focus();
         return;
         //addNewResource(dataset_resources);
-        resources = dataset_resources;
+        //resources = dataset_resources;
     } else {
         resources = dataset_resources;
     }
@@ -190,13 +208,7 @@ function addDataset() {
         tags.push(tag);
     }
 
-    // inserire tutti i campi del form
-    var title = jQuery("#title").val();
-    if (title == ""){
-        alert($.t('datasets.required_field'));   ///Required field
-        $("#title").focus();
-        return false;
-    }
+    
 
 
     var name = title.replace(/ /gi, "-");
@@ -241,6 +253,8 @@ function addDataset() {
         crossDomain : true,
         success: function(data, textStatus, xhr)
         {
+            console.log(data);
+            
             //alert("status-"+xhr.status);
 
             // success
@@ -378,7 +392,7 @@ function htmlListResources(temp_res){
         var element_id = "element_"+i;
         var button_id = "button_"+i;
         var deleteRes = JSON.stringify("resource");
-
+        /*
         html_content += "<PRE style='align-self: center;'><div><small><i id='"+element_id+"'>"+temp_res[i].name + "&nbsp; &nbsp; " +
             "[format " + temp_res[i].format + "] &nbsp; &nbsp; " +
             "<a target='_blank' href='" + temp_res[i].url + "'>[" +
@@ -386,6 +400,13 @@ function htmlListResources(temp_res){
             "<button id='"+button_id+"' onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ","+JSON.stringify(i)+ ");' class='btn-u confirm pull-right' style='font-family: Arial; position: relative; right: 20px;'>" +
             $.t('datasets.deleteRes') + "</button></b>" +
             "</small></div></PRE>";
+        */    
+        html_content += "<PRE style='align-self: center; overflow: hidden'>";
+        html_content += "<div class='row'><div class='col-md-3'><i id='"+element_id+"'><h5>"+temp_res[i].name + "</h5></div>";
+        html_content += "<div class='col-md-3'><span class='badge badge-success'>" + temp_res[i].format + "</span></div>";
+        html_content += "<div class='col-md-3'><a target='_blank' href='" + temp_res[i].url + "'>" + $.t('datasets.linkToRes') + "</a></div>";
+        html_content += "<div class='col-md-2 pull-right'><button title='delete' id='"+button_id+"' onclick='javascript:deleteConfirm("+id+"," +deleteRes+ ","+JSON.stringify(i)+ ");' class='btn btn-danger btn-sm' style=' position: relative; margin-top: -5px; text-align: right;'><i class='icon-trash'></i></button></div>";
+        html_content += "</small></div></PRE>";
     }
 
 
@@ -731,8 +752,16 @@ function updateDataset() {
     //title
     var title = jQuery("#title").val();
     if (title == ""){
-        alert($.t('datasets.required_field'));   ///Required field
+        alert($.t('datasets.required_field_title'));   ///Required field
         $("#title").focus();
+        return false;
+    }
+    
+    //title
+    var title = jQuery("#tags").val();
+    if (title == ""){
+        alert($.t('datasets.required_field_tags'));   ///Required field
+        $("#tags").focus();
         return false;
     }
 
@@ -877,7 +906,7 @@ function updateDataset() {
  */
 function deleteDataset(id) {
     //alert("delete dataset");
-
+    
     var user_apikey = "";
 
     if(sessionStorage.ckan_apikey){

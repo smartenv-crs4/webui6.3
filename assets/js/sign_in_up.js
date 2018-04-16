@@ -1,12 +1,15 @@
-
-
+/*
 var _access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb2RlIjoibXMiLCJpc3MiOiJub3QgdXNlZCBmbyBtcyIsImVtYWlsIjoibm90IHVzZWQgZm8gbXMiLCJ0eXBlIjoiYXV0aG1zIiwiZW5hYmxlZCI6dHJ1ZSwiZXhwIjoxNzk2NDgxMjM3NDU3fQ.O8ITzSSUyq7FDB5sVRs06zjjjcegyRtWB2oHQsTgp6U";
+*/
 
+var _access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb2RlIjoibXMiLCJpc3MiOiJub3QgdXNlZCBmbyBtcyIsImVtYWlsIjoibm90IHVzZWQgZm8gbXMiLCJ0eXBlIjoid2VidWk2MyIsImVuYWJsZWQiOnRydWUsImV4cCI6MTgzNjU3OTUyMDkwOH0.bCwGsJskonVHoSPIxUjQwzCsKY5TZlIPXxdXUMPbVbM";
 
 
 jQuery(document).ready(function(){
+    
   jQuery("#inupblock").keypress(function (e) {
-    var key = e.which;
+      
+      var key = e.which;
     if(key == 13)  // the enter key code
     {
       signIn();      
@@ -119,7 +122,7 @@ jQuery(document).on("translate", function(){
            respBlock.html($.t("error.internal_server_error"));
            break;
          case 403:
-           alert($.t("error.invalid_auth"));
+           //alert($.t("error.invalid_auth"));
            respBlock.html($.t("error.invalid_auth"));
            break;
          default:
