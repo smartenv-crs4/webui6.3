@@ -327,7 +327,7 @@ var translation = {
                 "resourcePreview": "Anteprima",
                 "viewAllDatasets":"Tutti i Datasets ",
                 "viewMyDatasets": "I miei Datasets",
-                "addNewDataset": "Aggiungi un nuovo Dataset",
+                "addNewDataset": "Aggiungi Dataset",
                 "titleNoResult": "Nessun Dataset trovato"
 
             },

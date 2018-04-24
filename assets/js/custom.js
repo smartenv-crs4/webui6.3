@@ -94,16 +94,16 @@ jQuery(document).ready(function() {
 
     jQuery(".languages a").click(function () {
         if (jQuery(this).attr("data-lng")) {
+            
             localStorage.lng = jQuery(this).attr("data-lng");
-            //localStorage.lng = lng;
             var lngSel = jQuery(".languages .active").first();
             lngSel.empty();
             lngSel.append(this.cloneNode(true));
             var c = document.createElement("i");
             c.className = "fa fa-check";
             lngSel.find("a").first().append(c);
-
-            //i18next.changeLanguage(localStorage.lng, function (){});
+            i18next.changeLanguage(localStorage.lng, function(){});
+            
             jQuery('body').localize();
             jQuery(document).trigger('translate');
         }
@@ -120,7 +120,7 @@ jQuery(document).ready(function() {
             var lng = jQuery(this).val();
             localStorage.lng = lng;
 
-            //i18next.changeLanguage(localStorage.lng, function (){});
+            i18next.changeLanguage(localStorage.lng, function (){});
             jQuery('body').localize();
             jQuery(document).trigger('translate');
         });
