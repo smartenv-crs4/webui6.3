@@ -100,10 +100,10 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-8">
-                            <h2 class="color-red text-left"> <span class="glyphicon glyphicon-th-list"></span></a> Datasets </h2>
+                            <h2 class="color-red text-left"> <span class="glyphicon glyphicon-th-list"></span></a> Datasets</h2>
                         </div>
                         <div id="myDataset" class="col-md-2" hidden="hidden">
-                            <a href="#" class="btn-u pull-right">My Dataset</a>
+                            <a href="#" class="btn-u pull-right">My Dataset </a>
                         </div>
                         <div id="addNewDataset" class="col-md-2" hidden="hidden">
                             <!--<button class="btn-u pull-right">+ Add new Dataset</button>-->
@@ -149,10 +149,10 @@
 <div id="dialog"></div>
 
 <script type="text/x-handlebars-template" id="datasetrows_template">
-     {{session_username}} {{#each result}}
+     {{#each result}}
 <div class="panel panel-default" style="padding: 10px">
             <div class="page-header">
-            <h3><a data-id="{{id}}" class="lnk" style="cursor: pointer">{{title}}</a> <span class="label label-aqua">{{state}}</span>
+            <h3><a data-id="{{id}}" class="lnk" style="cursor: pointer">{{title}}</a> <span class="label label-aqua">{{state}} </span>
             <span class="pull-right">
             {{#if_eq author ../session_username}}
             <button class="btn-u delete glyphicon glyphicon-trash" data-id="{{id}}" data-i18n="[title]buttons.delete"></button>
@@ -194,7 +194,7 @@
                 </div>
              
              <div class="panel-footer">
-                     <p><b><span data-i18n="dashboard.label_author"></span>:</b> <span>author</span></p>
+                     <p><b><span data-i18n="dashboard.label_author"></span>:</b> <span>{{author}}</span></p>
                      <p><b><span data-i18n="dashboard.label_date"></span>:</b> <span>{{formatDate metadata_created "short"}}</span></p>
                      <p><b><span data-i18n="dashboard.label_version"></span>:</b> <span>{{version}}</span></p>
                      <p><b><span data-i18n="dashboard.label_licence"></span>:</b> <a href="{{license_url}}" target="_blank">{{license_title}}</a></p>
@@ -329,11 +329,11 @@
         }
         
         $("#myDataset").click(function () {
-            window.location = "datasets.html?q="+sessionStorage.username; 
+            window.location = "datasets.html?q=author_email:"+sessionStorage.email; 
         })
         
-        
         $(".lnk").click(function () {
+
             
             if ($("#panel-" + $(this).attr("data-id")).css("display") == 'none')
             {

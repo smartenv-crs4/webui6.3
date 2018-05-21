@@ -135,7 +135,7 @@ jQuery(document).ready(function() {
         jQuery("#h_login").hide();
         jQuery("#h_addData").show();
         jQuery("#h_myData").show();
-        jQuery("#h_myDatalink").prop("href", "datasets.html?q="+sessionStorage.username);
+        jQuery("#h_myDatalink").prop("href", "datasets.html?q=author_email:"+sessionStorage.email);
         jQuery("#h_user strong").html(sessionStorage.username);
     }
     else

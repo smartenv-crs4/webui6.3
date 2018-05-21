@@ -243,7 +243,9 @@ function addDataset() {
 
 
     //alert(JSON.stringify(data));
-
+    console.log('-----------------------------------');
+    console.log(addDataset_url);
+    console.log(JSON.stringify(data));
     jQuery.ajax({
         url: addDataset_url,
         type: "POST",
@@ -273,7 +275,8 @@ function addDataset() {
         },
         error: function(xhr, status)
         {
-            //alert(JSON.stringify(xhr));
+            alert(JSON.stringify(xhr));
+            console.log(addDataset_url);
             alert("Error "+ xhr.status + ": " + xhr.statusText + ": " + xhr.responseJSON.error.name);  //error name
             switch(xhr.status)
             {
