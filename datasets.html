@@ -220,20 +220,21 @@
         {{#paginate pagination type="previous"}}
         {{#if disabled}}{{else}}
         <li><a href="#"
-               onclick="javascript:getDatasets(url,'datasetrows','datasetrows_template', {{n}});">
+               onclick="javascript:renderList({{n}});"
+               renderList>
             &lt;</a></li>
         {{/if}}
         {{/paginate}}
         {{#paginate pagination type="middle" limit="7"}}
         <li class="{{#if active}}active{{/if}} hidden-xs">
             <a href="#"
-               onclick="javascript:getDatasets(url,'datasetrows','datasetrows_template', {{n}});">{{n}}</a>
+               onclick="javascript:renderList({{n}});">{{n}}</a>
         </li>
         {{/paginate}}
         {{#paginate pagination type="next"}}
         {{#if disabled}}{{else}}
         <li><a href="#"
-               onclick="javascript:getDatasets(url,'datasetrows','datasetrows_template', {{n}});">
+               onclick="javascript:renderList({{n}});">
             &gt;</a></li>
         {{/if}}
         {{/paginate}}
@@ -287,71 +288,37 @@
 <script type="text/javascript" src="assets/js/plugins/typeahead.bundle.js"></script>
 
 <script type="text/javascript">
-    var url;
-    jQuery(document).ready(function () {
-        App.init();
-        //App.initCounter();
-        //	App.initParallaxBg();
-        //OwlCarousel.initOwlCarousel();
-        Handlebars.registerHelper('paginate', paginate);
+    
+    
+    
+    function renderList(n)
+       {
 
-        url = datasetsURL;
+                                if (n == null)
+                                    getDatasets(url,"datasetrows", "datasetrows_template", 1, 5);  // first page
+                                else
+                                     getDatasets(url,"datasetrows", "datasetrows_template", n);
 
-        var query = getParameterByName('q');
+                                        $(".lnk").click(function () {
 
-        /*
-            filtrare il parametro q per capire se trattasi di myDatasets o no
-            in caso  la ricerca diventa url+="?q="+ sessionStorage.username
-         */
+                                            
+                                        if ($("#panel-" + $(this).attr("data-id")).css("display") == 'none')
+                                        {
+                                            $("#button-" + $(this).attr("data-id")).removeClass('glyphicon-arrow-down');
+                                            $("#button-" + $(this).attr("data-id")).addClass('glyphicon-arrow-up');
+                                            $("#panel-" + $(this).attr("data-id")).css("display","block");
+                                        }
 
-        if (query){
-            url+="?q="+query;
-        }
+                                        else
+                                        {    
+                                            $("#button-" + $(this).attr("data-id")).removeClass('glyphicon-arrow-up');
+                                            $("#button-" + $(this).attr("data-id")).addClass('glyphicon-arrow-down');
+                                            $("#panel-" + $(this).attr("data-id")).css("display","none");
+                                        }     
+                                        })
 
-        getDatasets(url,"datasetrows", "datasetrows_template", 1, 5);
 
-        getSimple(tagsURL, "tags_container","tags_template");
-
-        $("#searchButton").click(function () {
-            var query = $("#searchInput").val();
-            var page = "datasets.html";
-            if (query)
-                page += "?q=" + query;
-            window.location = page;
-        })
-
-        if(sessionStorage)
-            sessionStorage.prevPage=window.location.href;
-        if(sessionStorage.username){
-            $("#myDataset").show();
-            $("#addNewDataset").show();
-            //jQuery("#addNewDataset").prop("href", "datasets.html?q="+sessionStorage.username);
-        }
-        
-        $("#myDataset").click(function () {
-            window.location = "datasets.html?q=author_email:"+sessionStorage.email; 
-        })
-        
-        $(".lnk").click(function () {
-
-            
-            if ($("#panel-" + $(this).attr("data-id")).css("display") == 'none')
-            {
-                $("#button-" + $(this).attr("data-id")).removeClass('glyphicon-arrow-down');
-                $("#button-" + $(this).attr("data-id")).addClass('glyphicon-arrow-up');
-                $("#panel-" + $(this).attr("data-id")).css("display","block");
-            }
-            
-            else
-            {    
-                $("#button-" + $(this).attr("data-id")).removeClass('glyphicon-arrow-up');
-                $("#button-" + $(this).attr("data-id")).addClass('glyphicon-arrow-down');
-                $("#panel-" + $(this).attr("data-id")).css("display","none");
-            }     
-        })
-        
-        
-        $(".edit").click(function () {
+                                        $(".edit").click(function () {
             window.location.href = "manage_dataset.html?id="+$(this).attr("data-id");    
         })
         
@@ -391,6 +358,58 @@
             $("#dialog").dialog("open");  
         })
        
+    
+    
+
+       }
+    
+    
+    
+    
+    
+    var url;
+    jQuery(document).ready(function () {
+        App.init();
+        //App.initCounter();
+        //	App.initParallaxBg();
+        //OwlCarousel.initOwlCarousel();
+        Handlebars.registerHelper('paginate', paginate);
+
+        url = datasetsURL;
+
+        var query = getParameterByName('q');
+
+        /*
+            filtrare il parametro q per capire se trattasi di myDatasets o no
+            in caso  la ricerca diventa url+="?q="+ sessionStorage.username
+         */
+
+        if (query){
+            url+="?q="+query;
+        }
+
+        //getDatasets(url,"datasetrows", "datasetrows_template", 1, 5);
+        renderList(null);
+        getSimple(tagsURL, "tags_container","tags_template");
+        
+       
+
+        $("#searchButton").click(function () {
+            var query = $("#searchInput").val();
+            var page = "datasets.html";
+            if (query)
+                page += "?q=" + query;
+            window.location = page;
+        })
+
+        if(sessionStorage)
+            sessionStorage.prevPage=window.location.href;
+        if(sessionStorage.username){
+            $("#myDataset").show();
+            $("#addNewDataset").show();
+            //jQuery("#addNewDataset").prop("href", "datasets.html?q="+sessionStorage.username);
+        }
+        
     });
     
     
